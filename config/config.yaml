@@ -1,0 +1,619 @@
+# ═══════════════════════════════════════════════════════════════
+#      船舶涂装前沿情报推送 — TrendRadar v6.11.0 配置
+#      适配 config schema 2.4.0 / timeline 1.2.0
+#      由船舶低碳情报版（amiya54/FEISHU_WEBHOOK_URL）v3.3.1 改制
+# ═══════════════════════════════════════════════════════════════
+#
+# 【本配置的核心思路】
+#   TrendRadar 把"热榜平台"和"RSS 订阅"当成两套独立数据源。
+#   ⚠️ 关键陷阱：platforms.enabled 是「整个爬虫总开关」，
+#      设成 false 会让程序打印 "爬虫功能已禁用" 后直接退出——
+#      RSS 也一并不会跑。所以要做"只跑 RSS"：
+#         platforms.enabled: true      ← 必须 true，否则程序退出
+#         platforms.sources: []        ← 清空，于是不抓热榜
+#         rss.enabled: true            ← RSS 照常跑
+#     再配合 display.regions.hotlist=false，推送里就不会出现热榜。
+#
+# 【本配置相对原版改了 14 处】搜索 "★" 可快速定位
+#   1 platforms.enabled 保 true + sources 清空（只跑 RSS 的正确姿势）
+#   2 rss.feeds 换成船舶低碳垂直源
+#   3 display.regions 只保留 RSS 区域
+#   4 notification.channels.wework 填群机器人 Webhook
+#   5 report.mode: current → incremental（零热榜与 current 硬冲突，必改）
+#   6 ai.max_tokens 5000 → 32768（思考模型会吃光预算导致正文为空）
+#   7 rss.feeds 增补技术类专业源（The Motorship / The Maritime Executive）
+#   8 display.regions.ai_analysis: false → true（false 会把 AI 分析整段删掉）
+#   9-11 双周报改造：14 天窗口 / 只留 RSS 区域 / AI 提到最前 / max_age_days 逐源可覆盖
+#   12 法规原文直采源（船级社 + 海事局官网，见 scripts/fetch_regulations.py）★
+#   13 GN 增补「IMO决议与生效」定向查询
+#   14 英国 MCA 的 GOV.UK 原生 Atom 源（实测法规命中率最高）
+#
+# 【配套的源码补丁与提示词】
+#   ../patches/apply_patches.py   A 让 ai.extra_params 生效（可关思考省 token）
+#                                 B 空响应诊断（打印 finish_reason / reasoning_tokens）
+#                                 C RSS 换浏览器 UA（修 3 个源的 403）
+#                                 D AI 分析板块标题改为技术研发措辞
+#                                   核心热点态势→今日技术主线、舆论风向争议→技术路线与分歧、
+#                                   异动与弱信号→弱信号与风向标、RSS 深度洞察→关键参数与硬数据、
+#                                   研判策略建议→研发启示
+#   ../patches/ai_probe.py        10 秒判定「AI 返回空响应」的根因
+#   ./ai_analysis_prompt.txt      读者定位=船厂涂装技术室（v1.0.0-coating）
+#   ./frequency_words.txt         关键词分组（[防污涂料]/[涂装工艺与材料] 等 8 组）
+# ⚠️ [D] 是必须打的：板块标题硬编码在 trendradar/ai/formatter.py 里，
+#    config.yaml 没有任何字段能覆盖它。不打补丁，标题就一直是「舆论风向争议」。
+# ═══════════════════════════════════════════════════════════════
+
+
+app:
+  timezone: "Asia/Shanghai"
+  show_version_update: true
+
+
+# 调度系统：留 false，由外部定时器（计划任务 / cron / GitHub Actions）决定何时运行
+schedule:
+  enabled: false
+  preset: "morning_evening"
+
+
+# ★改动1：保持 enabled=true（否则程序直接退出），把 sources 清空实现"只跑 RSS"
+platforms:
+  enabled: true
+  api_url: ""
+  sources: []
+
+
+# ★改动2：RSS 源换成船舶涂装垂直源（媒体源沿用低碳版实测可用名单，
+#   燃料行情类源 —— Manifold Times / Bunkerspot / Ship & Bunker —— 已移除）
+rss:
+  enabled: true
+
+  # ★双周报改动1（必改）：窗口从 1 天放宽到 14 天。
+  #   每两周才跑一次，若仍是 1 天，只能抓到"运行那一刻"当天的几篇，
+  #   报告连一页都凑不满。14 天 = 双周报的取样窗口。
+  freshness_filter:
+    enabled: true
+    max_age_days: 14         # 双周窗口：保留 14 天内的文章
+
+  feeds:
+    # ══════════════════════════════════════════════════════════════════
+    # ★双周报改动12（2026-10-15）：法规原文直采源 —— 本次最重要的一处
+    # ══════════════════════════════════════════════════════════════════
+    # 【为什么必须单开这一条】
+    #   你要的「IMO / 船级社 / 海事局 发布的规则、指南、规范、标准」，
+    #   这些机构的官网【全都没有 RSS】。实测结论：
+    #     DNV 403 、LR 404 、ABS 404 、EUR-Lex 404 、US MARAD 403
+    #     CCS / ClassNK / IMO / 中国海事局 / 交通运输部 —— 无 feed
+    #     IMO 官网整站是 SharePoint 动态渲染，列表页抓不到任何日期
+    #     IMO Circulars / Index of IMO Resolutions 页面同理
+    #   而资讯媒体只会「谈论」法规、不会发布法规原文，所以只靠 RSS，
+    #   「法规前沿」永远只有二手新闻，看不到实质性的文件。
+    #
+    # 【怎么解决的】
+    #   scripts/fetch_regulations.py 直接抓这些机构官网的【公告列表页】，
+    #   提取「标题 + 日期 + 链接」，生成一个标准 RSS，再由 crawler.yml
+    #   在爬虫启动前起一个本地 HTTP 服务（127.0.0.1:8788）喂给本源。
+    #   于是这些官方文件就和普通 RSS 条目一样进入报告、并被 AI 引用。
+    #
+    #   实测覆盖（2026-10-15，本机直连，8 个列表页全部成功）：
+    #     中国船级社 · 规范/指南总览、规范、指南、规范指南征求意见、
+    #                 中国海事法规、材料设备指南
+    #     中国海事局 · 船舶技术法规、通知公告
+    #   捕获量：窗口 90 天 39 条 / 180 天 63 条 / 365 天 77 条
+    #   《船舶应用氢燃料指南 2026》《关于〈船舶应用氨燃料指南〉2026（初稿）
+    #   征求意见》《船用燃料全生命周期温室气体排放强度计算与认证指南》
+    #   《氨燃料动力船舶技术与检验暂行规则（2026）》《国际航行海船能效设计
+    #   指数（EEDI）计算与验证指南》等都在其中。
+    #
+    # ⚠️ max_age_days 必须单独放大到 400：法规是【低频发布】，
+    #    按全局 14 天切一刀，CCS 和海事局两个月的文件会被全部滤掉 ——
+    #    这正是「法规前沿相关的法规好少」的一个隐藏原因。
+    #    取 400 天是为了完整容纳上游 365 天的直采窗口。
+    - id: "regulations-live"
+      name: "法规原文直采 · 船级社/海事局"
+      url: "http://127.0.0.1:8788/reg_feed.xml"
+      max_age_days: 400
+      max_items: 200
+    #
+    # ⚠️ 本机跑爬虫时若没起那个本地服务，这个源会报一次连接失败，
+    #    属正常现象（其余源不受影响）。要本地复现完整效果：
+    #      python scripts/fetch_regulations.py
+    #      cd regfeed && python -m http.server 8788 &
+    #    在 GitHub Actions 里这两步已写进 crawler.yml，不用你管。
+
+    # ── 技术/动力类专业源（★改动7 本次实测新增，最贴合技术研发）──
+    #    The Motorship 是船舶动力与推进技术类杂志，甲醇/氨发动机、
+    #    燃料系统、能效装置的报道密度高于综合媒体，建议保留。
+    - id: "motorship"
+      name: "The Motorship"
+      url: "https://www.motorship.com/feed"
+
+    # ★ 分页源（★双周报改动9）
+    #   为什么要翻页：RSS 协议只给「最近 N 条」，不翻页的话 12-20 条
+    #   往往只覆盖 1 天，14 天窗口里九成文章永远抓不到。
+    #   实测（2026-10-14，本机直连）：
+    #     The Motorship  单页 10 条/12 天 → 翻 3 页 30 条/29 天
+    #     gCaptain       单页 12 条/ 1 天 → 翻 3 页 36 条/ 4 天
+    #     Manifold Times 单页 10 条/ 1 天 → 翻 3 页 30 条/ 5 天
+    #     Bunkerspot     单页 10 条/ 0 天 → 翻 3 页 30 条/ 4 天
+    #   ⚠️ 只对上面这 4 家翻页。Hellenic / Ship & Bunker / Seatrade 的
+    #      ?paged=N 返回的是与第 1 页完全相同的内容，翻页只会制造重复条目。
+    - id: "motorship-p2"
+      name: "The Motorship · 第2页"
+      url: "https://www.motorship.com/feed?paged=2"
+
+    #   注：不设第 3 页。The Motorship 发稿慢（30 条覆盖 29 天），
+    #   实测第 3 页的文章全部超出 14 天窗口，加了也只会被过滤掉。
+
+    #    综合类，但技术栏目质量高、条数多（单次可抓 40+ 条）。
+    #    如果觉得噪音大，把下面 enabled 改成 false 即可单独关掉它。
+    - id: "maritime-executive"
+      name: "The Maritime Executive"
+      url: "https://www.maritime-executive.com/articles.rss"
+      enabled: true
+
+    # ── 国际航运媒体（实测有原生 RSS）──
+    - id: "gcaptain"
+      name: "gCaptain"
+      url: "https://gcaptain.com/feed/"
+
+    - id: "gcaptain-p2"
+      name: "gCaptain · 第2页"
+      url: "https://gcaptain.com/feed/?paged=2"
+
+    - id: "gcaptain-p3"
+      name: "gCaptain · 第3页"
+      url: "https://gcaptain.com/feed/?paged=3"
+
+    - id: "splash247"
+      name: "Splash 247"
+      url: "https://splash247.com/feed/"
+
+    - id: "hellenic"
+      name: "Hellenic Shipping News"
+      url: "https://www.hellenicshippingnews.com/feed/"
+
+    - id: "offshore-energy"
+      name: "Offshore Energy"
+      url: "https://www.offshore-energy.biz/feed/"
+
+    # ⚠️ 低碳版曾接的燃料行情类源（Manifold Times / Bunkerspot / Ship & Bunker）
+    #    对涂装专题贡献极低，已整体移除；分页源实测经验沿用。
+
+    # ── 大容量源（★双周报改动10）──
+    #   Seatrade Maritime：单次 50 条、覆盖 8 天，是本次实测中
+    #   「单位源覆盖天数」最好的一条，法规与合规报道密度也高。
+    - id: "seatrade"
+      name: "Seatrade Maritime"
+      url: "https://www.seatrade-maritime.com/rss.xml"
+
+    #   欧盟委员会交通总司：条数多但几乎全是陆路铁路内容，涂装命中率极低。
+    #   保留源定义、默认关闭；想启用改回 true 即可。
+    - id: "ec-transport"
+      name: "欧盟委员会 · 交通"
+      url: "https://transport.ec.europa.eu/node/2/rss_en"
+      enabled: false
+
+    # ⚠️ 以下源经实测已失效，统一关闭（enabled: false）。
+    #    它们此前一直报错、贡献 0 条内容，留着只让日志变脏。
+    #    若日后本站更换反爬策略或 RSS 地址，把 enabled 改回 true 即可复活。
+    #      WorldCargo News / Container News  → 403（浏览器 UA 补丁也无效）
+    #      Safety4Sea  → RSS 格式损坏（syntax error）
+    #      Green4Sea   → 404，地址已变更
+    - id: "worldcargo"
+      name: "WorldCargo News"
+      url: "https://www.worldcargonews.com/feed/"
+      enabled: false
+
+    - id: "container-news"
+      name: "Container News"
+      url: "https://container-news.com/feed/"
+      enabled: false
+
+    - id: "marinelink"
+      name: "MarineLink"
+      url: "https://www.marinelink.com/rss"
+
+    - id: "safety4sea"
+      name: "Safety4Sea"
+      url: "https://safety4sea.com/feed/"
+      enabled: false
+
+    - id: "green4sea"
+      name: "Green4Sea"
+      url: "https://www.green4sea.com/feed/"
+      enabled: false
+
+    # ── 中文源（行业站里唯一有原生 RSS 的）──
+    #    ★ 2026-10-14 复测：先前报 403 是临时反爬，现已恢复（10 条 / 当天更新）。
+    #      这是目前唯一可用的中文垂直信源，「国内绿色船舶政策」主要靠它
+    #      和下面的 GN 中文源来覆盖。
+    - id: "imarine"
+      name: "龙de船人"
+      url: "https://www.imarine.cn/feed"
+      # ★2026-10-15 实跑日志：403 Client Error: Forbidden。
+      #   该站已上反爬（[C] 补丁换的浏览器 UA 也没绕过），在 GitHub 境外机房
+      #   尤其容易被拦。国内绿色船舶动态已由下面的 GN 中文源覆盖，
+      #   所以直接关掉，避免每轮日志里留一条红色失败项。
+      enabled: false
+
+    # ── 官方机构（地址可能变动，首次运行后看日志确认）──
+    # ⚠️ imo.org 这个 RSS 地址 2026-10-14 实跑返回 500 Server Error，
+    #    属对方站点侧问题，不是配置错误 —— 但也不必再换地址：
+    #    下面的 Google News 源里已有 "GN · IMO与净零框架"，
+    #    对 IMO 新闻的覆盖比官网 RSS 更全（含二手报道与配套解读）。
+    - id: "imo-news"
+      name: "IMO 官网新闻"
+      url: "https://www.imo.org/en/mediacentre/pressbriefings/pages/rss.aspx"
+      enabled: false
+
+    # ── 法规规范专题源（★双周报改动2：本次新增，法规情报主力）──
+    #   Google News 搜索源的特点：单次可返回数十条、按相关性排序，
+    #   天然适合"两周攒一批"的双周报场景，且能覆盖到官网无 RSS 的机构
+    #   （船级社、欧盟、海事局等 —— 实测 DNV/LR/ABS/ClassNK/CCS 官网
+    #    全部无可用 RSS，只有邮件订阅，所以这条线不可替代）。
+    #   ⚠️ 需在境外网络下访问（GitHub Actions 运行在境外，没问题；
+    #      本机在国内直连不通，属正常现象，不用当成故障排查）。
+    #
+    #   ★双周报改动11：全部 URL 末尾加 &num=100。
+    #   依据：上次实跑日志里 6 个 GN 源的返回条数是 50/50/46/48/19/50 ——
+    #   恰好卡在 50 的两个明显是被默认上限截断（另几个 46/48/19 是真实的
+    #   匹配总量）。num=100 是 Google News 的取条数参数，加上可让卡在 50
+    #   的源再多拿一倍。此项无法在本机验证（国内直连 Google 不通），
+    #   跑一次看日志里 GN 源的条数是否超过 50 即可确认。
+    #
+    #   ★同时修正两处查询词的坑：
+    #     · gnews-class 原写 "Lloyd's Register" → 直引号在 Google 侧会被
+    #       当成标点切断，改用单词 Lloyd（与本地词库同一处修正）
+    #     · gnews-imo 原写 "net-zero framework" → 带连字符的精确短语太严，
+    #       标题若写 "net zero framework" 就漏，放宽成 "net zero"
+    # ── 法规规范专题源（沿用低碳版实测结论：船级社 / 海事局官网全部无 RSS，
+    #    Google News 搜索源是法规情报的不可替代来源）──
+    #   ★本次全部换成涂装主题查询词；每条末尾保留 &num=100 取条数参数。
+    #   ⚠️ Google News 需境外网络访问（GitHub Actions 运行在境外，没问题）。
+
+    # 涂装总查询：marine coatings / antifouling / foul release
+    - id: "gnews-coating"
+      name: "GN · 船舶涂装总览"
+      url: "https://news.google.com/rss/search?q=%22marine+coatings%22+OR+antifouling+OR+%22anti-fouling%22+OR+%22foul+release%22+ship&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    # PSPC 主线：压载舱 / 货油舱涂层性能标准
+    - id: "gnews-pspc"
+      name: "GN · PSPC与涂层标准"
+      url: "https://news.google.com/rss/search?q=PSPC+OR+%22performance+standard+for+protective+coatings%22+OR+%22ballast+tank+coating%22+OR+%22cargo+tank+coating%22&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    # 防污底公约与生物杀灭剂合规（AFS / BPR / cybutryne / 船体清洗）
+    - id: "gnews-afs"
+      name: "GN · 防污底公约与生物杀灭剂"
+      url: "https://news.google.com/rss/search?q=%22AFS+convention%22+OR+%22anti-fouling+system%22+OR+cybutryne+OR+%22hull+cleaning%22+OR+biocidal&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    # 船级社涂装相关规范动态
+    - id: "gnews-class"
+      name: "GN · 船级社涂装规范动态"
+      url: "https://news.google.com/rss/search?q=DNV+OR+Lloyd+OR+ClassNK+OR+%22Bureau+Veritas%22+ship+coating+paint+rules&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    # IMO 决议与生效（涂层 / 涂料限定，防跑偏成泛航运新闻）
+    - id: "gnews-imo-reg"
+      name: "GN · IMO决议与涂层生效"
+      url: "https://news.google.com/rss/search?q=IMO+MSC+OR+MEPC+OR+%22entry+into+force%22+coating+OR+paint+OR+antifouling&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    # 涂料供应商动态（型式认可 / 新产品 / 工厂）
+    - id: "gnews-supplier"
+      name: "GN · 涂料供应商动态"
+      url: "https://news.google.com/rss/search?q=Jotun+OR+Hempel+OR+AkzoNobel+OR+PPG+OR+Chugoku+marine+coatings+paint&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    # ── 中文源（行业站里唯一有原生 RSS 的 imarine 已停用，中文靠 GN）──
+    - id: "gnews-cn"
+      name: "GN · 国内涂装与涂料动态"
+      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6%E6%B6%82%E8%A3%85+OR+%E8%88%B9%E8%88%B6%E6%B6%82%E6%96%99+OR+%E9%98%B2%E6%B1%A1%E6%BC%86+OR+%E6%B6%82%E5%B1%82+%E8%A7%84%E8%8C%83+OR+%E8%88%B9%E7%BA%A7%E7%A4%BE+%E6%B6%82%E6%96%99&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+
+    # ══════════════════════════════════════════════════════════════════
+    # ★双周报改动14：英国 MCA（GOV.UK 原生 Atom）—— 实测法规命中率最高
+    # ══════════════════════════════════════════════════════════════════
+    #   GOV.UK 任何搜索页 / 机构页加 .atom 就是一条标准 Atom feed，
+    #   已确认 TrendRadar 的解析器（feedparser）原生支持 Atom，实测 20/20
+    #   条都能解析出时间。这次实测里它是「法规含量」最高的一类源：
+    #     MCA 政策与咨询：20 条里 17 条是法规/征求意见类（命中率 0.85）
+    #     MCA 全部发布  ：20 条里 12 条是 MGN / MIN 通函（命中率 0.6）
+    #   MGN（Merchant Guidance Note）是英国海事主管机关的正式通函，
+    #   大量内容直接对应 IMO 决议的落地要求 —— 与「海事局发布技术法规」
+    #   是同一性质的官方文件，可作横向对标。
+    #   ⚠️ 英国法规面向 UK flag，不要把它的要求当成国内强制要求引用。
+    - id: "govuk-mca"
+      name: "英国MCA · 全部发布"
+      url: "https://www.gov.uk/government/organisations/maritime-and-coastguard-agency.atom"
+      max_age_days: 90
+
+    - id: "govuk-mca-consult"
+      name: "英国MCA · 法规与征求意见"
+      url: "https://www.gov.uk/search/policy-papers-and-consultations.atom?organisations%5B%5D=maritime-and-coastguard-agency"
+      max_age_days: 180
+
+    # ── 无原生 RSS、需自建 RSSHub 才能接入的源（先留空）──
+    # 信德海事 / 国际船舶网 / 中国船级社：官网无 RSS，且对境外 IP 有 TLS 限制
+    # 各船级社（DNV/LR/ABS/ClassNK）通函：只有邮件订阅，无自动化方案
+
+
+report:
+  # ★改动5：必须用 incremental，不能用 current
+  #   原因：current / daily 模式会强制读取"当天的热榜历史数据"，
+  #   而我们把 platforms.sources 清空了 → 热榜库是空的 →
+  #   current 模式会直接抛 RuntimeError 中断流程（报错：
+  #   "数据一致性检查失败：保存后立即读取失败"），推送也就发不出去。
+  #   incremental 模式不读历史，只推新增内容，天然适配"只跑 RSS"，且零重复。
+  mode: "incremental"
+  display_mode: "keyword"
+  sort_by_position_first: false
+  rank_threshold: 5
+  max_news_per_keyword: 0
+
+
+# 关键词匹配（词组定义在 config/frequency_words.txt，中英双语务必都写）
+# 注意：RSS 条目同样会被这套词组过滤，词组不全会出现"抓到了但全被滤掉"
+filter:
+  method: "keyword"
+  priority_sort_enabled: true
+
+ai_filter:
+  batch_size: 200
+  batch_interval: 2
+  min_score: 0.7
+  reclassify_threshold: 0.6
+  prompt_file: "prompt.txt"
+  extract_prompt_file: "extract_prompt.txt"
+  update_tags_prompt_file: "update_tags_prompt.txt"
+
+
+# ★改动3：推送里只保留 RSS 区域，隐藏热榜与新增热点
+display:
+  # ★双周报改动3：AI 简报提到最前。
+  #   双周报是"报告"形态，读者要先看结论与法规解读，再往下翻新闻清单。
+  region_order:
+    - ai_analysis
+    - rss
+    - standalone
+    - hotlist
+    - new_items
+
+  regions:
+    hotlist: false
+    new_items: false
+    rss: true
+    standalone: false
+    # ★改动8：必须是 true。dispatcher.py:417 会用这个开关过滤
+    #   `ai_analysis if display_regions.get("AI_ANALYSIS", True) else None`
+    #   ——设成 false 会把 AI 分析整段从推送里删掉，而且不留任何提示。
+    #   早期版本 AI 关闭时这里写的是 false，开启 AI 后必须改回 true。
+    ai_analysis: true
+
+  standalone:
+    platforms: []
+    rss_feeds: []
+    max_items: 20
+
+
+# ★改动4：填入企业微信群机器人 Webhook
+#   ⚠️ 这个地址等于群的"发言钥匙"，别提交进公开仓库。
+#      本地跑：直接填这里。
+#      GitHub Actions 跑：填到仓库 Secrets，别写进文件。
+#   获取：企业微信内部群 → 右上角 ··· → 群机器人 → 添加 → 复制 Webhook
+notification:
+  enabled: true
+
+  channels:
+    feishu:
+      webhook_url: ""
+
+    dingtalk:
+      webhook_url: ""
+
+    wework:
+      webhook_url: ""                 # ← 填 https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx
+      msg_type: "markdown"
+
+    telegram:
+      bot_token: ""
+      chat_id: ""
+
+    # ★双周报改动4：「完整报告」的两条路，选一条即可，不必都配。
+    #
+    #   路线 A（推荐，不用邮箱）：GitHub Pages 发布网址
+    #     爬虫跑完自动把 index.html 发布成固定网址，手机点开就是完整报告。
+    #     开启方式：仓库 Settings → Pages → Source 选 "GitHub Actions"。
+    #     免费账户要求仓库是「公开」的；私有仓库请改用工作流里已内置的
+    #     Cloudflare Pages 方案（对私有仓库免费）。
+    #
+    #   路线 B：邮件（下面这段）
+    #     dispatcher.py 会把整份 HTML 报告作为邮件正文发出去，
+    #     其余推送渠道（企业微信/飞书/钉钉）只推 markdown 摘要，会被长度切成多条。
+    #
+    #   ⚠️ 不想要邮件就别配下面这段、并把仓库 Secrets 里的
+    #      EMAIL_FROM / EMAIL_PASSWORD / EMAIL_TO 删掉，邮件通道会自动跳过。
+    #
+    #   QQ 邮箱填法：smtp_server: "smtp.qq.com"   smtp_port: 465
+    #               password 填邮箱后台开的「SMTP 授权码」，不是 QQ 登录密码
+    #   163 邮箱：smtp.163.com / 465；126：smtp.126.com / 465
+    #
+    #   ⚠️ GitHub Actions 端不要写这里，去仓库 Secrets 配这 5 个（名字必须一致）：
+    #      EMAIL_FROM / EMAIL_PASSWORD / EMAIL_TO / EMAIL_SMTP_SERVER / EMAIL_SMTP_PORT
+    email:
+      from: ""
+      password: ""
+      to: ""
+      smtp_server: ""
+      smtp_port: ""
+
+    ntfy:
+      server_url: "https://ntfy.sh"
+      topic: ""
+      token: ""
+
+    bark:
+      url: ""
+
+    slack:
+      webhook_url: ""
+
+    generic_webhook:
+      webhook_url: ""
+      payload_template: ""
+
+
+storage:
+  backend: "auto"
+  formats:
+    sqlite: true
+    txt: false
+    html: true                # 保留 HTML 报告，可在浏览器里看完整版
+  local:
+    data_dir: "output"
+    retention_days: 0
+  remote:
+    retention_days: 0
+    endpoint_url: ""
+    bucket_name: ""
+    access_key_id: ""
+    secret_access_key: ""
+    region: ""
+  pull:
+    enabled: false
+    days: 7
+
+
+ai:
+  # 模型名用 litellm 的「provider/model」写法：
+  #   deepseek/xxx   → DeepSeek 官方
+  #   openai/xxx     → 任何 OpenAI 兼容端点（配 api_base 即可）
+  model: "deepseek/deepseek-v4-flash"
+  api_key: ""                 # 建议用环境变量 AI_API_KEY，别把 key 写进仓库
+  api_base: ""                # 换第三方厂商时填，见下方示例
+  timeout: 1200               # ★法规扩容改动：600 → 1200（20 分钟）。
+                              #   2026-10-15 首轮实测：crawl job 跑到 23 分钟时
+                              #   AI 环节仍未结束，而 600s 上限意味着单次调用
+                              #   到 10 分钟就被掐断，再叠加 num_retries: 1
+                              #   → 白重跑一遍，最坏吃掉 20 分钟。
+                              #   双周报正文 3800-5200 字 + 思考链，10 分钟本来就不够。
+                              #   1200 × 2 次 + 其它步骤 ≈ 45 分钟，
+                              #   ⚠️ 必须与 crawl job 的 timeout-minutes: 60 配套使用。
+  temperature: 1.0            # ⚠️ deepseek-v4 系列在「思考模式」下此项不生效（官方文档明确）
+  max_tokens: 32768           # ★改动6：5000 会被思维链吃光 → 正文为空 →「AI 返回空响应」
+  num_retries: 1
+  fallback_models: []
+
+  # ★常见报错2：「[AI] 分析失败: AI 返回空响应」（翻译正常、只有 AI 简报空）
+  #   原因：deepseek-v4-flash / v4-pro 这类「思考模型」默认开启思考，effort=high。
+  #         分析任务复杂 → 思维链把 max_tokens 全部用光 → 200 OK 但 content 为空。
+  #         翻译任务简单，思维链很短，所以翻译正常 —— 这就是为什么只有 AI 简报空。
+  #   印证方法：打开程序自带的 debug，或看 usage 里 reasoning_tokens 是否≈max_tokens。
+  #   解决（三选一，方案①最省事）：
+  #     ① 提高输出上限：把上面的 max_tokens 改成 32768（需 ≥32K 才能稳定出正文）
+  #     ② 关闭思考（更省钱、更快、JSON 格式更稳）：
+  #          需先打补丁 patches/apply_patches.py（原版读了 extra_params 但从不使用），
+  #          然后在本段追加：
+  #            extra_params:
+  #              extra_body:
+  #                thinking: {type: disabled}
+  #          想保留一点推理能力就改成降档：
+  #            extra_params:
+  #              reasoning_effort: low
+  #     ③ 换非思考模型，例如智谱 glm-4-flash / 阿里 qwen-plus（见下方示例）
+  extra_params: {}            # 透传给 LiteLLM 的额外参数；需打补丁后才生效，见上
+
+  # ⚠️ 常见报错 Insufficient Balance = 账号余额用完
+  #    后果：翻译全部失败（英文标题保持英文）+ AI 简报没有任何内容
+  #    注意：翻译失败不会中断推送，消息照样发出，所以很容易被忽略
+  #    解决：① 去 platform.deepseek.com 充值（几元够跑很多轮）
+  #         ② 或换厂商，改 model + api_base 两项即可（任选其一）：
+  #            硅基流动  api_base: https://api.siliconflow.cn/v1                          model: openai/deepseek-ai/DeepSeek-V3
+  #            阿里百炼  api_base: https://dashscope.aliyuncs.com/compatible-mode/v1       model: openai/qwen-plus
+  #            智谱GLM   api_base: https://open.bigmodel.cn/api/paas/v4                    model: openai/glm-4-flash
+  #            月之暗面  api_base: https://api.moonshot.cn/v1                              model: openai/moonshot-v1-8k
+
+
+ai_analysis:
+  # ★双周报改动7：必须为 true，否则整个 AI 报告（占 3-4 页）不会生成。
+  #   ⚠️ 若 GitHub Actions 端同时设了 AI_ANALYSIS_ENABLED 这个 Secret，
+  #      以 Secret 为准；不确定时保持一致（都设 true）最稳妥。
+  enabled: true
+  language: "Chinese"
+  prompt_file: "ai_analysis_prompt.txt"
+  mode: "follow_report"
+  max_news_for_analysis: 450    # ★双周报改动6：150 → 350 → 450
+                                #   单日 150 条够用，但双周取样窗口是 14 天，
+                                #   加上 6 个法规搜索源，候选量是单日的十倍以上。
+                                #   ★双周报改动12 后，法规直采源第一次跑会一次带入
+                                #   77 条全年法规清单（之后每期只报新增），
+                                #   所以再抬到 450，避免法规条目被这条上限挤掉。
+                                #   注意：这项直接决定 token 成本，别盲目调到 1000+
+  # ★ 只跑 RSS（热榜 sources 清空）时这一项必须是 true
+  #   否则日志会出现「本轮无新增热点内容，跳过 AI 分析」：
+  #   热榜为空时 AI 只能靠 RSS 供料，关掉它等于把唯一的料也断了
+  include_rss: true
+  include_standalone: false
+  include_rank_timeline: false
+
+ai_translation:
+  enabled: false              # 打开后英文源标题会译成中文
+  language: "中文"
+  prompt_file: "ai_translation_prompt.txt"
+  batch_size: 100
+  batch_interval: 2
+  scope:
+    hotlist: false
+    rss: true
+    standalone: false
+
+
+advanced:
+  debug: false
+
+  version_check_url: "https://raw.githubusercontent.com/sansan0/TrendRadar/refs/heads/master/version"
+  mcp_version_check_url: "https://raw.githubusercontent.com/sansan0/TrendRadar/refs/heads/master/version_mcp"
+  configs_version_check_url: "https://raw.githubusercontent.com/sansan0/TrendRadar/refs/heads/master/version_configs"
+
+  crawler:
+    request_interval: 2000
+    use_proxy: false
+    default_proxy: "http://127.0.0.1:7897"
+
+  # ⚠️ 国内网络直连境外 RSS 源通常失败，需要把 use_proxy 打开
+  #    代理端口改成你自己客户端里的实际端口（Clash 常见 7897）
+  # ⚠️ 注意：如果环境变量 GITHUB_ACTIONS=true，程序会强制"不使用代理"，
+  #    这里设了也白设。本地运行请先 unset GITHUB_ACTIONS。
+  rss:
+    request_interval: 1000
+    timeout: 15
+    use_proxy: false
+    proxy_url: "http://127.0.0.1:7897"
+
+  weight:
+    rank: 0.6
+    frequency: 0.3
+    hotness: 0.1
+
+  max_accounts_per_channel: 3
+
+  batch_size:
+    default: 4000
+    dingtalk: 20000
+    feishu: 30000
+    bark: 4000
+    slack: 4000
+  batch_send_interval: 3
+  feishu_message_separator: "━━━━━━━━━━━━━━━━"
+
+
+# ═══════════════════════════════════════════════════════════════
+# 附：403 修复补丁（改程序源码，非本配置）
+# ═══════════════════════════════════════════════════════════════
+# 现象：WorldCargo News / Container News / 龙de船人 返回 403 Forbidden
+# 原因：程序抓 RSS 用的是非浏览器 UA，被 Cloudflare 拦
+#   位置: trendradar/crawler/rss/fetcher.py  第 74 行
+#         trendradar/crawler/rss/parser.py   第 210 行
+#   原值: "User-Agent": "TrendRadar/2.0 RSS Reader (https://github.com/trendradar)"
+#   改为浏览器 UA:
+#         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+#
+# 一行命令修好（在项目根目录执行）：
+#   sed -i 's|TrendRadar/2.0 RSS Reader[^"]*|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36|g' trendradar/crawler/rss/fetcher.py trendradar/crawler/rss/parser.py
+#
+# 注意：程序更新会覆盖这个改动，升级后需重新打补丁。

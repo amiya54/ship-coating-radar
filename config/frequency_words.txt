@@ -1,0 +1,346 @@
+# ══════════════════════════════════════════════════════════════
+#  TrendRadar 关键词配置 —— 船舶涂装【前沿情报】专题 · 双周报版
+#  放置路径：config/frequency_words.txt
+#  由船舶低碳版词表 v3.3.1 改制（2026-11-11）
+#
+#  ● 组第一行的 [组名] 是「显示名称」：决定推送分组标题与 AI 分组名。
+#
+#  ● 语法：
+#      普通词    —— 子串匹配，同组内多词为「或」关系
+#      /正则/    —— 以 / 开头结尾，自动忽略大小写；用 \b 卡词边界防误匹配
+#      +词       —— 必须词，同组内全部满足才算命中
+#      !词       —— 命中则排除该条
+#      @数字     —— 限制本组最多显示 N 条
+#      空行      —— 分隔不同主题组
+#
+#  ⚠️ 两条必须遵守的格式规则（低碳版踩过的坑，原样继承）：
+#     1) 组内【绝对不能有空行】。解析器按空行切组，多一个空行就把这一组
+#        劈成两组，组别名失效、分组名退化成一长串关键词。
+#        组内要分段，只能用「# 开头的注释行」，注释行不算空行。
+#     2) 不要写「行尾注释」。解析器只忽略以 # 开头的整行，
+#        行尾的 # 会变成关键词的一部分，导致该词永远匹配不上。
+#
+#  ⚠️ 首个匹配组优先：matches_word_groups() 命中某个组就 return，
+#     所以组顺序决定归类。法规原文放最前（承接官网直采条目），
+#     法规规范其次，企业动态最后兜底。
+# ══════════════════════════════════════════════════════════════
+
+
+[法规原文]
+@60
+# ── 官网直采：IMO / 船级社 / 海事局 发布的规则·指南·规范·标准（一手文件）──
+#    这些条目不是媒体写的报道，而是直接抓自各机构官网的公告列表，
+#    且已由 scripts/fetch_regulations.py 的「涂装相关性白名单」过滤过，
+#    所以本组只认「文件类型词」，不做主题筛选 ——
+#    涂装主题的甄别交给报告里那个 AI 板块去判断。
+指南
+规范
+规则
+规定
+办法
+指引
+公告
+通告
+技术法规
+技术规范
+修改通报
+变更通告
+综合文本
+暂行规则
+暂行规定
+检验规则
+入级规范
+建造规范
+实施指南
+征求意见
+材料与焊接
+/\bpspc\b/
+/\bafs\b/
+
+
+[法规规范]
+# ── 机构与公约专名 ──
+IMO
+MSC
+MEPC
+国际海事组织
+International Maritime Organization
+MARPOL
+防污底系统公约
+控制船舶有害防污底系统公约
+anti-fouling system
+antifouling system
+AFS Convention
+cybutryne
+# ── 涂层性能标准（本专题的「PSPC」主线）──
+性能标准
+performance standard
+protective coating
+/\bpspc\b/
+MSC.215
+MSC.288
+ballast tank coating
+cargo tank coating
+压载舱涂层
+货油舱涂层
+涂层性能
+# ── 监管动作类通用词（英文标题实际最常出现的正是这类）──
+regulation
+regulatory
+compliance
+mandate
+levy
+/\bbans?\b/
+/\bcaps?\b/
+phase out
+prohibit
+restricted
+reporting
+verification
+certification
+enforcement
+penalty
+survey
+检验
+审图
+approval
+port state control
+港口国监督
+detention
+滞留
+deficiency
+缺陷
+生效
+entry into force
+# ── 国内主管机构与政策 ──
+交通运输部
+工业和信息化部
+海事局
+生态环境部
+行业标准
+国标
+
+
+[船级社规范]
+# ── 入级规范 · 技术通函 · 型式认可（涂装设计合规依据）──
+中国船级社
+China Classification Society
+/\bccs\b/
+DNV
+劳氏船级社
+#   ⚠️ 不能裸写 lloyd：子串匹配会把 Hapag-Lloyd（赫伯罗特）也撞进船级社组，
+#      低碳版 2026-11-09 期实测踩坑。改用负向后行断言排除「-Lloyd」，
+#      同时保留 Lloyd's / Lloyd's / Lloyds / Lloyd 全覆盖。
+/(?<!-)lloyd['’]?s?\b/
+/\blr\b/
+必维
+Bureau Veritas
+ClassNK
+日本海事协会
+美国船级社
+/\babs\b/
+韩国船级社
+入级
+AiP
+原则性认可
+型式认可
+type approval
+技术通函
+规范更新
+规范修订
+统一要求
+IACS
+船级社
+class rules
+class notation
+涂装性能
+涂层认可
+涂料认可
+涂装检验
+coating performance
+船级符号
+
+
+[防污涂料]
+# ── 防污漆 · 污损控制（涂装专题最活跃的技术线）──
+#    只配 "antifouling coating" 这类词组命中率极低，
+#    英文媒体标题常只写单个单词（如 antifouling ban / hull fouling）。
+antifouling
+anti-fouling
+anti fouling
+fouling release
+foul release
+foul-release
+/\bspc\b/
+self-polishing
+self polishing
+biocide
+biofouling
+hull fouling
+barnacle
+污底
+防污漆
+防污涂料
+防污底
+防污
+生物污损
+海生物
+污损
+有机锡
+TBT
+tin-free
+无锡
+cybutryne
+铜
+氧化亚铜
+copper
+cuprous oxide
+硅烷
+silicone
+水解
+
+
+[涂装工艺与材料]
+# ── 涂料体系 · 表面处理 · 检测（船厂涂装车间的主战场）──
+coating
+paint
+涂料
+涂装
+涂层
+漆膜
+油漆
+环氧
+epoxy
+富锌
+zinc
+primer
+底漆
+面漆
+中间漆
+shop primer
+车间底漆
+surface preparation
+表面处理
+blasting
+喷砂
+抛丸
+除锈
+abrasive
+锈
+/\bsa\s?2(\.5|½)?\b/
+DFT
+dry film
+干膜
+膜厚
+film thickness
+针孔
+pinhole
+附着力
+adhesion
+盐分
+salt
+可溶性盐
+压载舱
+ballast tank
+货油舱
+cargo oil tank
+cargo tank
+空舱
+void space
+预涂
+stripe coat
+修补
+固化
+cure
+溶剂
+solvent
+稀释
+thinner
+玻璃鳞片
+glass flake
+酚醛
+phenolic
+无溶剂
+solvent-free
+高固体
+high-solid
+水性
+减阻
+防冰
+冰区
+耐高温
+阻燃
+
+
+[环保与安全]
+# ── 涂料的环保与施工安全合规（VOC / 生物杀灭剂法规）──
+VOC
+/\bvoc\b/
+volatile organic
+挥发性有机物
+REACH
+biocidal
+BPR
+生物杀灭剂
+环保涂料
+绿色涂料
+低VOC
+水性涂料
+施工安全
+有限空间
+confined space
+中毒
+火灾
+爆炸
+
+
+[企业动态]
+@25
+# ── 同行与竞争情报（双周取样量大，限 25 条防刷屏）──
+#    涂料供应商（技术对标对象）
+Jotun
+佐敦
+AkzoNobel
+阿克苏诺贝尔
+Hempel
+海虹老人
+PPG
+Chugoku
+中国涂料
+Nippon Paint
+立邦
+中远关西
+湘江涂料
+#    涂装施工与检测服务
+中远海运重工
+涂装服务
+#    本集团与关联单位
+招商局重工
+招商局工业集团
+招商局金陵
+友联船厂
+招商轮船
+#    国内主要船厂
+中国船舶集团
+外高桥造船
+江南造船
+沪东中华
+大连造船
+扬子江船业
+#    国际船东（船体清洗 / 污损管理客户视角）
+马士基
+Maersk
+达飞
+CMA CGM
+赫伯罗特
+Hapag-Lloyd
+地中海航运
+#    日韩船厂（竞争对标）
+HD现代
+HD Hyundai
+三星重工
+韩华海洋
+今治造船
+#    数据与研究机构
+克拉克森
+Clarksons
