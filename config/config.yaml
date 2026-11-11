@@ -306,6 +306,44 @@ rss:
       name: "GN · 国内涂装与涂料动态"
       url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6%E6%B6%82%E8%A3%85+OR+%E8%88%B9%E8%88%B6%E6%B6%82%E6%96%99+OR+%E9%98%B2%E6%B1%A1%E6%BC%86+OR+%E6%B6%82%E5%B1%82+%E8%A7%84%E8%8C%83+OR+%E8%88%B9%E7%BA%A7%E7%A4%BE+%E6%B6%82%E6%96%99&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
+    # ★扩容（2026-11-11）：首轮 103 条新增只命中 20 条，源量不够。
+    #   新增 4 条 GN 定向查询，覆盖首轮没有抓到的涂装相邻话题。
+    #   ⚠️ 本机在国内连不上 Google，这些查询无法本地验证；
+    #      跑一次看 Actions 日志里对应名字的「获取 N 条」是否 >0。
+    - id: "gnews-hullclean"
+      name: "GN · 船体清洁与污损管理"
+      url: "https://news.google.com/rss/search?q=hull+cleaning+OR+%22in-water+cleaning%22+OR+propeller+cleaning+OR+hull+performance+ship&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-drydock"
+      name: "GN · 船厂涂装与干坞作业"
+      url: "https://news.google.com/rss/search?q=shipyard+painting+OR+%22dry+dock%22+coating+OR+blasting+painting+shipyard&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-coatfail"
+      name: "GN · 涂层失效与重涂维修"
+      url: "https://news.google.com/rss/search?q=%22coating+failure%22+OR+%22paint+defect%22+OR+recoating+ship+OR+repaint+hull&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-corrosion"
+      name: "GN · 船体腐蚀与防腐"
+      url: "https://news.google.com/rss/search?q=marine+anticorrosive+OR+%22corrosion+protection%22+ship+hull+OR+ballast+tank+corrosion&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    # ── 涂装行业垂直媒体（实测有原生 RSS，2026-11-11 验证 200）──
+    #   European Coatings：欧洲涂料行业门户，单次可抓 190+ 条，量大；
+    #     多数是陆上涂料/树脂/企业并购，命中涂装词表后真正入报的少，
+    #     但船舶漆大厂（Jotun/Hempel/AkzoNobel/PPG）动态基本被它覆盖。
+    #     嫌噪音大就把 enabled 改成 false。
+    - id: "european-coatings"
+      name: "European Coatings"
+      url: "https://www.european-coatings.com/rss"
+      enabled: true
+
+    - id: "paint-org"
+      name: "American Coatings Association"
+      url: "https://www.paint.org/feed/"
+
+    - id: "drydock-mag"
+      name: "Drydock Magazine"
+      url: "https://www.drydockmagazine.com/feed"
+
     # ══════════════════════════════════════════════════════════════════
     # ★双周报改动14：英国 MCA（GOV.UK 原生 Atom）—— 实测法规命中率最高
     # ══════════════════════════════════════════════════════════════════

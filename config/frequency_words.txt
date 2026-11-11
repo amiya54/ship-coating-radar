@@ -171,6 +171,13 @@ anti fouling
 fouling release
 foul release
 foul-release
+# ★扩容（2026-11-11）：船体清洁与污损管理是防污漆的下游服务线，
+#   首轮 GN 查询没覆盖，标题常用下面这几个词。
+hull cleaning
+in-water cleaning
+propeller cleaning
+hull performance
+proactive hull
 /\bspc\b/
 self-polishing
 self polishing
@@ -270,6 +277,22 @@ high-solid
 冰区
 耐高温
 阻燃
+# ★扩容（2026-11-11）：修船/干坞与防腐是涂装车间最常见的场景词
+drydock
+dry dock
+drydocking
+repaint
+recoat
+recoating
+repainting
+防腐
+防锈
+anticorrosive
+anti-corrosive
+corrosion protection
+corrosive
+rust
+rusty
 
 
 [环保与安全]
