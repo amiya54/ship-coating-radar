@@ -293,6 +293,26 @@ corrosion protection
 corrosive
 rust
 rusty
+# ★环保喷涂工艺专项（2026-11-12）：少溶剂/低VOC 的施工路线
+无气喷涂
+airless spray
+静电喷涂
+electrostatic
+喷涂机器人
+自动喷涂
+painting robot
+robotic coating
+paint robot
+喷漆房
+paint booth
+UV固化
+UV curing
+光固化
+近红外
+NIR
+粉末涂料
+powder coating
+超高固体分
 
 
 [环保与安全]
@@ -301,14 +321,46 @@ VOC
 /\bvoc\b/
 volatile organic
 挥发性有机物
+# ★环保涂料专项（2026-11-12）：修造船 VOCs 治理与无组织排放
+#   注意「VOC」子串已覆盖 VOCs/VOCs排放 等写法，不必重复列
+无组织排放
+fugitive emission
+排放许可
+排污许可
+大气污染
+恶臭
+异味
+odor
+odour
+喷漆房
+paint booth
+溶剂回收
+solvent recovery
+活性炭
+蓄热氧化
+RTO
+LDAR
+清洁生产
+环评
 REACH
 biocidal
 BPR
 生物杀灭剂
+# ── 环保涂料体系（用户重点线：最前沿船舶环保涂料）──
 环保涂料
 绿色涂料
 低VOC
+超低VOC
 水性涂料
+eco-friendly
+biocide-free
+sustainable coating
+environmentally friendly
+绿色修船
+绿色修造
+green shipyard
+绿色工厂
+# ── 施工安全 ──
 施工安全
 有限空间
 confined space

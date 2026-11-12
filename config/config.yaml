@@ -326,6 +326,21 @@ rss:
       name: "GN · 船体腐蚀与防腐"
       url: "https://news.google.com/rss/search?q=marine+anticorrosive+OR+%22corrosion+protection%22+ship+hull+OR+ballast+tank+corrosion&hl=en-US&gl=US&ceid=US:en&num=100"
 
+    # ★环保涂料与VOCs治理专项（2026-11-12 用户需求）：
+    #   最前沿船舶环保涂料 + 低VOC喷涂工艺 + 修造船无组织VOCs排放。
+    #   英文两条打技术线（涂料体系 / 施工工艺），中文一条打监管与行业线。
+    - id: "gnews-ecocoat"
+      name: "GN · 环保船漆与低VOC涂料"
+      url: "https://news.google.com/rss/search?q=marine+coating+%22low+VOC%22+OR+%22volatile+organic%22+OR+biocide-free+OR+eco-friendly+antifouling+OR+waterborne+coating+ship&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-spraytech"
+      name: "GN · 喷涂工艺与固化技术"
+      url: "https://news.google.com/rss/search?q=%22airless+spray%22+OR+%22painting+robot%22+OR+robotic+coating+OR+%22UV+cur%22+OR+%22powder+coating%22+shipyard+OR+vessel+OR+marine&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-voc-cn"
+      name: "GN · 修造船VOCs治理"
+      url: "https://news.google.com/rss/search?q=%E4%BF%AE%E8%88%B9+OR+%E9%80%A0%E8%88%B9+VOCs+%E6%B2%BB%E7%90%86+OR+%E6%97%A0%E7%BB%84%E7%BB%87%E6%8E%92%E6%94%BE+OR+%E8%88%B9%E8%88%B6+%E6%B0%B4%E6%80%A7%E6%B6%82%E6%96%99+OR+%E7%BB%BF%E8%89%B2%E4%BF%AE%E8%88%B9&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+
     # ── 涂装行业垂直媒体（实测有原生 RSS，2026-11-11 验证 200）──
     #   European Coatings：欧洲涂料行业门户，单次可抓 190+ 条，量大；
     #     多数是陆上涂料/树脂/企业并购，命中涂装词表后真正入报的少，
