@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-11",
+ "updated": "2026-11-12",
  "issues": [
   {
    "date": "2026-11-11",
@@ -224,6 +224,252 @@
     "watching": 0,
     "new": 3,
     "pool": 6,
+    "closed": 0
+   }
+  },
+  {
+   "date": "2026-11-12",
+   "items": 33,
+   "events": [
+    {
+     "cite": 1,
+     "title": "[4617.T FY2026 Q2 Earnings Call] Chugoku Marine Paints H1 Operating Profit Up 26.4% to ¥11.4 Billion — Southeast Asia and Price Pass-Through Drive Results, Full-Year Profit Forecasts Raised Across the Board - finance.biggo.com",
+     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB4VktpOS0zNjdUUzFrT2JkZ19TY0d4aXhFTDNFNVg3eC1ycWpjZUxuZlU3Wkp3V2V4Y1VWeXhKY2lzX2JfRmJGZnRzUWxmblk5STNUaFZWT2ZjV2tEWDlwNA?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "operating"
+    },
+    {
+     "cite": 2,
+     "title": "From basic wave data to trusted predictive decision support",
+     "url": "https://www.offshore-energy.biz/2026/11/10/from-basic-wave-data-to-trusted-predictive-decision-support",
+     "src": "Offshore Energy",
+     "stage": "other"
+    },
+    {
+     "cite": 3,
+     "title": "Coatings Community Mourns Prof. Socrates Peter Pappas",
+     "url": "https://www.european-coatings.com/news/people-careers/coatings-community-mourns-prof-socrates-peter-pappas/",
+     "src": "European Coatings",
+     "stage": "planned"
+    },
+    {
+     "cite": 4,
+     "title": "NIR Curing Enables Thick, Filler-Rich Anti-Corrosion Coatings",
+     "url": "https://www.european-coatings.com/news/coatings-technologies/nir-curing-enables-thick-filler-rich-anti-corrosion-coatings/",
+     "src": "European Coatings",
+     "stage": "other"
+    },
+    {
+     "cite": 5,
+     "title": "深中通道“防护涂层”出自高明！国内首部天冬聚脲防水涂料团体标准发布 - 凤凰网",
+     "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBBelFfeHB5ejRtQVk5bVppb0hsR01RUXdOVm1oaWdzV1ZEWGtlTjBKendHZGdjT0tDaExFRUxZcDdYeTUzRWotSnkzZjI?oc=5",
+     "src": "GN · 国内涂装与涂料动态",
+     "stage": "policy"
+    },
+    {
+     "cite": 6,
+     "title": "外墙涂料与涂层市场展望2035：基础设施更新与水性化转型驱动增长 - 新闻和统计 - IndexBox",
+     "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNVU1JQzFzT1hzQzZpTUJCOXRhcUNkenVSeVZiQnJxMFNmMjJaVjN1UHZFWF9jTDZPM2g5ZnFJOGtWMXpwWVVtRTN5WTFnNTlpQ19YaV9VS0xZY3RQUHJBc3FvekJiSkN3aFBWYTNYNFJkaVB3cG1Sc2g3VkVfQmo2RjNHVEJfaGtsYmVwRjA0Qlhib2hldGlNUThRM0FpeHljb0YxTk1pTDA0c1Boa0I2aGV3SXhDeGtxWi1ZV1BEWXhrMFBtVEd0cHlzQ3NVdFc4WFpNcHFGWG9ER0M3VHRBRw?oc=5",
+     "src": "GN · 国内涂装与涂料动态",
+     "stage": "other"
+    },
+    {
+     "cite": 7,
+     "title": "Keel Enhances Shipyard Capabilities with New Prep & Paint Facility - Seapower Magazine",
+     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOT3JFV1NTYkIxUHcxRzNjVElqcVNpMm9SQ3FXRVRUNmxDdjlLdXVlVzBvZ1I5NzFHRUtCbncyZWtTRUFWRFZTR2RfemFFR3VldlI2a1hOMlRjNHllTk1HRzRUelE2amFtcTVxTG9qcnd5dWtpOVdGZmpUa2dSYlAwMTZaaVRKQjRUNTE0YzJPUVgzRVpsLVdKZlJn?oc=5",
+     "src": "GN · 船厂涂装与干坞作业",
+     "stage": "other"
+    },
+    {
+     "cite": 8,
+     "title": "ACA Update: Election 2026 Summary and Impact on Coatings Industry",
+     "url": "https://www.paint.org/aca-update-election-2026-summary-and-impact-on-coatings-industry/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 9,
+     "title": "Dürr Delivers 20,000th Painting Robot",
+     "url": "https://www.paint.org/durr-delivers-20000th-painting-robot/",
+     "src": "American Coatings Association",
+     "stage": "operating"
+    },
+    {
+     "cite": 10,
+     "title": "Roberlo Renames to Briolf Coatings",
+     "url": "https://www.paint.org/roberlo-renames-to-briolf-coatings/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 11,
+     "title": "The Protech Group Acquires Italian Powder Coatings Manufacturer Ripol S.r.l.",
+     "url": "https://www.paint.org/the-protech-group-acquires-italian-powder-coatings-manufacturer-ripol-s-r-l/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 12,
+     "title": "AkzoNobel Invests $60 million in Production of Powder Coatings in North America",
+     "url": "https://www.paint.org/akzonobel-invests-60-million-in-production-of-powder-coatings-in-north-america/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 13,
+     "title": "Chugoku Marine Paints (TSE:4617) Q2 Results Back Margin Gains - Yahoo Finance",
+     "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQSnhVSm1UREMwNTEyeDRNd1BydWtvNWxwZFEzZzdrVHpiYmxaUUpKU1hTbVBLa1RmSU1jdXlKUDlIQnByQklSQjBCaEc4UkJTVm5vdVFEN0VQdFpSaVdSWVptTWgxSDg1ZVVHZDB5TGdkd1N5WldacVl0Yzl4RXRhOVVPdWkteE1sV3dsanBDMlY4VE90ZEFrODZyTQ?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "other"
+    },
+    {
+     "cite": 14,
+     "title": "HD Hyundai Heavy Industries develops AI system to inspect ship coatings - 헤럴드경제",
+     "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE13REdQRnRyNU9nNHBRY2FPYS1fX2FQZUVSbjAtMkpOdVJ3SS1PbnNuUTItMW80bjlOWlZxb0xZc2lUYVlnMWVfc2ZQTmhwa05RLUFXUWx4cw?oc=5",
+     "src": "GN · 船级社涂装规范动态",
+     "stage": "other"
+    },
+    {
+     "cite": 15,
+     "title": "Chugoku Marine Paints: H1 sales and profit advanced; FY2027 guidance calls for 18.2% growth in parent-attributable profit - TradingView",
+     "url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxPeTJYTkJNb2M5VUwwX1dxem93bDZ0TzRMaVdxUjNxbWUxbkE5V0RjemFjRW5oR1JuQXhTRTBlY0gycjZISGFRSkQ4ZWxXQjViWXRVMUZJb1ZqLU5NWlVydjBnWHN1cEZkeE8wM3BoR1hKbU01N2FQSFBldmRoelp1NTNrcHVTdVREZnhoeWRLVWRsZ2E0MEM0TWNHN3FqNXl3QnF3d2FqdnlVV01hZ3dqZzBiT3JRVkZCTXEzUXluN3lqZVRmUTE2dU5MOU44WktQMWNkRWl0QnFBUEdzREZ2WVpIZUEzVExhemdza09ocGhGZnNvb0RWQUd0Q1YxdnloZVB0ZTJRZ1ZYQ2pEQW9JdnlaX3lfTzVsYUxfOE84dVNIYnVib3R4VQ?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "other"
+    },
+    {
+     "cite": 16,
+     "title": "Executive Interview: Arsenio Dominguez, Secretary-General, IMO",
+     "url": "https://maritime-executive.com/article/executive-interview-arsenio-dominguez-secretary-general-imo",
+     "src": "The Maritime Executive",
+     "stage": "other"
+    },
+    {
+     "cite": 17,
+     "title": "IMO Chief Calls for Strict Enforcement of SOLAS Rules in Strait of Hormuz",
+     "url": "https://gcaptain.com/imo-chief-calls-for-strict-enforcement-of-solas-rules-in-strait-of-hormuz/",
+     "src": "gCaptain",
+     "stage": "policy"
+    },
+    {
+     "cite": 18,
+     "title": "Russian Diesel Tanker Awaits Orders Off U.S. Coast Amid Import Ban Dispute",
+     "url": "https://gcaptain.com/russian-diesel-tanker-awaits-orders-off-u-s-coast-amid-import-ban-dispute/",
+     "src": "gCaptain",
+     "stage": "planned"
+    },
+    {
+     "cite": 19,
+     "title": "Statutory guidance: Survey and inspection of fishing vessels chapter 1 annexes (MSIS 27)",
+     "url": "https://www.gov.uk/government/publications/survey-and-inspection-of-fishing-vessels-chapter-1-annexes-msis-27",
+     "src": "英国MCA · 全部发布",
+     "stage": "other"
+    },
+    {
+     "cite": 20,
+     "title": "Guidance: Declaration of maritime labour compliance part II and guidance",
+     "url": "https://www.gov.uk/government/publications/declaration-of-maritime-labour-compliance-part-ii-and-guidance",
+     "src": "英国MCA · 全部发布",
+     "stage": "other"
+    },
+    {
+     "cite": 21,
+     "title": "Consultation on the proposed merchant shipping and fishing vessels (medical stores)(amendment) and light dues (amendment) regulations 2027",
+     "url": "https://www.gov.uk/government/consultations/consultation-on-the-proposed-merchant-shipping-and-fishing-vessels-medical-storesamendment-and-light-dues-amendment-regulations-2027",
+     "src": "英国MCA · 法规与征求意见",
+     "stage": "policy"
+    },
+    {
+     "cite": 22,
+     "title": "Consultation on Merchant Shipping Domestic Safety Management Code Regulations",
+     "url": "https://www.gov.uk/government/consultations/consultation-on-merchant-shipping-domestic-safety-management-code-regulations",
+     "src": "英国MCA · 法规与征求意见",
+     "stage": "policy"
+    },
+    {
+     "cite": 23,
+     "title": "Proposed Merchant Shipping (Safety of Navigation) Regulations 2027",
+     "url": "https://www.gov.uk/government/consultations/proposed-merchant-shipping-safety-of-navigation-regulations-2027",
+     "src": "英国MCA · 法规与征求意见",
+     "stage": "policy"
+    },
+    {
+     "cite": 24,
+     "title": "Lloyd’s Register expands AI readiness benchmarking",
+     "url": "https://www.motorship.com/news/monitoring-control-digitalisation/lloyds-register-expands-ai-readiness-benchmarking/",
+     "src": "The Motorship",
+     "stage": "other"
+    },
+    {
+     "cite": 25,
+     "title": "Elemental Energies wins offshore CCS deal from Harbour Energy",
+     "url": "https://splash247.com/elemental-energies-wins-offshore-ccs-deal-from-harbour-energy/",
+     "src": "Splash 247",
+     "stage": "other"
+    },
+    {
+     "cite": 26,
+     "title": "DNV validates Atlas offshore CO2 storage concept",
+     "url": "https://www.motorship.com/news/carbon-capture/dnv-validates-atlas-offshore-co2-storage-concept/",
+     "src": "The Motorship",
+     "stage": "other"
+    },
+    {
+     "cite": 27,
+     "title": "ISO 6319 and the Shift from Reactive Hull Cleaning to Proactive Biofouling Management - Riviera Maritime Media",
+     "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQNkFyazVPRzIwQnVXUTQ1TzdYbzJINl9rTU1FcnkwTVg3dDJKREwtSTBQQ1VBSFVCbW9XSXg2UE95Q2JuUXVPY0ZTTG9oWG0tZHJFdTRyV2trTUJaeXZJRVozOFNrMFg3M19icmE4NVNlcW9mZTJWcW9tWUhQTXd2Y0Jtb0FpTkFVckJfM1NsN2E5RFc3ZGt1TERkeFptLVUzZFRXTUpkSy12RjJiZmVNVWZOMkhxWnIzVkZoMU5Gd1ZLcmpsSFdYQm5MLVdxd2RSYTlv?oc=5",
+     "src": "GN · 船体清洁与污损管理",
+     "stage": "other"
+    },
+    {
+     "cite": 28,
+     "title": "Proactive hull cleaning brings measurable fuel and emissions gains - Riviera Maritime Media",
+     "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQSXMtS0lOTFVLei1HVkxYNHJqelFkYmdpUlR6enk0MkVEZ0Y4cGVieWt3ZGF5TzFRMkhiSC10bUVRNHktQnBzd2NjMDBHMlY5cVFONGRxTVZWbGU1Z1NqU3BLdm5QVnA3b1dGRWtXcUVXdm5tUEJOTVA4aHR1NXVORFNOZ25Md1laV2dnOUdtZlVJalc1Q1J3MVJNanpXRksydEQ5Y0ZkSEFkQXptY2ZSWS1tQk1WXzBBZW4wUGhGaVNNQnRETF8xVTNqQjI?oc=5",
+     "src": "GN · 船体清洁与污损管理",
+     "stage": "other"
+    },
+    {
+     "cite": 29,
+     "title": "Maersk hit by fresh cyber breach",
+     "url": "https://splash247.com/maersk-hit-by-fresh-cyber-breach/",
+     "src": "Splash 247",
+     "stage": "other"
+    },
+    {
+     "cite": 30,
+     "title": "Engineers Hwang and Cho win Korea Engineer Award for eco-friendly tech - Chosunbiz",
+     "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOUWJiMjBJekdERVV3NEthT3h5NGZydXRfWV9SN1Q2SnNieWJRU09FX296SVJSalVjaUptMzVuMXZheEw4a2NTSVV3WnZiaUxYeVNTaGtSNUhwT1BMNUpFMTlFbE43U21oakthemEwRlZXN0g5enF5X0NyV1pLN3hrX9IBlAFBVV95cUxPbXo5c09WOXZkSXctcHMwVkpNR2F1dGgwSU5ob2FYZTFfUGtSSmg5WG1Fb1BrZWZZMFNZMEFKU1BudFJSdFVUcWt2QmJDQnEwOEYyTHhEaFNmOEhUVGR6NGtRSEUweldzaTMwNGx6a045MTZ2TTNxR0kyNFZDRzNKUHAzRm4xbktEYmxVdGtpdzVHRi1U?oc=5",
+     "src": "GN · 环保船漆与低VOC涂料",
+     "stage": "other"
+    },
+    {
+     "cite": 31,
+     "title": "UK raises competition concerns over $25bn AkzoNobel and Axalta merger - Marine Industry News",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOR09uSEYyUU1CUWtpanYtR2tSUFE3b21EQ3dFa2lyTjNqMDNJSFJrWk1TVHlYWmltWEVaaTlPdmJ1ZmRsaGIzREYwSUNVU1c2SFRUMjNjNVQ0WVdZSkJXY1gxRVFnVmFkbzU3cUZISzROeDRFczJYdFExbGx4N0laV051emd1cExWWTBjbVpBSHE?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "other"
+    },
+    {
+     "cite": 32,
+     "title": "PPG Comex Invests USD 118 Million in New Mexican Resin Plant",
+     "url": "https://www.european-coatings.com/news/markets-companies/ppg-comex-invests-usd-118-million-in-new-mexican-resin-plant/",
+     "src": "European Coatings",
+     "stage": "planned"
+    },
+    {
+     "cite": 33,
+     "title": "从深中通道到行业标尺，高明企业牵头定下国内首部天冬聚脲防水规范 - 佛山日报",
+     "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5LaFRsbFlhcUthRW5HUDlNVEM2OWNPMEZZcGtIUlNEc1k3dGVTX3FtV08tdXZCWXlIdnJOYVlhRmpybU9VUGFRZU1KcUVWRnZFUFhWd2wyS2pxNC1NdlBlejdubk9QM1llTjZJ?oc=5",
+     "src": "GN · 国内涂装与涂料动态",
+     "stage": "policy"
+    }
+   ],
+   "summary": {
+    "done": 0,
+    "policy": 0,
+    "progress": 3,
+    "watching": 3,
+    "new": 0,
+    "pool": 3,
     "closed": 0
    }
   }
