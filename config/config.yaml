@@ -341,6 +341,21 @@ rss:
       name: "GN · 修造船VOCs治理"
       url: "https://news.google.com/rss/search?q=%E4%BF%AE%E8%88%B9+OR+%E9%80%A0%E8%88%B9+VOCs+%E6%B2%BB%E7%90%86+OR+%E6%97%A0%E7%BB%84%E7%BB%87%E6%8E%92%E6%94%BE+OR+%E8%88%B9%E8%88%B6+%E6%B0%B4%E6%80%A7%E6%B6%82%E6%96%99+OR+%E7%BB%BF%E8%89%B2%E4%BF%AE%E8%88%B9&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
+    # ★环保线二次扩容（2026-11-13）：首轮环保专项只落地 10+8+2 条，
+    #   再补三条查询把「船厂排放合规 / 生物基新型涂料 / 中文环保涂料」
+    #   三条相邻话题线补齐。
+    - id: "gnews-shipyard-emi"
+      name: "GN · 船厂排放与环保合规"
+      url: "https://news.google.com/rss/search?q=shipyard+VOC+emissions+OR+%22volatile+organic+compounds%22+shipyard+OR+%22fugitive+emissions%22+painting+OR+%22air+quality%22+shipyard&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-biobased"
+      name: "GN · 生物基与新型环保涂料"
+      url: "https://news.google.com/rss/search?q=%22bio-based%22+OR+biobased+OR+%22solvent-free%22+OR+%22high-solid%22+marine+coating+ship&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-ecocoat-cn"
+      name: "GN · 中文环保船漆动态"
+      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6%E6%B6%82%E6%96%99+%E7%8E%AF%E4%BF%9D+OR+%E8%88%B9%E8%88%B6+%E6%B0%B4%E6%80%A7%E6%B6%82%E6%96%99+OR+%E7%8E%AF%E4%BF%9D%E6%B6%82%E6%96%99+%E9%80%A0%E8%88%B9+OR+%E4%BD%8EVOC%E6%B6%82%E6%96%99&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+
     # ── 涂装行业垂直媒体（实测有原生 RSS，2026-11-11 验证 200）──
     #   European Coatings：欧洲涂料行业门户，单次可抓 190+ 条，量大；
     #     多数是陆上涂料/树脂/企业并购，命中涂装词表后真正入报的少，
@@ -358,6 +373,15 @@ rss:
     - id: "drydock-mag"
       name: "Drydock Magazine"
       url: "https://www.drydockmagazine.com/feed"
+
+    # ── 修船与造船技术媒体（2026-11-13 二次扩容，实测 200）──
+    - id: "ship-technology"
+      name: "Ship Technology"
+      url: "https://www.ship-technology.com/feed/"
+
+    - id: "marine-insight"
+      name: "Marine Insight"
+      url: "https://www.marineinsight.com/feed/"
 
     # ══════════════════════════════════════════════════════════════════
     # ★双周报改动14：英国 MCA（GOV.UK 原生 Atom）—— 实测法规命中率最高
