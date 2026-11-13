@@ -374,10 +374,14 @@ rss:
       name: "Drydock Magazine"
       url: "https://www.drydockmagazine.com/feed"
 
-    # ── 修船与造船技术媒体（2026-11-13 二次扩容，实测 200）──
+    # ── 修船与造船技术媒体（2026-11-13 二次扩容）──
+    #   ⚠️ ship-technology.com：本机实测 200，但 GitHub Actions 数据中心 IP
+    #      被 Cloudflare 拦（403，换浏览器 UA 也没用），2026-11-13 实测后禁用。
+    #      若以后想救活，只能换走 GN site: 检索或自建代理。
     - id: "ship-technology"
       name: "Ship Technology"
       url: "https://www.ship-technology.com/feed/"
+      enabled: false
 
     - id: "marine-insight"
       name: "Marine Insight"
