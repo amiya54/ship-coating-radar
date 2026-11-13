@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-12",
+ "updated": "2026-11-13",
  "issues": [
   {
    "date": "2026-11-11",
@@ -469,6 +469,238 @@
     "progress": 3,
     "watching": 3,
     "new": 0,
+    "pool": 3,
+    "closed": 0
+   }
+  },
+  {
+   "date": "2026-11-13",
+   "items": 31,
+   "events": [
+    {
+     "cite": 1,
+     "title": "涂料与涂层设备市场展望至2035年：汽车修补与自动化驱动增长 - 新闻和统计 - IndexBox",
+     "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNTnBMZXNwQ3d6czVURVlaWUQ2X1d2UkZHVk0zX0RZcndQOEZiRDBrWmk0RWNCcFhTOVJkMnBtTnl1MHNvdFdCZmtRSU5yN2tibXZjM2c3amdzOTJhNGw1RXA1UlNILXd6RzAxVGlNTjZRNExIQ0ZOaFc2ZU5OdUZTY0Q1TUxLNHRzSHp5NS1OcWVaZnBJNVg0cnBUOVFUdlJJNl9MTGJJVUlmQmpBTHpPYjRKNmNMeEJ2SThlZkRvMkdveURwSnJPN2pBOW9zb1B2bDJTLUZMalNOZ0pHVWJsYTZB?oc=5",
+     "src": "GN · 国内涂装与涂料动态",
+     "stage": "other"
+    },
+    {
+     "cite": 2,
+     "title": "[4617.T FY2026 Q2 Earnings Call] Chugoku Marine Paints H1 Operating Profit Up 26.4% to ¥11.4 Billion — Southeast Asia and Price Pass-Through Drive Results, Full-Year Profit Forecasts Raised Across the Board - finance.biggo.com",
+     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB4VktpOS0zNjdUUzFrT2JkZ19TY0d4aXhFTDNFNVg3eC1ycWpjZUxuZlU3Wkp3V2V4Y1VWeXhKY2lzX2JfRmJGZnRzUWxmblk5STNUaFZWT2ZjV2tEWDlwNA?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "operating"
+    },
+    {
+     "cite": 3,
+     "title": "Coatings Community Mourns Prof. Socrates Peter Pappas",
+     "url": "https://www.european-coatings.com/news/people-careers/coatings-community-mourns-prof-socrates-peter-pappas/",
+     "src": "European Coatings",
+     "stage": "planned"
+    },
+    {
+     "cite": 4,
+     "title": "NIR Curing Enables Thick, Filler-Rich Anti-Corrosion Coatings",
+     "url": "https://www.european-coatings.com/news/coatings-technologies/nir-curing-enables-thick-filler-rich-anti-corrosion-coatings/",
+     "src": "European Coatings",
+     "stage": "other"
+    },
+    {
+     "cite": 5,
+     "title": "深中通道“防护涂层”出自高明！国内首部天冬聚脲防水涂料团体标准发布 - 凤凰网",
+     "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBBelFfeHB5ejRtQVk5bVppb0hsR01RUXdOVm1oaWdzV1ZEWGtlTjBKendHZGdjT0tDaExFRUxZcDdYeTUzRWotSnkzZjI?oc=5",
+     "src": "GN · 国内涂装与涂料动态",
+     "stage": "policy"
+    },
+    {
+     "cite": 6,
+     "title": "外墙涂料与涂层市场展望2035：基础设施更新与水性化转型驱动增长 - 新闻和统计 - IndexBox",
+     "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNVU1JQzFzT1hzQzZpTUJCOXRhcUNkenVSeVZiQnJxMFNmMjJaVjN1UHZFWF9jTDZPM2g5ZnFJOGtWMXpwWVVtRTN5WTFnNTlpQ19YaV9VS0xZY3RQUHJBc3FvekJiSkN3aFBWYTNYNFJkaVB3cG1Sc2g3VkVfQmo2RjNHVEJfaGtsYmVwRjA0Qlhib2hldGlNUThRM0FpeHljb0YxTk1pTDA0c1Boa0I2aGV3SXhDeGtxWi1ZV1BEWXhrMFBtVEd0cHlzQ3NVdFc4WFpNcHFGWG9ER0M3VHRBRw?oc=5",
+     "src": "GN · 国内涂装与涂料动态",
+     "stage": "other"
+    },
+    {
+     "cite": 7,
+     "title": "ACA Update: Election 2026 Summary and Impact on Coatings Industry",
+     "url": "https://www.paint.org/aca-update-election-2026-summary-and-impact-on-coatings-industry/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 8,
+     "title": "Dürr Delivers 20,000th Painting Robot",
+     "url": "https://www.paint.org/durr-delivers-20000th-painting-robot/",
+     "src": "American Coatings Association",
+     "stage": "operating"
+    },
+    {
+     "cite": 9,
+     "title": "Roberlo Renames to Briolf Coatings",
+     "url": "https://www.paint.org/roberlo-renames-to-briolf-coatings/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 10,
+     "title": "The Protech Group Acquires Italian Powder Coatings Manufacturer Ripol S.r.l.",
+     "url": "https://www.paint.org/the-protech-group-acquires-italian-powder-coatings-manufacturer-ripol-s-r-l/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 11,
+     "title": "AkzoNobel Invests $60 million in Production of Powder Coatings in North America",
+     "url": "https://www.paint.org/akzonobel-invests-60-million-in-production-of-powder-coatings-in-north-america/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 12,
+     "title": "Keel Enhances Shipyard Capabilities with New Prep & Paint Facility - Business Wire",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPcWdQUnNBQ0l0ZEtQNXlsS2RTZ0dramxkVDNORzROZHRPV0ZRUm1pbXdfa3JKWVhCOE5QS09od0VyaEl6VmVVYUlBLUtod2dXY3EzN2h5RkFtTmVsYUxzNlFtU3dkQkE4WEhSakRIOGpWUEtwNEFmbnI5UENsVXRMdzJqZ1BNYzBUaTdJbW1kSzZTcS1HUHAtYU8taDR3ei1nazRwb1Y2eHBoRWRYUlVieW9kWFd4ZUM4LXRGY3lR?oc=5",
+     "src": "GN · 船厂涂装与干坞作业",
+     "stage": "other"
+    },
+    {
+     "cite": 13,
+     "title": "Chugoku Marine Paints (TSE:4617) Q2 Results Back Margin Gains - Yahoo Finance",
+     "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQSnhVSm1UREMwNTEyeDRNd1BydWtvNWxwZFEzZzdrVHpiYmxaUUpKU1hTbVBLa1RmSU1jdXlKUDlIQnByQklSQjBCaEc4UkJTVm5vdVFEN0VQdFpSaVdSWVptTWgxSDg1ZVVHZDB5TGdkd1N5WldacVl0Yzl4RXRhOVVPdWkteE1sV3dsanBDMlY4VE90ZEFrODZyTQ?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "other"
+    },
+    {
+     "cite": 14,
+     "title": "Korean Partnership's Carbon Capture Proposal Chosen as Basis for IMO Safety",
+     "url": "https://maritime-executive.com/article/korean-partnership-s-carbon-capture-proposal-chosen-as-basis-for-imo-safety",
+     "src": "The Maritime Executive",
+     "stage": "planned"
+    },
+    {
+     "cite": 15,
+     "title": "Giosuè Vezzuto Appointed RINA Services CEO to Lead Maritime & Certification",
+     "url": "https://maritime-executive.com/article/giosue-vezzuto-appointed-rina-services-ceo-to-lead-maritime-certification",
+     "src": "The Maritime Executive",
+     "stage": "other"
+    },
+    {
+     "cite": 16,
+     "title": "IMO may codify alternative net-zero bunker rules in 2027: US FMC",
+     "url": "https://www.hellenicshippingnews.com/imo-may-codify-alternative-net-zero-bunker-rules-in-2027-us-fmc/",
+     "src": "Hellenic Shipping News",
+     "stage": "policy"
+    },
+    {
+     "cite": 17,
+     "title": "IMO Secretary-General calls on States to enforce maritime rules in the Strait of Hormuz",
+     "url": "https://www.hellenicshippingnews.com/imo-secretary-general-calls-on-states-to-enforce-maritime-rules-in-the-strait-of-hormuz/",
+     "src": "Hellenic Shipping News",
+     "stage": "policy"
+    },
+    {
+     "cite": 18,
+     "title": "Statutory guidance: Survey and inspection of fishing vessels chapter 1 annexes (MSIS 27)",
+     "url": "https://www.gov.uk/government/publications/survey-and-inspection-of-fishing-vessels-chapter-1-annexes-msis-27",
+     "src": "英国MCA · 全部发布",
+     "stage": "other"
+    },
+    {
+     "cite": 19,
+     "title": "Guidance: Declaration of maritime labour compliance part II and guidance",
+     "url": "https://www.gov.uk/government/publications/declaration-of-maritime-labour-compliance-part-ii-and-guidance",
+     "src": "英国MCA · 全部发布",
+     "stage": "other"
+    },
+    {
+     "cite": 20,
+     "title": "Thenamaris returns to LNG newbuilds with HD Hyundai deal",
+     "url": "https://splash247.com/thenamaris-returns-to-lng-newbuilds-with-hd-hyundai-deal/",
+     "src": "Splash 247",
+     "stage": "other"
+    },
+    {
+     "cite": 21,
+     "title": "Maersk hit by ransomware cyber-attack",
+     "url": "https://www.seatrade-maritime.com/containers/maersk-hit-by-ransomware-cyber-attack",
+     "src": "Seatrade Maritime",
+     "stage": "other"
+    },
+    {
+     "cite": 22,
+     "title": "UK raises competition concerns over $25bn AkzoNobel and Axalta merger - Marine Industry News",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOR09uSEYyUU1CUWtpanYtR2tSUFE3b21EQ3dFa2lyTjNqMDNJSFJrWk1TVHlYWmltWEVaaTlPdmJ1ZmRsaGIzREYwSUNVU1c2SFRUMjNjNVQ0WVdZSkJXY1gxRVFnVmFkbzU3cUZISzROeDRFczJYdFExbGx4N0laV051emd1cExWWTBjbVpBSHE?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "other"
+    },
+    {
+     "cite": 23,
+     "title": "PPG Comex Invests USD 118 Million in New Mexican Resin Plant",
+     "url": "https://www.european-coatings.com/news/markets-companies/ppg-comex-invests-usd-118-million-in-new-mexican-resin-plant/",
+     "src": "European Coatings",
+     "stage": "planned"
+    },
+    {
+     "cite": 24,
+     "title": "Matthieu Perrotin as MacKinnon's d-comm; Lisa Marykuca is parliamentary affairs secretary assistant to PSPC - iPolitics",
+     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9NYUhUaE12MXBHVUJVWkF1blpPMkZaMTg0cmpHZnY2VEJLTkFaeXZkUE8xVHVnX2RFeG5peHFrRS1HT1VPVHNjcHZtbnc5Z1Q4WkJ3RlA1blBiRkJlMFBMWlY5SVIzc2c0Z2Vwdzk0aDdsZEhvRG8yVG5vd2l2QQ?oc=5",
+     "src": "GN · PSPC与涂层标准",
+     "stage": "other"
+    },
+    {
+     "cite": 25,
+     "title": "从深中通道到行业标尺，高明企业牵头定下国内首部天冬聚脲防水规范 - 佛山日报",
+     "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5LaFRsbFlhcUthRW5HUDlNVEM2OWNPMEZZcGtIUlNEc1k3dGVTX3FtV08tdXZCWXlIdnJOYVlhRmpybU9VUGFRZU1KcUVWRnZFUFhWd2wyS2pxNC1NdlBlejdubk9QM1llTjZJ?oc=5",
+     "src": "GN · 国内涂装与涂料动态",
+     "stage": "policy"
+    },
+    {
+     "cite": 26,
+     "title": "ABS and Radian Forge Collaborate on Digital Qualification for Additive Manufacturing",
+     "url": "https://gcaptain.com/abs-and-radian-forge-collaborate-on-digital-qualification-for-additive-manufacturing/",
+     "src": "gCaptain",
+     "stage": "other"
+    },
+    {
+     "cite": 27,
+     "title": "Lloyd’s Register expands AI readiness benchmarking",
+     "url": "https://www.motorship.com/news/monitoring-control-digitalisation/lloyds-register-expands-ai-readiness-benchmarking/",
+     "src": "The Motorship",
+     "stage": "other"
+    },
+    {
+     "cite": 28,
+     "title": "ISO 6319 and the Shift from Reactive Hull Cleaning to Proactive Biofouling Management - Riviera Maritime Media",
+     "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQNkFyazVPRzIwQnVXUTQ1TzdYbzJINl9rTU1FcnkwTVg3dDJKREwtSTBQQ1VBSFVCbW9XSXg2UE95Q2JuUXVPY0ZTTG9oWG0tZHJFdTRyV2trTUJaeXZJRVozOFNrMFg3M19icmE4NVNlcW9mZTJWcW9tWUhQTXd2Y0Jtb0FpTkFVckJfM1NsN2E5RFc3ZGt1TERkeFptLVUzZFRXTUpkSy12RjJiZmVNVWZOMkhxWnIzVkZoMU5Gd1ZLcmpsSFdYQm5MLVdxd2RSYTlv?oc=5",
+     "src": "GN · 船体清洁与污损管理",
+     "stage": "other"
+    },
+    {
+     "cite": 29,
+     "title": "Proactive hull cleaning brings measurable fuel and emissions gains - Riviera Maritime Media",
+     "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQSXMtS0lOTFVLei1HVkxYNHJqelFkYmdpUlR6enk0MkVEZ0Y4cGVieWt3ZGF5TzFRMkhiSC10bUVRNHktQnBzd2NjMDBHMlY5cVFONGRxTVZWbGU1Z1NqU3BLdm5QVnA3b1dGRWtXcUVXdm5tUEJOTVA4aHR1NXVORFNOZ25Md1laV2dnOUdtZlVJalc1Q1J3MVJNanpXRksydEQ5Y0ZkSEFkQXptY2ZSWS1tQk1WXzBBZW4wUGhGaVNNQnRETF8xVTNqQjI?oc=5",
+     "src": "GN · 船体清洁与污损管理",
+     "stage": "other"
+    },
+    {
+     "cite": 30,
+     "title": "ExxonMobil reaches FID on eighth project offshore Guyana",
+     "url": "https://www.offshore-energy.biz/2026/11/13/exxonmobil-reaches-fid-on-eighth-project-offshore-guyana",
+     "src": "Offshore Energy",
+     "stage": "other"
+    },
+    {
+     "cite": 31,
+     "title": "Maersk’s cyber breach is a warning for every secondhand ship sale",
+     "url": "https://splash247.com/maersks-cyber-breach-is-a-warning-for-every-secondhand-ship-sale/",
+     "src": "Splash 247",
+     "stage": "other"
+    }
+   ],
+   "summary": {
+    "done": 0,
+    "policy": 0,
+    "progress": 2,
+    "watching": 4,
+    "new": 1,
     "pool": 3,
     "closed": 0
    }
