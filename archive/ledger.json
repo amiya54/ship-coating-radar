@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-16",
+ "updated": "2026-11-17",
  "issues": [
   {
    "date": "2026-11-11",
@@ -977,6 +977,245 @@
     "new": 1,
     "pool": 3,
     "closed": 3
+   }
+  },
+  {
+   "date": "2026-11-17",
+   "items": 32,
+   "events": [
+    {
+     "cite": 1,
+     "title": "富锌防腐蚀底漆市场展望至2035年：海上风电与海事需求驱动增长 - 新闻与统计 - IndexBox",
+     "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPdTVKLVozQVk2MFhnLUMxUTlDSUhEcktiU3FXRzdsWjZRdTBaVU0tM0RKdmVtaUVtbzVvV2dNcUFmYzU5T0VnbElNM0RjOHZsMkxYbmVGZnpQaWFXMEI2ZWp6LVdNcEtRTExEZWVUSVpqajcxaW55aVdHYzVLWk1lLW5DTGVGdFJkNE1WYi04Q3Z0ZGRtSlEydVpIdU9COTE1OEZTVHk3UmlNc1cxSUx6N2dJamkwa2Z4X1pHb01GeWpiYTZXSy1RcjhwY3ZyM1hpbjQ3R1RYa0RkXzRkY0E?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "other"
+    },
+    {
+     "cite": 2,
+     "title": "阿伯丁海底机器人公司获得台湾首个海上风电合同",
+     "url": "https://www.offshore-energy.biz/2026/11/16/aberdeen-subsea-robotics-firm-secures-first-offshore-wind-contract-in-taiwan",
+     "src": "Offshore Energy",
+     "stage": "other"
+    },
+    {
+     "cite": 3,
+     "title": "壳聚糖与蛋壳涂层可持续降低木材火灾风险",
+     "url": "https://www.european-coatings.com/news/coatings-technologies/chitosan-and-eggshell-coating-cuts-wood-fire-risk-sustainably/",
+     "src": "European Coatings",
+     "stage": "other"
+    },
+    {
+     "cite": 4,
+     "title": "日本涂料海事（马来西亚）公司与新扬贸易合作 - 《涂料世界》",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPYThFdDI5U1FpTmpOX3dOMWY4SDBvT0t6Mjc4ckFSdG5vOThkSjdwUmUyb3BZeWhQUU5ya2ZoZmdiUzFVaUxFbG5xUWF0aGdkZUdHSHlVMW02blZUSXNLTXlGVldKMEdxZnRhd2wtUG5IUGlSSmh2MDQxNm5DSHpsMEI4T0QxTWJ4emw5ckxQSWZKNGlTRWlNTURGeFVGVkFPenlJQTRHcUM?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "planned"
+    },
+    {
+     "cite": 5,
+     "title": "涂料用分散剂与润湿剂市场展望2035：水性化转型支撑增长 - 新闻和统计 - IndexBox",
+     "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOTjFjZTJUM3RHOXpVZWpmX3pfX0xoRldVU2pFUko1WnZSZWlqcU9pbjJpVUhhZmx6Z3FOa3lGMUtud3plaDF1cGk2MlE0aWh3TGRZUnVoNkttZVBfd0JoUVZVeDBWS2J3Uy0tLUNNbDM0MnllcF85MjJoUUhaSmNqUm0wdXpGeWc0akxSNEN2ekZMT2NLTnFucWlyS08zdkN4eEdtUGUtLVc1RFhpS3I4d2t1MVAwWTNJYlRGdjFOX2pHX2tsQjlFT19PcF8tR3BJ?oc=5",
+     "src": "GN · 中文环保船漆动态",
+     "stage": "other"
+    },
+    {
+     "cite": 6,
+     "title": "EC播客：整合与利基策略如何重塑涂料市场",
+     "url": "https://www.european-coatings.com/news/markets-companies/ec-podcast-how-consolidation-and-niche-strategies-are-reshaping-the-coatings-market/",
+     "src": "European Coatings",
+     "stage": "other"
+    },
+    {
+     "cite": 7,
+     "title": "涂料与涂层设备市场展望至2035年：汽车修补与自动化驱动增长 - 新闻和统计 - IndexBox",
+     "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNTnBMZXNwQ3d6czVURVlaWUQ2X1d2UkZHVk0zX0RZcndQOEZiRDBrWmk0RWNCcFhTOVJkMnBtTnl1MHNvdFdCZmtRSU5yN2tibXZjM2c3amdzOTJhNGw1RXA1UlNILXd6RzAxVGlNTjZRNExIQ0ZOaFc2ZU5OdUZTY0Q1TUxLNHRzSHp5NS1OcWVaZnBJNVg0cnBUOVFUdlJJNl9MTGJJVUlmQmpBTHpPYjRKNmNMeEJ2SThlZkRvMkdveURwSnJPN2pBOW9zb1B2bDJTLUZMalNOZ0pHVWJsYTZB?oc=5",
+     "src": "GN · 国内涂装与涂料动态",
+     "stage": "other"
+    },
+    {
+     "cite": 8,
+     "title": "涂料包装市场展望至2035年：建筑涂料需求驱动增长 - 新闻和统计 - IndexBox",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOdWFFcVpEMGQ0SmFUc1ZyYU5JSUpsNm9wb1lNVklKQmxvLUhNTEhUcVJmNHczVGt4OFc0a0lMaXhUd2pkMmZHeTVZUnpHN0JnUDZENnUtTFNFVXZkLUt6QUpCQ1NJMVljRXNDcFlENXlwSU9CZTB5OVRXc19PUDJoVlFmd3QyaU5zYlo1My00QU9GcldReFlwMlJtblQ5bzZCQTZiU3VJLUw2WXk5SjlybkVlQ2FPaDNWWjFIWlV3?oc=5",
+     "src": "GN · 中文环保船漆动态",
+     "stage": "other"
+    },
+    {
+     "cite": 9,
+     "title": "[4617.T FY2026 Q2 财报电话会] Chugoku Marine Paints上半年营业利润增长26.4%至114亿日元——东南亚与价格转嫁推动业绩，全年利润预测全面上调 - finance.biggo.com",
+     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB4VktpOS0zNjdUUzFrT2JkZ19TY0d4aXhFTDNFNVg3eC1ycWpjZUxuZlU3Wkp3V2V4Y1VWeXhKY2lzX2JfRmJGZnRzUWxmblk5STNUaFZWT2ZjV2tEWDlwNA?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "other"
+    },
+    {
+     "cite": 10,
+     "title": "深中通道“防护涂层”出自高明！国内首部天冬聚脲防水涂料团体标准发布 - 凤凰网",
+     "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBBelFfeHB5ejRtQVk5bVppb0hsR01RUXdOVm1oaWdzV1ZEWGtlTjBKendHZGdjT0tDaExFRUxZcDdYeTUzRWotSnkzZjI?oc=5",
+     "src": "GN · 国内涂装与涂料动态",
+     "stage": "policy"
+    },
+    {
+     "cite": 11,
+     "title": "防腐蚀涂料市场展望2035：基础设施翻新与船舶需求驱动增长 - 新闻和统计 - IndexBox",
+     "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOTEpnUFhUTGFXcTVqRTBEWks4WnN5RVZkNk8xcFBhOTJLa3A2VUVTaDFmcng0TjBJMVFhRFFJNzYySVVFazk5OVFpVmdaQ0ZiUWc5dUhVYWhudmxBSjVNbGsyNEtHb0dWVVNFN2FIMTE0Z2l2YlNfQ0UyaW1UQlAzdmtCZWRJc0Z5TGFaY3RSRUhVa3NpNmRYTFVRU1ZtbGZJdGRyR3dFczAzbVJ5dnZSNGg2M1hPdmZqNndBWWlPX3hVT1FtcW5BRlg4Y1c2SGo3RGc?oc=5",
+     "src": "GN · 中文环保船漆动态",
+     "stage": "other"
+    },
+    {
+     "cite": 12,
+     "title": "防腐蚀橡胶衬里与涂料市场展望至2035年：化工与水务基础设施更新支撑增长 - 新闻与统计 - IndexBox",
+     "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOaG1Db2J1T1NneExINHBVNnI0b0laSmZmOEhzQVd3OXpxTHN0N3BjRGJvTERxbVVQdkN5dUp1M0ozWkFFVFFiMzJSLTVOWWhLbkYwWXdSdjMzak5MbkFNb3RrY0s5bjQyTnhsYmNpTU52SFhnOTRiRS1uVDAwX1duN3FpNzZqaHNtY1R5U2Z1WFh2aU94YzhURWhsQnNkZXNlelBGWlROZXBwcENlMXM3blkzZ1YzSGVLZjJSOFpCY090NUw2S0J0RUhYVnZfcUtmVk4yQVMzM3l1cWxQMVRYcV9ocFktNFFwcFE?oc=5",
+     "src": "GN · 船体腐蚀与防腐",
+     "stage": "other"
+    },
+    {
+     "cite": 13,
+     "title": "ACA动态：2026年选举总结及其对涂料行业的影响",
+     "url": "https://www.paint.org/aca-update-election-2026-summary-and-impact-on-coatings-industry/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 14,
+     "title": "杜尔交付第20,000台喷涂机器人",
+     "url": "https://www.paint.org/durr-delivers-20000th-painting-robot/",
+     "src": "American Coatings Association",
+     "stage": "operating"
+    },
+    {
+     "cite": 15,
+     "title": "Roberlo更名为Briolf Coatings",
+     "url": "https://www.paint.org/roberlo-renames-to-briolf-coatings/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 16,
+     "title": "Protech集团收购意大利粉末涂料制造商Ripol S.r.l.",
+     "url": "https://www.paint.org/the-protech-group-acquires-italian-powder-coatings-manufacturer-ripol-s-r-l/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 17,
+     "title": "阿克苏诺贝尔投资6000万美元在北美生产粉末涂料",
+     "url": "https://www.paint.org/akzonobel-invests-60-million-in-production-of-powder-coatings-in-north-america/",
+     "src": "American Coatings Association",
+     "stage": "other"
+    },
+    {
+     "cite": 18,
+     "title": "Keel通过新建表面处理与涂装设施提升船厂能力 - Morningstar",
+     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQYUtBdDVodlNRRVBaOWM0ZEc2V2ZUTnF6MVNZeEt0TnNJbzNXUmwwd19ld2FTSDQ3U2tray1UZDRTVXJIX3BlMDNKbWo3cEhHeWFhRVBXUENXN1FTSXlubzRVSGEwUkJBdzhCVzRIcTNiX05NMUI2S3lpekRtMUhwWmtmNFh3THk1bnE1WGVsNXNtVmRhTmlsc0RlZUZrYXZZM3ZDRTE3emhsdTg4SGttRXh3TlA5ZmdNZGszaGwzdDFxSkNh?oc=5",
+     "src": "GN · 船厂涂装与干坞作业",
+     "stage": "other"
+    },
+    {
+     "cite": 19,
+     "title": "货物系固合规始于甲板，而非手册",
+     "url": "https://www.hellenicshippingnews.com/cargo-securing-compliance-starts-on-deck-not-in-the-manual/",
+     "src": "Hellenic Shipping News",
+     "stage": "other"
+    },
+    {
+     "cite": 20,
+     "title": "希腊船东就国际海事组织僵局向布鲁塞尔发难",
+     "url": "https://splash247.com/greek-shipowners-put-brussels-on-the-spot-over-imo-deadlock/",
+     "src": "Splash 247",
+     "stage": "other"
+    },
+    {
+     "cite": 21,
+     "title": "MSC Poesia号在迈阿密被扣11天后因涉嫌“魔法管”面临刑事调查",
+     "url": "https://www.marineinsight.com/msc-poesia-criminal-probe-magic-pipe/?utm_source=rss&utm_medium=rss&utm_campaign=msc-poesia-criminal-probe-magic-pipe",
+     "src": "Marine Insight",
+     "stage": "other"
+    },
+    {
+     "cite": 22,
+     "title": "法定指南：渔船检验与检查第1至17章（MSIS 27）",
+     "url": "https://www.gov.uk/government/publications/survey-and-inspection-of-fishing-vessels-chapters-1-to-17-msis-27",
+     "src": "英国MCA · 全部发布",
+     "stage": "policy"
+    },
+    {
+     "cite": 23,
+     "title": "新门户简化船舶废弃物报告",
+     "url": "https://www.motorship.com/news/monitoring-control-digitalisation/new-portal-simplifies-vessel-waste-reporting/",
+     "src": "The Motorship",
+     "stage": "other"
+    },
+    {
+     "cite": 24,
+     "title": "指南：海事劳工合规声明第二部分及指南",
+     "url": "https://www.gov.uk/government/publications/declaration-of-maritime-labour-compliance-part-ii-and-guidance",
+     "src": "英国MCA · 全部发布",
+     "stage": "policy"
+    },
+    {
+     "cite": 25,
+     "title": "马士基与赫伯罗特新增三项Gemini服务，扩大苏伊士运河航线回归",
+     "url": "https://gcaptain.com/maersk-hapag-lloyd-expand-suez-canal-return-with-three-more-gemini-services/",
+     "src": "gCaptain",
+     "stage": "other"
+    },
+    {
+     "cite": 26,
+     "title": "HD现代推出600吨无人战舰，仅用1年建成，面向美国海军市场",
+     "url": "https://www.marineinsight.com/hd-hyundai-anduril-600-ton-autonomous-warship/?utm_source=rss&utm_medium=rss&utm_campaign=hd-hyundai-anduril-600-ton-autonomous-warship",
+     "src": "Marine Insight",
+     "stage": "other"
+    },
+    {
+     "cite": 27,
+     "title": "英国对250亿美元阿克苏诺贝尔与艾仕得合并提出竞争担忧 - 《海事行业新闻》",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOR09uSEYyUU1CUWtpanYtR2tSUFE3b21EQ3dFa2lyTjNqMDNJSFJrWk1TVHlYWmltWEVaaTlPdmJ1ZmRsaGIzREYwSUNVU1c2SFRUMjNjNVQ0WVdZSkJXY1gxRVFnVmFkbzU3cUZISzROeDRFczJYdFExbGx4N0laV051emd1cExWWTBjbVpBSHE?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "other"
+    },
+    {
+     "cite": 28,
+     "title": "PPG Comex投资1.18亿美元在墨西哥新建树脂工厂",
+     "url": "https://www.european-coatings.com/news/markets-companies/ppg-comex-invests-usd-118-million-in-new-mexican-resin-plant/",
+     "src": "European Coatings",
+     "stage": "other"
+    },
+    {
+     "cite": 29,
+     "title": "路易达孚公司与Neptune Robotics在新加坡海事及港务管理局创新计划下合作开展机器人船体清洁项目 - 《马尼拉时报》",
+     "url": "https://news.google.com/rss/articles/CBMizwJBVV95cUxOWTEySkozRnJIOGJDYjhhR1loZUxOemM4V041UmplRDItSVdXYmxIRmxwVl9iWUtQOHpjTHhqV3NBaTBrQ1V4OFNnSlgyTHkwTEU3bXpTcnRUUnd4cG8xLTRXekptaVhBbHdYel9BZDktS2tTWEthZFRLbExEUU5iRzJDN1JMVllxeGZ5aHMyVTFqOUF6Vk9DMk9adzJPWXdzSmRneG96RjFQN3hGX1Z1RGhVTmRzYlcwV2ZsMTRONWQ5Z3hJeERTcWtnckk0ZTdhMHVNLVZjSlp0YnJDbEwzUkh3QUlaNkZ2N2FjVk54RTZveDd6b2Q2dUx0Ry1kOGN0b0tYM1FMMjhoQU85YkJDd3ExTmdqZ2Y2LUtwTTZjUTJKWjZQaVREaVFqbTVRSG5SajRHYUNMaUowM1c0Yy1fTWNDbER0b1AzSzk3Zkl3Y9IB1AJBVV95cUxPdlpTY3hPZ3FObDJnWVpkMTlqWml3cENVanFNX3ljY0lOY3gyS3FaY3N3eC1HR2hTbkltSzlRSm5xNzlaa3JEY0x0a3R1R21IcXdVbV8wTmg0bkVKM3kycXM2QTJyUEh2Tk12UEdGejh1TjVxNGVQeTVEVnVNSWw1cjJQTjRsT1pOcl9lTk9kZjlNS0puNUVFcnFveTBOWmdKTDdhRWJMUDZydGo1SlZXeVg1b3RDVmdTQjhhejhDY3QxVk5kUWRINjN5YTBZR3B6QW1UY0NMd2VJT3ViQVpVOWlFTU8zdUxObGFtSzY2RUd1RHdpb2l3bHplYlEzZVNmSzdlNC1MUmpjSlNDRnpzbzJibEE5YkhPSkE1aldUZG92X1hPTU1id0dtTnZKNDRHaTBVcEdYckVlQmhEaTRJNmNBUDB2cHZEWUduelpfNXpGdjRE?oc=5",
+     "src": "GN · 防污底公约与生物杀灭剂",
+     "stage": "planned"
+    },
+    {
+     "cite": 30,
+     "title": "ISO 6319与从被动船体清洁向主动生物污损管理的转变 - Riviera Maritime Media",
+     "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQZ0F4TE1WZEhUanJocEhKaV8weHIxLXduVUUzVGZNOWJuRUhWZGd3bHUyaXg5V1V3UHBmZUhTdXBaaWhLQ2FpcWNWYWdUaGhienlZUS1KdWhZOC1lSzVmc0NPek1SUF9BVGtZX2JJMlVhMjRpTmYxRlRZUDU2STljVG84YXBpeG1vOEZQN1NfX19Ka1NFZkdSMWQyUHlrVjMtbGluc2ppOUs2eVd1U0UyZkhzclNXRi0wNVVvaHhObnZDQQ?oc=5",
+     "src": "GN · 防污底公约与生物杀灭剂",
+     "stage": "other"
+    },
+    {
+     "cite": 31,
+     "title": "主动船体清洁带来可衡量的燃料与排放收益 - Riviera Maritime Media",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPTTZ2dkdhV2M2TDVHWmVLOHp3RDJsSElQY3p6QWhCSkhwYWxUbGlRRGF2ZVJtRnlWbUtBM3FtaGxtWVF6YlpSdkVKQzZkakp6UG5EOVRVckhNNEN3ejVqSEpIcGpYZTU4RzlEY3FVcFk3QXNQd0doYmFxRmJ2YWxZQzNhaExkMWFTUGpSM3VjQVByRDhNNFFhaktoM2s4MHFBX2xfUENvZ3RpS3ZOYTBJTHdldkFlQQ?oc=5",
+     "src": "GN · 船体清洁与污损管理",
+     "stage": "other"
+    },
+    {
+     "cite": 32,
+     "title": "劳氏船级社扩展AI就绪度基准评估",
+     "url": "https://www.motorship.com/news/monitoring-control-digitalisation/lloyds-register-expands-ai-readiness-benchmarking/",
+     "src": "The Motorship",
+     "stage": "other"
+    }
+   ],
+   "summary": {
+    "done": 0,
+    "policy": 0,
+    "progress": 1,
+    "watching": 3,
+    "new": 2,
+    "pool": 2,
+    "closed": 1
    }
   }
  ]
