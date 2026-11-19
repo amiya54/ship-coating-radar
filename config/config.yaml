@@ -373,6 +373,29 @@ rss:
       url: "https://www.gov.uk/search/policy-papers-and-consultations.atom?keywords=marine+coating"
       max_age_days: 180
 
+    # ★扩容（2026-11-19）：主题闸门上线后条数会明显下降，补 5 条
+    #   「船舶 + 涂装」双语境 GN 查询；每条查询本身自带船舶/修船场景词，
+    #   配合补丁N 的主题闸门，能保证进来的都是船舶涂装内容而不是泛涂料。
+    - id: "gnews-marinepaint"
+      name: "GN · 船舶漆与防污新品"
+      url: "https://news.google.com/rss/search?q=%22marine+paint%22+OR+%22ship+paint%22+OR+%22marine+coating%22+OR+%22antifouling+paint%22+ship+vessel&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-yardpaint"
+      name: "GN · 船厂喷涂与表面处理"
+      url: "https://news.google.com/rss/search?q=shipyard+%22surface+preparation%22+OR+%22blasting%22+OR+%22painting+process%22+OR+%22shop+primer%22+OR+%22dry+dock%22+painting&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-vocship"
+      name: "GN · 船舶涂装VOC与废气治理"
+      url: "https://news.google.com/rss/search?q=shipbuilding+OR+shipyard+%22VOC%22+OR+%22volatile+organic%22+OR+%22fugitive+emissions%22+coating+paint&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-coatcn2"
+      name: "GN · 船舶涂装工艺中文"
+      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6+%E6%B6%82%E8%A3%85+OR+%E8%88%B9%E8%88%B6+%E5%96%B7%E6%B6%82+OR+%E8%88%B9%E4%BD%93+%E9%98%B2%E8%85%90+OR+%E4%BF%AE%E8%88%B9+%E6%B6%82%E6%96%99&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+
+    - id: "gnews-tankcoat"
+      name: "GN · 压载舱与货油舱涂层"
+      url: "https://news.google.com/rss/search?q=%22ballast+tank%22+coating+OR+%22cargo+tank%22+coating+OR+PSPC+OR+%22tank+coating%22+ship+inspection&hl=en-US&gl=US&ceid=US:en&num=100"
+
     # ── 涂装行业垂直媒体（实测有原生 RSS，2026-11-11 验证 200）──
     #   European Coatings：欧洲涂料行业门户，单次可抓 190+ 条，量大；
     #     多数是陆上涂料/树脂/企业并购，命中涂装词表后真正入报的少，
