@@ -56,6 +56,15 @@
 材料与焊接
 /\bpspc\b/
 /\bafs\b/
+# ★筛选收紧（2026-11-19）：用户点名商船与渔船类公告与涂装无关。
+#   排除词让命中渔船/游艇的条目连本组都进不去，落到后面组；
+#   后面组同样排除了 fishing，等于彻底不进报告。
+!渔船
+!游艇
+!娱乐船舶
+!fishing vessel
+!fishing vessels
+!recreational craft
 
 
 [法规规范]
@@ -119,6 +128,13 @@ entry into force
 生态环境部
 行业标准
 国标
+# ★筛选收紧（2026-11-19）：渔船/游艇类法规与船厂涂装无关，全组排除
+!渔船
+!游艇
+!娱乐船舶
+!fishing vessel
+!fishing vessels
+!recreational craft
 
 
 [船级社规范]

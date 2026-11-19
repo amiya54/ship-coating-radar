@@ -356,6 +356,20 @@ rss:
       name: "GN · 中文环保船漆动态"
       url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6%E6%B6%82%E6%96%99+%E7%8E%AF%E4%BF%9D+OR+%E8%88%B9%E8%88%B6+%E6%B0%B4%E6%80%A7%E6%B6%82%E6%96%99+OR+%E7%8E%AF%E4%BF%9D%E6%B6%82%E6%96%99+%E9%80%A0%E8%88%B9+OR+%E4%BD%8EVOC%E6%B6%82%E6%96%99&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
+    # ★法规线扩容（2026-11-19）：用户反馈法规前沿只有一条渔船指南（无关）。
+    #   措施一：加涂层法规专项 GN 查询，盯 IMO/MSC 决议与 PSPC 修正案；
+    #   措施二：GOV.UK 官方公告检索改用「关键词 Atom」（政策文件限定 +
+    #   marine coating 关键词），比全量 MCA 精准，噪音由词表+AI 二次过滤；
+    #   措施三：词表与 AI 提示词把渔船/游艇类法规整体排除。
+    - id: "gnews-coatreg"
+      name: "GN · 涂层标准与法规动态"
+      url: "https://news.google.com/rss/search?q=PSPC+OR+%22performance+standard+for+protective+coatings%22+OR+%22protective+coatings%22+IMO+amendment+OR+resolution+OR+guideline&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "govuk-coating"
+      name: "GOV.UK · 涂装关键词公告"
+      url: "https://www.gov.uk/search/policy-papers-and-consultations.atom?keywords=marine+coating"
+      max_age_days: 180
+
     # ── 涂装行业垂直媒体（实测有原生 RSS，2026-11-11 验证 200）──
     #   European Coatings：欧洲涂料行业门户，单次可抓 190+ 条，量大；
     #     多数是陆上涂料/树脂/企业并购，命中涂装词表后真正入报的少，
@@ -633,7 +647,7 @@ ai_analysis:
   include_rank_timeline: false
 
 ai_translation:
-  enabled: true              # 打开后英文源标题会译成中文
+  enabled: true               # 打开后英文源标题会译成中文（含网页版 RSS 订阅更新栏）
   language: "中文"
   prompt_file: "ai_translation_prompt.txt"
   batch_size: 100
