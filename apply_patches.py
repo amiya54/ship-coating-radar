@@ -1485,19 +1485,19 @@ K_META_ANCHOR = (
 K_META_NEW = (
     '                # ★补丁M：NEW 仅对 72 小时内发布的新闻生效\n'
     '                _show_new = is_new\n'
-    '                try:\n'
-    '                    if time_display:\n'
+    '                try://n'
+    '                    if time_display://n'
     '                        _pub_dt = datetime.strptime(\n'
     '                            str(datetime.now().year) + "-" + time_display.strip(), "%Y-%m-%d %H:%M")\n'
     '                        if (datetime.now() - _pub_dt).total_seconds() > 72 * 3600:\n'
     '                            _show_new = False\n'
-    '                except Exception:\n'
+    '                except Exception://n'
     '                    pass\n'
-    '                if _show_new:\n'
+    '                if _show_new://n'
     '                    rss_html += \'<span class="rss-author" style="color: #dc2626;">NEW</span>\'\n'
     '\n'
     '                # ★补丁K：显示条目编号（与 AI 正文里的引用徽标对应）\n'
-    '                if id_prefix:\n'
+    '                if id_prefix://n'
     '                    rss_html += (\'<span class="rss-no" title="AI 正文可引用此编号">#%d</span>\'\n'
     '                                 % _cite_no)\n'
 )
@@ -2191,6 +2191,73 @@ def patch_search_feedback(root, log):
         log.append("  ⚠ [I] 有锚点未命中，为免半改，本次未写入（原文件保持不变）")
 
 
+# ──────────────────────────────────────────────────────────────────────
+# ★补丁N：船舶涂装主题闸门（2026-11-19）
+#   问题：词表命中即入报，导致「State Elections 对涂料行业的影响」「蛋壳涂层
+#   降低木材火灾风险」「IMO 净零框架」「邮轮母港协议」等泛词条目混入报告。
+#   闸门：标题必须满足以下之一才能进任何词组——
+#     ① 强船舶涂装词（antifouling / marine coating / shipyard / 船舶涂料 / 坞修…）
+#     ② 同时含「船舶语境词」与「涂装语境词」（ship+coating、船+漆…）
+#   实现：注入到 matches_word_groups() 最前面，早于任何词组判断。
+# ──────────────────────────────────────────────────────────────────────
+N_GATE_FUNC = r'''
+# ═══════════ 补丁N：船舶涂装主题闸门（用户 2026-11-19 要求）═══════════
+_N_MARINE_RE = re.compile(
+    r"ship|vessel|marine|maritime|shipyard|shipbuilding|dockyard|drydock|dry dock|"
+    r"hull|ballast|freighter|barge|naval|newbuild|newbuilding|fleet|"
+    r"offshore|tanker|bulker|cargo ship|container ship|boat|port state|"
+    r"船舶|船用|船东|修船|造船|船厂|船坞|坞修|船体|货舱|压载舱|舾装|船漆|"
+    r"舰|艇|航运|海船|渔船|游艇", re.I)
+_N_COATING_RE = re.compile(
+    r"coat|paint|primer|epoxy|zinc|antifoul|fouling|blasting|surface prep|"
+    r"dft|voc|solvent|corrosion|rust|spray|ceramic|silicone|curing|linings?|"
+    r"涂层|涂料|涂装|油漆|漆|防污|污损|喷涂|喷砂|抛丸|除锈|防腐|防锈|"
+    r"膜厚|固化|voc|无组织|附着力|车间底漆", re.I)
+_N_STRONG_RE = re.compile(
+    r"antifouling|anti-fouling|marine coat|shipyard|drydock|hull clean|"
+    r"ballast tank coat|painted hull|\bpspc\b|afs convention|ship paint|marine paint|"
+    r"船舶涂料|船舶涂装|防污漆|防污涂料|坞修|涂装工艺|无组织排放|修船|"
+    r"ship.?building|hull fouling", re.I)
+
+def _n_marine_coating_gate(title):
+    """船舶涂装主题闸：非船舶涂装条目直接拒绝，防止泛词混入报告。"""
+    if not title:
+        return False
+    return bool(_N_STRONG_RE.search(title)
+                or (_N_MARINE_RE.search(title) and _N_COATING_RE.search(title)))
+# ═════════════════════════════════════════════════════════════════════
+
+'''
+
+N_GATE_ANCHOR = "    title_lower = title.lower()\n"
+N_GATE_CALL = ("    title_lower = title.lower()\n\n"
+               "    # ★补丁N：船舶涂装主题闸门（非船舶涂装直接拒绝）\n"
+               "    if not _n_marine_coating_gate(title):\n"
+               "        return False\n")
+
+
+def patch_topic_gate(root, log):
+    """★补丁N：往 frequency.py 注入船舶涂装主题闸门。"""
+    path = os.path.join(root, "trendradar", "core", "frequency.py")
+    if not os.path.exists(path):
+        log.append("  ✗ [N] 找不到 trendradar/core/frequency.py，跳过")
+        return
+    text = read(path)
+    if "_n_marine_coating_gate" in text:
+        log.append("  = [N] 主题闸门已打过，跳过")
+        return
+    if "def matches_word_groups(" not in text or N_GATE_ANCHOR not in text:
+        log.append("  ✗ [N] 找不到 matches_word_groups 锚点，跳过（防半改）")
+        return
+    # 函数定义插到 matches_word_groups 之前（模块级定义）
+    text = text.replace("def matches_word_groups(",
+                        N_GATE_FUNC + "def matches_word_groups(", 1)
+    # 调用插到 title_lower 之后（第一个匹配处即 matches_word_groups 内）
+    text = text.replace(N_GATE_ANCHOR, N_GATE_CALL, 1)
+    write(path, text)
+    log.append("  ✓ [N] 船舶涂装主题闸门已注入（标题须含船舶+涂装语境）")
+
+
 def main():
     root = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
     root = os.path.abspath(root)
@@ -2228,6 +2295,8 @@ def main():
     patch_thin_items(root, log)
     print("\n[M] 品牌替换：报告页 TrendRadar 残留 → 船舶涂装情报 (report/html.py)")
     patch_branding(root, log)
+    print("\n[N] 船舶涂装主题闸门：非船舶涂装条目一律不进报告 (core/frequency.py)")
+    patch_topic_gate(root, log)
 
     print()
     for line in log:
