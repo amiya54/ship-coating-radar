@@ -121,11 +121,13 @@ rss:
     #    在 GitHub Actions 里这两步已写进 crawler.yml，不用你管。
 
     # ── 技术/动力类专业源（★改动7 本次实测新增，最贴合技术研发）──
-    #    The Motorship 是船舶动力与推进技术类杂志，甲醇/氨发动机、
-    #    燃料系统、能效装置的报道密度高于综合媒体，建议保留。
+    #    The Motorship 是船舶动力与推进技术类杂志。2026-11-19 起站方
+    #    Cloudflare 拦 GitHub Actions 数据中心 IP（403，换 UA 无效），
+    #    两个分页源一并禁用；涂装主题由其余综合媒体 + GN 查询覆盖。
     - id: "motorship"
       name: "The Motorship"
       url: "https://www.motorship.com/feed"
+      enabled: false
 
     # ★ 分页源（★双周报改动9）
     #   为什么要翻页：RSS 协议只给「最近 N 条」，不翻页的话 12-20 条
@@ -140,6 +142,7 @@ rss:
     - id: "motorship-p2"
       name: "The Motorship · 第2页"
       url: "https://www.motorship.com/feed?paged=2"
+      enabled: false
 
     #   注：不设第 3 页。The Motorship 发稿慢（30 条覆盖 29 天），
     #   实测第 3 页的文章全部超出 14 天窗口，加了也只会被过滤掉。
