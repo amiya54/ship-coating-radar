@@ -344,6 +344,16 @@ jobs:
         run: |
           python scripts/archive_and_track.py --report index.html --archive archive
 
+      # 🔧 在用先进装备专栏（独立一年窗口）：装备类 GN 直采 + 台账历史
+      #   合并去重 → 按装备类型精选讲解 → 注入 index.html（TRACK 块之后）。
+      #   装备池 archive/equipment_pool.json 随下面 Persist archive 一起提交，
+      #   跨期累积（本机/Actions 都能跑，GN 拉不到时只靠台账也不报错）。
+      - name: Build equipment column
+        if: success()
+        continue-on-error: true
+        run: |
+          python scripts/build_equipment.py --report index.html --archive archive --days 365
+
       # 把 archive/ 提交回仓库：下一期要靠它读上一期的台账和编号
       - name: Persist archive to repository
         if: success()
