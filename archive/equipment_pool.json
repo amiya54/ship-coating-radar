@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-20",
- "ai_summary": "激光除锈与清洗方面，清单未见相关装备报道，该线近一年未见报道；成熟度无法由清单判断，按证据只能视为早期。常识推断：激光可用于造船分段薄锈/局部清洗和修船坞局部除锈，但反射、烟尘与效率需验证，清单无实船证据。\n\n超高压水/干冰/海绵除漆方面，清单uhp类别仅见Kongsberg Maritime水射流合同（2026-04-08），未涉及除漆/清洗，故该线近一年未见报道；成熟度无法判断，按证据归为早期。常识推断：超高压水适合修船坞外板除漆但需废水回收，干冰/海绵适合局部精密清洗；对造船线可试分段预处理，对修船坞更偏外板/舱室局部，均需实船验证。\n\n喷砂抛丸与磨料方面，沪东中华完成国产化抛丸机器人实船应用试验（2026-10-26），属试验；C&C Marine机器人喷砂设施完成700艘驳船（2026-04-28 Marine News、2026-04-27 Marine Log），属批量应用；HII、Seaspan推进机器人打磨/喷砂/喷涂，属船厂引入。成熟度分层：驳船/修船喷砂有批量实绩，较成熟；造船抛丸机器人仍在试验；磨料回收未见专门报道。对造船线适配分段/船体抛丸打磨，回收配套需评估（常识推断）；对修船坞适配外板喷砂和驳船批量除漆。\n\n机器人与自动化作业方面，清单报道密度最高：Neptune与Louis Dreyfus在新加坡试验AI船体清洁（多篇同事件），属试验；HD Hyundai发布行业首个全机器人端到端船体管理方案（2026-06-18），属刚发布；韩方合作开发“Total",
+ "ai_summary": "从近一年清单看，五条装备线冷热不均。激光除锈与清洗线近一年未见报道，清单中的“清洗”主要是机器人船体清洁，并非激光除锈；成熟度只能列为早期观察项（常识推断：激光适合薄板、焊缝和高价值局部除锈），造船线可试用于分段局部清洗，修船坞可试用于外板局部除锈。超高压水/干冰/海绵除漆线近一年未见报道；唯一标注uhp的Kongsberg largest-ever waterjet contract（2026-04-08）标题为waterjet，不是除漆设备，不能作证据，干冰、海绵也无报道；成熟度属早期（常识推断：修船坞局部除漆和替代干喷砂有需求），造船线与修船坞均需验证。喷砂抛丸与磨料线报道密度较高：沪东中华完成国产化抛丸机器人实船应用试验（2026-10-26 国际船舶网），C&C Marine机器人喷砂设施累计完成700艘驳船（2026-04-28 Marine News Magazine），HII、Seaspan推动打磨喷砂涂装自动化（2026-04-09 The Maritime Executive、2026-02-26 WorkBoat）；磨料有市场展望至2035、由造船与基础设施维护驱动（2026-11-20 IndexBox）。该线较成熟，驳船修理机器人喷砂已批量应用，造船线抛丸机器人处于试验/引入；造船线适合钢板预处理、分段抛丸和打磨喷砂，修船坞适合外板及驳船批量喷砂。机器人与自动化作业线报道最密：Neptune与Louis Dreyfus在新加坡试验机器人船体清洁（2026-11-20多篇、2026-11-19等），HD Hyundai发布全流程机器人船体管理方案（2026-06-18 Marine Insight），韩国",
  "ai_date": "2026-11-20",
  "items": [
   {
@@ -28,6 +28,12 @@
    "s": "GN · 防污底公约与生物杀灭剂"
   },
   {
+   "d": "2026-11-20",
+   "t": "喷砂磨料市场展望至2035年：造船与基础设施维护驱动增长 - 新闻和统计 - IndexBox",
+   "u": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOM2JVZjFXLUV3Q2lpZnpfT3hNeUtRcjdyd1lIeHVYeFpPTEpYdUphUy1rS2RhLXhXdm5IcUJKTE1oa3VNSENIVzlOZTdLckFISms2Mko2N21LMjRRY3VWRGZ4eDBiZkhncC1EUWNKUTMxQ1FoV01aNlFQSzNSdDVMN0dxUDJJVVdIN2tKdHRyUjduRkoySGRRam5fNUxfaFZ5VGpjT01JdkxVRk40dFJoQUZYV2xxNWM4S0ZJSHU1Y0lqN3JYc0ktNGpKNl9ZNFRweDlaZE9SV3RzUQ?oc=5",
+   "s": "GN · 修船除锈与涂装装备中文"
+  },
+  {
    "d": "2026-11-19",
    "t": "Louis Dreyfus Company and Neptune Robotics Partner on Robotic Hull Cleaning Programme under the Maritime and Port Authority of Singapore's Innovation Programme - Macau Business",
    "u": "https://news.google.com/rss/articles/CBMikwJBVV95cUxPSVotejFFdDRkZXRfRmM2MUdXLWE1V25femdGLXFudHJBYldIeEdXVFVzdDhMQUs5cnVhMVJYdTMxY3FhZjQ3ZHVsb2tZRHVXS2N2TzVDOHlkcndvcjhvb1A5TVlHQ1kzeG1uaWc4MnVGRjNFdkNQSzNZbnBLQ0ZuXzVPM1Z3dFppa0dOa3RJWXNGNDd6WUdUb2dUbGo4LTZqMUpvaDNoeXBkRW5wcGpRc05rWk1GSFdIdVlWU1M5dkVRNmZxQjUwWEZWbmdSV21wWXlBNGRULWNuakw3MnY2ejdFT0lhbnlHeVJvZy01WHRkT1dtSUUwaGsyMEJPSXVjem5EdThwR0tvcXB5cEZVSjFjQQ?oc=5",
@@ -46,10 +52,22 @@
    "s": "GN · 修船除锈与涂装装备中文"
   },
   {
+   "d": "2026-10-05",
+   "t": "力抗中国造船竞争 日韩企业推机器人“上阵” - 诗华日报",
+   "u": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8xNTVTUTNfNGw3aDBwWUU5cG1rM0pNZkdlMWRaX0U2bzN5RXY2ckRydmN6czI0c2Q1aGJudkx2bzNPczFlTG9PSGJ0OWJ0UQ?oc=5",
+   "s": "GN · 修船除锈与涂装装备中文"
+  },
+  {
    "d": "2026-08-07",
    "t": "HII Teams Up with GrayMatter and Path for Robotic Shipbuilding - Tectonic Defense",
    "u": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQeTZaNDFzbzg0eDBtX3E1UXJ1NTliNHBYZVg4bHJlLTV0WXBIaGFFOVpSbDFlUTFnLTMwaGNhNWt2YlBYMXF1OGJWWDdCRG8wR3hzV1E2ejNtSUp0MHpXMzN3N2RnYWMxYkstWmMzZHRrTVB6R1h6eVVIdTFVZDZDZnhweEl2bGhVLWdSRWZfRWs5OVBFS092eVBmWQ?oc=5",
    "s": "GN · 喷涂工艺与固化技术"
+  },
+  {
+   "d": "2026-07-26",
+   "t": "让机器人自主造船！韩国欲打造“未来智能先进船厂” - 国际船舶网",
+   "u": "https://news.google.com/rss/articles/CBMiekFVX3lxTE11X0RCOVFhY3BBcjA1N0QtbVZRcVN3a3R4dFdqcXh0YTIycXhNMVllOEVpbzhKSlR1aXBMcDZQVldIV3h5MlFQR2tfSmFiVllXN19tUUhaU2NiLXp1NFBIYUlia1phMk1Eclh5bFFkZk5KMkR2U1N4bmV3?oc=5",
+   "s": "GN · 修船除锈与涂装装备中文"
   },
   {
    "d": "2026-06-18",
