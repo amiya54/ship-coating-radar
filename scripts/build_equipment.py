@@ -204,6 +204,25 @@ def html_escape(s):
     return _h.escape(s or "", quote=True)
 
 
+def load_equip_feeds(config_path):
+    """零依赖解析 config.yaml，抽取装备类 GN 查询的 name/url。
+    按 `- id: "xxx"` 切块，块内抓 name 与 url 行。"""
+    txt = Path(config_path).read_text(encoding="utf-8")
+    blocks = re.split(r'\n\s*-\s+id:\s*"', txt)
+    feeds = []
+    for b in blocks[1:]:
+        m_id = re.match(r'([^"]+)"', b)
+        if not m_id or m_id.group(1) not in EQUIP_FEED_IDS:
+            continue
+        m_name = re.search(r'name:\s*"([^"]+)"', b)
+        m_url = re.search(r'url:\s*"([^"]+)"', b)
+        # enabled: false 的跳过
+        m_en = re.search(r'enabled:\s*false', b)
+        if m_name and m_url and not m_en:
+            feeds.append({"id": m_id.group(1), "name": m_name.group(1), "url": m_url.group(1)})
+    return feeds
+
+
 def inject(report, section_html):
     p = Path(report)
     doc = p.read_text(encoding="utf-8")
@@ -244,12 +263,11 @@ def main():
             pool = {}
 
     fresh = []
-    # 1) 直采装备类 GN（近一年）
+    # 1) 直采装备类 GN（近一年）。零依赖：正则抽 config.yaml 里的 feed 定义，
+    #    不 import yaml（Actions 的裸 python 环境没有 pyyaml）。
     try:
-        import yaml
-        cfg = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
-        feeds = [f for f in cfg["rss"]["feeds"]
-                 if f.get("id") in EQUIP_FEED_IDS and f.get("enabled", True)]
+        feeds = load_equip_feeds(args.config)
+        print(f"  装备类查询：{[f['name'] for f in feeds]}")
     except Exception as e:
         print(f"  ⚠️ 读配置失败（{type(e).__name__}），跳过直采只用台账")
         feeds = []
