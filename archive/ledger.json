@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-19",
+ "updated": "2026-11-20",
  "issues": [
   {
    "date": "2026-11-11",
@@ -1301,6 +1301,84 @@
     "new": 1,
     "pool": 1,
     "closed": 1
+   }
+  },
+  {
+   "date": "2026-11-20",
+   "items": 9,
+   "events": [
+    {
+     "cite": 1,
+     "title": "LDC, Neptune Robotics partner on Robotic Hull Cleaning Programme - Comunicaffe International",
+     "url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxQbmljVWJrcVVESXNFazZhdzdLdWU3WndfYTQ0bndIclhETUJhekhVakFxWlZtdGQ3cTlONGE2R1JQYUg4R1pXWVFIdXZVUkZzb0tLbWNZcDRSSGdRRXE5TnA5bE5KaDNFdm9nRFZ5Y2JoZVBaeFRuc09sU1phLXNCVXk3TV95ZVlUYzZJUDVNZFc2WkRZWkRhM1I1ZklSM1JVWTBsT1FJQURwV21nb0lpWFRGYUpjWjd0NThXejRrdUVYS3gzeXRkMmVncnlUa3BkcHBNTy14QmZtSl93WVNKWHRVRFpLU1lNQ0t2dk84Yjk3cFNwYksydGhaeF9SVjBvXzh6S3ZmYlBDckQ3S3ZaYlZrMlBlZw?oc=5",
+     "src": "GN · 防污底公约与生物杀灭剂",
+     "stage": "other"
+    },
+    {
+     "cite": 2,
+     "title": "Neptune Robotics to Test AI Hull Cleaning on Louis Dreyfus Vessels - Marine News Magazine",
+     "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOamJ1bEF1RHlVOUhBanhQUWp6aWdwTldPOXA5bXNYc1RCVkJHS1RnUTBhc0ZpZnNiQjF3NGNfTC1RUWE5NFFQWmxKQmNZczBvZmpXaV9TY1ZtTV96VEtLREtfQWgxNGFLTUFCRWxtREdyZElxRFUtV3lPbXFzMXVRblAzUQ?oc=5",
+     "src": "GN · 防污底公约与生物杀灭剂",
+     "stage": "testing"
+    },
+    {
+     "cite": 3,
+     "title": "Louis Dreyfus Company to trial robotic hull cleaning - Smart Maritime Network",
+     "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPZ1l5am9VTjFkOUtqaGFOSGVvQ2Y1OGYwRUV3cTh3T1kyczNRRk5ndVpjYWRjbnlJdHNJa2RNbGNmNHJ6dXRWOHNldWRHd3gzMm5neGYydnlOZWstWTFtUjdTM0dLdjQxOXlBU3BQWkVSUVFpTG91bEhNR3lmaWRVVFVRWFkzRTdNb1FKOWxZSDRoaDNPb29CNFJWb1M3UQ?oc=5",
+     "src": "GN · 防污底公约与生物杀灭剂",
+     "stage": "testing"
+    },
+    {
+     "cite": 4,
+     "title": "Louis Dreyfus joins robotic hull cleaning trials in Singapore - Splash247",
+     "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPSkplZGVVM0EzM05nNGxpSDdsTWIwVkVKejNBNWh2Mmlzai1HbkdjamJpbVNxdzFMUDB6WDFKRWp0R3g5SzA1VDZQajFscGh6VGlvTVNHY0NqRVhYdjR4MTI3ektPOTFxZTdLdlRWRy1mVmFDS3ltcldEREdTc3lXOWNIVE5pUjR4cXozRQ?oc=5",
+     "src": "GN · 防污底公约与生物杀灭剂",
+     "stage": "testing"
+    },
+    {
+     "cite": 5,
+     "title": "ISO 6319 and the Shift from Reactive Hull Cleaning to Proactive Biofouling Management - Riviera Maritime Media",
+     "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQZ0F4TE1WZEhUanJocEhKaV8weHIxLXduVUUzVGZNOWJuRUhWZGd3bHUyaXg5V1V3UHBmZUhTdXBaaWhLQ2FpcWNWYWdUaGhienlZUS1KdWhZOC1lSzVmc0NPek1SUF9BVGtZX2JJMlVhMjRpTmYxRlRZUDU2STljVG84YXBpeG1vOEZQN1NfX19Ka1NFZkdSMWQyUHlrVjMtbGluc2ppOUs2eVd1U0UyZkhzclNXRi0wNVVvaHhObnZDQQ?oc=5",
+     "src": "GN · 防污底公约与生物杀灭剂",
+     "stage": "other"
+    },
+    {
+     "cite": 6,
+     "title": "Proactive hull cleaning brings measurable fuel and emissions gains - Riviera Maritime Media",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPTTZ2dkdhV2M2TDVHWmVLOHp3RDJsSElQY3p6QWhCSkhwYWxUbGlRRGF2ZVJtRnlWbUtBM3FtaGxtWVF6YlpSdkVKQzZkakp6UG5EOVRVckhNNEN3ejVqSEpIcGpYZTU4RzlEY3FVcFk3QXNQd0doYmFxRmJ2YWxZQzNhaExkMWFTUGpSM3VjQVByRDhNNFFhaktoM2s4MHFBX2xfUENvZ3RpS3ZOYTBJTHdldkFlQQ?oc=5",
+     "src": "GN · 船体清洁与污损管理",
+     "stage": "other"
+    },
+    {
+     "cite": 7,
+     "title": "Nippon Paint Marine Malaysia Partners with Shin Yang Trading - Coatings World",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPYThFdDI5U1FpTmpOX3dOMWY4SDBvT0t6Mjc4ckFSdG5vOThkSjdwUmUyb3BZeWhQUU5ya2ZoZmdiUzFVaUxFbG5xUWF0aGdkZUdHSHlVMW02blZUSXNLTXlGVldKMEdxZnRhd2wtUG5IUGlSSmh2MDQxNm5DSHpsMEI4T0QxTWJ4emw5ckxQSWZKNGlTRWlNTURGeFVGVkFPenlJQTRHcUM?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "other"
+    },
+    {
+     "cite": 8,
+     "title": "[4617.T FY2026 Q2 Earnings Call] Chugoku Marine Paints H1 Operating Profit Up 26.4% to ¥11.4 Billion — Southeast Asia and Price Pass-Through Drive Results, Full-Year Profit Forecasts Raised Across the Board - finance.biggo.com",
+     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB4VktpOS0zNjdUUzFrT2JkZ19TY0d4aXhFTDNFNVg3eC1ycWpjZUxuZlU3Wkp3V2V4Y1VWeXhKY2lzX2JfRmJGZnRzUWxmblk5STNUaFZWT2ZjV2tEWDlwNA?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "operating"
+    },
+    {
+     "cite": 9,
+     "title": "Matthieu Perrotin as MacKinnon's d-comm; Lisa Marykuca is parliamentary affairs secretary assistant to PSPC - iPolitics",
+     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9NYUhUaE12MXBHVUJVWkF1blpPMkZaMTg0cmpHZnY2VEJLTkFaeXZkUE8xVHVnX2RFeG5peHFrRS1HT1VPVHNjcHZtbnc5Z1Q4WkJ3RlA1blBiRkJlMFBMWlY5SVIzc2c0Z2Vwdzk0aDdsZEhvRG8yVG5vd2l2QQ?oc=5",
+     "src": "GN · PSPC与涂层标准",
+     "stage": "other"
+    }
+   ],
+   "summary": {
+    "done": 0,
+    "policy": 0,
+    "progress": 2,
+    "watching": 1,
+    "new": 1,
+    "pool": 3,
+    "closed": 3
    }
   }
  ]
