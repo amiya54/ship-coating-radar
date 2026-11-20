@@ -169,7 +169,7 @@ def scan_ledger(ledger_path, days):
     return out
 
 
-def build_section(pool, ai_text="", ai_date=""):
+def build_section(pool, ai_text="", ai_date="", per_cat=6):
     """按类目精选生成 HTML（每类取最近 per_cat 条，总量上限 24）"""
     by_cat = {k: [] for k, _, _ in CATEGORIES}
     for it in pool:  # pool 已按日期倒序，元素为 {d,t,u,s}
