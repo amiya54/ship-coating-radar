@@ -250,6 +250,42 @@ blasting
 除锈
 abrasive
 锈
+# ── 修造船涂装/除锈/除漆先进装备（2026-11-20 新增）──
+除漆
+paint removal
+coating removal
+rust removal
+derusting
+descaling
+ultra-high pressure
+UHP waterjet
+waterjet
+water jetting
+高压水
+超高压水
+干冰清洗
+dry ice blasting
+sponge blasting
+激光除锈
+激光清洗
+laser cleaning
+laser rust removal
+laser ablation
+喷砂机器人
+blasting robot
+robotic blasting
+automated blasting
+打磨机器人
+grinding robot
+抛丸机
+shot blast
+喷漆机器人
+painting robot
+spraying robot
+coating robot
+涂装机器人
+自动喷涂
+automated painting
 /\bsa\s?2(\.5|½)?\b/
 DFT
 dry film

@@ -396,6 +396,20 @@ rss:
       name: "GN · 压载舱与货油舱涂层"
       url: "https://news.google.com/rss/search?q=%22ballast+tank%22+coating+OR+%22cargo+tank%22+coating+OR+PSPC+OR+%22tank+coating%22+ship+inspection&hl=en-US&gl=US&ceid=US:en&num=100"
 
+    # ★装备专项线（2026-11-20）：修造船除锈/除漆、喷漆先进设备。
+    #   闸门已保证船舶相关性，查询用「船体/船厂 + 装备词」双语境卡位。
+    - id: "gnews-rustblast"
+      name: "GN · 船体除锈与喷砂装备"
+      url: "https://news.google.com/rss/search?q=shipyard+OR+hull+OR+ship+%22rust+removal%22+OR+%22paint+removal%22+OR+%22abrasive+blasting%22+OR+%22shot+blasting%22+OR+%22waterjet%22+OR+%22ultra-high+pressure%22+equipment&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-laserrob"
+      name: "GN · 激光除锈与机器人涂装"
+      url: "https://news.google.com/rss/search?q=%22laser+rust+removal%22+OR+%22laser+cleaning%22+hull+OR+marine+OR+shipyard+OR+%22blasting+robot%22+OR+%22painting+robot%22+OR+%22grinding+robot%22+ship+vessel&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-blast-cn"
+      name: "GN · 修船除锈与涂装装备中文"
+      url: "https://news.google.com/rss/search?q=%E4%BF%AE%E8%88%B9+OR+%E9%80%A0%E8%88%B9+OR+%E8%88%B9%E5%8E%82+%E9%99%A4%E9%94%88+OR+%E9%99%A4%E6%BC%86+OR+%E9%AB%98%E5%8E%8B%E6%B0%B4%E9%99%A4%E9%94%88+OR+%E6%8A%9B%E4%B8%B8+OR+%E5%96%B7%E7%A0%82%E6%9C%BA%E5%99%A8%E4%BA%BA+OR+%E6%B6%82%E8%A3%85%E6%9C%BA%E5%99%A8%E4%BA%BA&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+
     # ── 涂装行业垂直媒体（实测有原生 RSS，2026-11-11 验证 200）──
     #   European Coatings：欧洲涂料行业门户，单次可抓 190+ 条，量大；
     #     多数是陆上涂料/树脂/企业并购，命中涂装词表后真正入报的少，
