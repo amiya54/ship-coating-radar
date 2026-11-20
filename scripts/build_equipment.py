@@ -16,6 +16,7 @@ import argparse
 import datetime as dt
 import email.utils
 import json
+import os
 import re
 import sys
 import urllib.request
@@ -168,7 +169,7 @@ def scan_ledger(ledger_path, days):
     return out
 
 
-def build_section(pool, per_cat=6):
+def build_section(pool, ai_text="", ai_date=""):
     """按类目精选生成 HTML（每类取最近 per_cat 条，总量上限 24）"""
     by_cat = {k: [] for k, _, _ in CATEGORIES}
     for it in pool:  # pool 已按日期倒序，元素为 {d,t,u,s}
@@ -193,15 +194,88 @@ def build_section(pool, per_cat=6):
                     f'<ul class="eq-list">{"".join(lis)}</ul>')
         total += len(items)
     note = "区域数据池独立于主报告 14 天窗口（365 天），随每期自动累积去重；只精选代表性条目，不罗列全部来源。"
-    return (SECTION_STYLE
+    ai_html = ""
+    if ai_text:
+        ai_html = (f'<div class="eq-ai"><h4 class="eq-cat">▍AI 研判 · 在用装备现状（{ai_date}）</h4>'
+                   f'<p class="eq-ai-body">{html_escape(ai_text)}</p></div>')
+    ai_style = ""
+    if ai_text:
+        ai_style = ("<style>.eq-ai{background:#f0f5fa;border:1px solid #cfdcec;border-radius:8px;"
+                    "padding:10px 14px;margin:14px 0 4px}.eq-ai-body{margin:4px 0 2px;font-size:13.5px;"
+                    "line-height:1.9;color:#233;white-space:pre-wrap}</style>")
+    return (SECTION_STYLE + ai_style
             + f'<section class="eq-sec" id="equipment"><div class="eq-head">'
             f'<h2>🔧 六、修造船在用先进装备（近一年）</h2><p>{note}</p></div>'
-            f'<div class="eq-body">{"".join(rows) or "<p class=\'eq-empty\'>装备池积累中，下期自动扩充。</p>"}</div></section>')
+            f'<div class="eq-body">{ai_html}{"".join(rows) or "<p class=\'eq-empty\'>装备池积累中，下期自动扩充。</p>"}</div></section>')
 
 
 def html_escape(s):
     import html as _h
     return _h.escape(s or "", quote=True)
+
+
+def load_ai_conf(config_path):
+    """零依赖读 AI 配置：model（去掉 litellm 前缀）与 api_base。"""
+    txt = Path(config_path).read_text(encoding="utf-8")
+    m = re.search(r'^ai:\s*$(.*?)^(?=\S|\Z)', txt, re.M | re.S)
+    block = m.group(1) if m else txt
+    model = re.search(r'model:\s*"([^"]+)"', block)
+    base = re.search(r'api_base:\s*"([^"]*)"', block)
+    name = model.group(1) if model else "deepseek/deepseek-v4-flash"
+    short = name.split("/", 1)[-1]
+    base_url = (base.group(1) if base and base.group(1) else "https://api.deepseek.com").rstrip("/")
+    return short, base_url + "/v1/chat/completions"
+
+
+AI_PROMPT = """你是一名修船/造船涂装工艺工程师，为「修造船在用先进装备」专栏写一段研判（500-750字，纯文本段落，不要表格、不要标题序号）。
+
+下面是近一年抓到的装备类新闻清单（日期 | 类别 | 标题）。请按五条装备线组织：①激光除锈与清洗 ②超高压水/干冰/海绵除漆 ③喷砂抛丸与磨料 ④机器人与自动化作业 ⑤喷涂与固化设备。每条线写清楚：
+- 目前行业在用什么（从清单里的事件归纳，说明是试验、批量应用还是刚发布）；
+- 成熟度判断（报道密度高+实船应用多=较成熟；只有单一试验报道=早期）；
+- 对造船线与修船坞分别的适用性。
+
+铁律：
+1. 只能基于清单归纳，不得编造清单外的设备、厂商或数字；
+2. 清单里出现的数字（效率、除锈等级等）可以引用，但要注明出自哪条报道；
+3. 某条线近一年完全没有报道，就明确写"该线近一年未见报道"并给一句基于行业常识的补充说明（标注"常识推断"）；
+4. 语言务实，不写营销腔。
+
+清单：
+{list}"""
+
+
+def ai_analyze(items, config_path):
+    """调 AI 对装备池做研判；返回文本或 None。"""
+    key = os.environ.get("AI_API_KEY", "").strip()
+    if not key:
+        print("  ⚠️ 无 AI_API_KEY，跳过 AI 研判")
+        return None
+    try:
+        model, url = load_ai_conf(config_path)
+    except Exception as e:
+        print(f"  ⚠️ 读 AI 配置失败：{type(e).__name__}")
+        return None
+    lines = [f"{it['d']} | {classify(it['t'])} | {it['t'][:120]}" for it in items[:45]]
+    if not lines:
+        return None
+    body = json.dumps({
+        "model": model,
+        "messages": [{"role": "user", "content": AI_PROMPT.replace("{list}", "\n".join(lines))}],
+        "temperature": 1.0,
+        "max_tokens": 8000,
+    }).encode("utf-8")
+    req = urllib.request.Request(url, data=body, method="POST", headers={
+        "Authorization": f"Bearer {key}", "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=300) as r:
+            data = json.loads(r.read().decode("utf-8"))
+        text = (data["choices"][0]["message"]["content"] or "").strip()
+        print(f"  AI 研判完成：{len(text)} 字（{model}）")
+        return text
+    except Exception as e:
+        print(f"  ⚠️ AI 研判失败：{type(e).__name__} {str(e)[:120]}")
+        return None
+
 
 
 def load_equip_feeds(config_path):
@@ -289,12 +363,29 @@ def main():
     # 过期清理
     pool = {k: v for k, v in pool.items() if v.get("d", "0000") >= cutoff}
     items = sorted(pool.values(), key=lambda x: x.get("d", ""), reverse=True)
+
+    # 3) AI 研判（对装备池整体，一年窗口）：成功则缓存，失败沿用上次结果
+    old_ai = {}
+    try:
+        _raw = json.loads(pool_path.read_text(encoding="utf-8")) if pool_path.exists() else {}
+        old_ai = {"t": _raw.get("ai_summary", ""), "d": _raw.get("ai_date", "")}
+    except Exception:
+        pass
+    ai_text = ai_analyze(items, args.config)
+    if ai_text:
+        ai_cache = {"t": ai_text, "d": dt.date.today().isoformat()}
+    else:
+        ai_cache = old_ai
+        if ai_cache.get("t"):
+            print(f"  沿用上次 AI 研判（{ai_cache['d']}）")
     pool_path.write_text(json.dumps(
-        {"updated": dt.date.today().isoformat(), "items": items},
+        {"updated": dt.date.today().isoformat(),
+         "ai_summary": ai_cache.get("t", ""), "ai_date": ai_cache.get("d", ""),
+         "items": items},
         ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"  装备池合计：{len(items)} 条（≤{args.days} 天）→ {pool_path}")
 
-    section = build_section(items)
+    section = build_section(items, ai_cache.get("t", ""), ai_cache.get("d", ""))
     inject(args.report, section)
     print(f"  已注入专栏区域 → {args.report}")
 

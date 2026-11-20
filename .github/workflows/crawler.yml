@@ -351,6 +351,8 @@ jobs:
       - name: Build equipment column
         if: success()
         continue-on-error: true
+        env:
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
         run: |
           python scripts/build_equipment.py --report index.html --archive archive --days 365
 
