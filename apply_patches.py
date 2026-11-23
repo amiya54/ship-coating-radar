@@ -2003,9 +2003,12 @@ L_METHOD_SRC = '''    def _l_thin_items(self, items: List[Dict]) -> List[Dict]:
                     alts.append(base)
                 dropped.append(("同事件", title))
                 continue
-            # ③ 单源配额：同一媒体（去分页后缀）最多 10 条
+            # ③ 单源配额：同一媒体（去分页后缀）最多 25 条
+            #   ★2026-11-23：10 → 25。配额砍在词表过滤【之前】，砍多了会把
+            #   大源（European Coatings 单次 50 条）深处的涂装条目一并误杀；
+            #   放宽只增加候选量，噪音由后面的词表+主题闸门兜底。
             if base:
-                if quota.get(base, 0) >= 10:
+                if quota.get(base, 0) >= 25:
                     dropped.append(("单源配额", title))
                     continue
                 quota[base] = quota.get(base, 0) + 1

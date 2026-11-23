@@ -214,7 +214,10 @@ rss:
 
     - id: "marinelink"
       name: "MarineLink"
-      url: "https://www.marinelink.com/rss"
+      # ★2026-11-23：MarineLink 的 RSS 支持 Take 参数（feed 开头注释写明
+      #   "Take=Number of items returned, Default value is 10"）。
+      #   默认 10 条只覆盖 1 天，拉到 50 让 14 天窗口能吃满。
+      url: "https://www.marinelink.com/news/rss?Take=50"
 
     - id: "safety4sea"
       name: "Safety4Sea"
@@ -410,6 +413,26 @@ rss:
       name: "GN · 修船除锈与涂装装备中文"
       url: "https://news.google.com/rss/search?q=%E4%BF%AE%E8%88%B9+OR+%E9%80%A0%E8%88%B9+OR+%E8%88%B9%E5%8E%82+%E9%99%A4%E9%94%88+OR+%E9%99%A4%E6%BC%86+OR+%E9%AB%98%E5%8E%8B%E6%B0%B4%E9%99%A4%E9%94%88+OR+%E6%8A%9B%E4%B8%B8+OR+%E5%96%B7%E7%A0%82%E6%9C%BA%E5%99%A8%E4%BA%BA+OR+%E6%B6%82%E8%A3%85%E6%9C%BA%E5%99%A8%E4%BA%BA&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
+    # ★扩容第三轮（2026-11-23）：上一轮 125 条候选只匹配 8 条，源量仍不够。
+    #   增补四条查询补空白：涂层检验资质 / 修船坞修涂装 / 钢材预处理与车间
+    #   底漆 / 中文涂料新品投产。⚠️ 新增查询会增加 Google 限流概率，
+    #   已把 rss.request_interval 提到 2.5s 配套。
+    - id: "gnews-coatinspect"
+      name: "GN · 涂层检验与涂装质检"
+      url: "https://news.google.com/rss/search?q=%22coating+inspector%22+OR+%22coating+survey%22+OR+%22coating+inspection%22+OR+FROSIO+ship+OR+vessel+OR+marine&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-shiprepair"
+      name: "GN · 修船坞修与船体维护涂装"
+      url: "https://news.google.com/rss/search?q=shiprepair+OR+%22ship+repair%22+OR+shiprefit+OR+refit+hull+coating+OR+paint+OR+blasting&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-shopprimer"
+      name: "GN · 钢材预处理与车间底漆"
+      url: "https://news.google.com/rss/search?q=%22shop+primer%22+OR+%22steel+pretreatment%22+OR+%22surface+preparation+line%22+OR+%22shot+blasting+line%22+shipbuilding+OR+steel+OR+shipyard&hl=en-US&gl=US&ceid=US:en&num=100"
+
+    - id: "gnews-cn-newprod"
+      name: "GN · 中文涂料新品与产线动态"
+      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6%E6%B6%82%E6%96%99+%E6%96%B0%E5%93%81+OR+%E8%88%B9%E6%BC%86+%E5%8F%91%E5%B8%83+OR+%E6%B6%82%E6%96%99+%E6%8A%95%E4%BA%A7+OR+%E6%B6%82%E6%96%99+%E7%94%9F%E4%BA%A7%E7%BA%BF+%E8%88%B9%E8%88%B6&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+
     # ── 涂装行业垂直媒体（实测有原生 RSS，2026-11-11 验证 200）──
     #   European Coatings：欧洲涂料行业门户，单次可抓 190+ 条，量大；
     #     多数是陆上涂料/树脂/企业并购，命中涂装词表后真正入报的少，
@@ -427,6 +450,13 @@ rss:
     - id: "drydock-mag"
       name: "Drydock Magazine"
       url: "https://www.drydockmagazine.com/feed"
+
+    # ★新增（2026-11-23）：海洋保险与安全媒体。PSC 滞留通报里涂层破损/
+    #   腐蚀是高频缺陷项，这类新闻在这家出得比综合媒体勤。
+    #   2026-11-23 本机实测返回标准 RSS 2.0。Actions 侧首次运行看日志确认。
+    - id: "insurance-marine-news"
+      name: "Insurance Marine News"
+      url: "https://insurancemarinenews.com/feed"
 
     # ── 修船与造船技术媒体（2026-11-13 二次扩容）──
     #   ⚠️ ship-technology.com：本机实测 200，但 GitHub Actions 数据中心 IP
@@ -714,8 +744,11 @@ advanced:
   #    代理端口改成你自己客户端里的实际端口（Clash 常见 7897）
   # ⚠️ 注意：如果环境变量 GITHUB_ACTIONS=true，程序会强制"不使用代理"，
   #    这里设了也白设。本地运行请先 unset GITHUB_ACTIONS。
+  #   ★2026-11-23：1s → 2.5s。当轮实跑 GN 源出现一次 429 Too Many Requests，
+  #   Google 开始对我们这 20+ 条并发查询限流了。加长间隔 + 后续新增查询都
+  #   必须跟着这个节奏走（45 源 × 2.5s ≈ 多花 1 分钟，Actions 不在乎）。
   rss:
-    request_interval: 1000
+    request_interval: 2500
     timeout: 15
     use_proxy: false
     proxy_url: "http://127.0.0.1:7897"

@@ -399,7 +399,8 @@ def collect(days, verbose=True, relevance_filter=True, dropped_out=None,
         try:
             html, final = fetch(src["url"])
         except Exception as e:                       # noqa: BLE001
-            stats.append((src["name"], -1, 0, "抓取失败: %s: %s" % (type(e).__name__, str(e)[:60])))
+            stats.append((src["name"], -1, 0, 0,
+                          "抓取失败: %s: %s" % (type(e).__name__, str(e)[:60])))
             if verbose:
                 print("  ✗ %-26s 抓取失败：%s: %s" % (src["name"], type(e).__name__, str(e)[:60]))
             continue
@@ -409,11 +410,15 @@ def collect(days, verbose=True, relevance_filter=True, dropped_out=None,
         issuer = src["issuer"]
         kept_in_window = 0
         dropped_offtopic = 0
+        dropped_ex = 0
         for dt, title, url in rows:
             if dt < cutoff:
                 continue
             kept_in_window += 1
             if ex and ex.search(title):
+                # ★2026-11-23 修口径：排除词滤掉的也要计数，否则
+                # 「涂装相关 N 条 = 窗口内 - 无关」会虚报（ex 丢的不进账）。
+                dropped_ex += 1
                 continue
             # ★ 船舶涂装相关性闸门：与涂装无关的通用规范直接丢掉
             if relevance_filter and COATING_RE.search(title) is None:
@@ -445,12 +450,13 @@ def collect(days, verbose=True, relevance_filter=True, dropped_out=None,
                 "doc_no": "",              # ↓ 第二遍进详情页才填
                 "effective": "",           # ↓
             })
-        stats.append((src["name"], kept_in_window, dropped_offtopic,
+        stats.append((src["name"], kept_in_window, dropped_offtopic, dropped_ex,
                       "%.1fs" % (time.time() - t0)))
         if verbose:
-            print("  ✓ %-26s 窗口内 %3d 条 → 涂装相关 %2d 条（滤掉 %2d 条无关）%.1fs"
-                  % (src["name"], kept_in_window, kept_in_window - dropped_offtopic,
-                     dropped_offtopic, time.time() - t0))
+            print("  ✓ %-26s 窗口内 %3d 条 → 涂装相关 %2d 条（无关 %2d + 排除词 %2d）%.1fs"
+                  % (src["name"], kept_in_window,
+                     kept_in_window - dropped_offtopic - dropped_ex,
+                     dropped_offtopic, dropped_ex, time.time() - t0))
 
     # ★第二遍：逐条进详情页补「文号 / 生效日期」。
     #   放在去重之后 —— 只对最终保留的条目抓，重复条目不会白抓一遍。
@@ -568,16 +574,16 @@ def main():
     raw_total = sum(s[1] for s in ok)
     dropped_total = sum(s[2] for s in ok)
     print("源汇总：成功 %d / %d" % (len(ok), len(stats)))
-    print("过滤前窗口内 %d 条 → 滤掉 %d 条与涂装无关 → 输出 %d 条"
-          % (raw_total, dropped_total, len(items)))
+    print("过滤前窗口内 %d 条 → 无关滤掉 %d + 排除词滤掉 %d → 去重后输出 %d 条"
+          % (raw_total, dropped_total, sum(s[3] for s in ok), len(items)))
     if detail_log:
         hit, total = detail_log[0]
         print("详情页补字段：%d/%d 条取到「文号」或「生效日期」"
               "（其余在 feed 里标「未载明」，AI 会填「—」）" % (hit, total))
-    for name, n, dropped, note in stats:
+    for name, n, dropped, dropped_ex_n, note in stats:
         print("   %s %-26s %s" % ("✓" if n >= 0 else "✗", name,
-                                  note if n < 0 else "窗口 %d 条，保留 %d，滤掉 %d（%s）"
-                                  % (n, n - dropped, dropped, note)))
+                                  note if n < 0 else "窗口 %d 条，保留 %d，无关滤掉 %d，排除词滤掉 %d（%s）"
+                                  % (n, n - dropped - dropped_ex_n, dropped, dropped_ex_n, note)))
 
     if args.dump_dropped and dropped_log:
         print("-" * 74)
