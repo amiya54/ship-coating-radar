@@ -70,13 +70,15 @@ EQUIP_RE = re.compile(
     r"干冰|dry.?ice|sponge.?blast|激光|laser (?:clean|rust|ablat)|"
     r"机器人|robot|automated (?:blast|paint|spray|grind)|无人|"
     r"无气喷涂|airless|静电喷涂|electrostatic|喷涂机|喷漆房|spray booth|"
-    r"curing|UV|近红外|infrared",
+    r"curing|UV|近红外|infrared|"
+    r"塗装|塗膜|ブラスト|サンドブラスト|除錆|도장|블라스팅|샌드블라스팅|표면처리",
     re.I,
 )
 # 船舶语境词（标题须同时命中其一）——与主闸门同口径
 MARINE_RE = re.compile(
     r"ship|vessel|hull|shipyard|marine|maritime|boat|barge|tanker|bulk|"
-    r"drydock|dry dock|船|船舶|修船|造船|船厂|船体|坞|舱",
+    r"drydock|dry dock|船|船舶|修船|造船|船厂|船体|坞|舱|"
+    r"造船所|ドック|조선|조선소|선박|도크",
     re.I,
 )
 # 明确排除（汽车/家具等陆上行业即使带了 equipment 词也不收）
@@ -262,10 +264,11 @@ def classify(title):
 # ★2026-11-23：机器人是最大的误判来源 —— 焊接、装配、探伤、船体清洁机器人
 #   都会命中「robot + ship」，但它们不是涂装装备。仅靠机器人命中的标题，
 #   必须再出现一条涂装/表面处理作业词才算数。
-ROBOT_RE = re.compile(r"机器人|robot|automated|无人", re.I)
+ROBOT_RE = re.compile(r"机器人|robot|automated|无人|로봇|ロボット", re.I)
 COAT_OP_RE = re.compile(
     r"除锈|除漆|喷砂|抛丸|喷涂|喷漆|涂装|涂层|涂料|漆|打磨|探厚|测厚|"
-    r"rust|paint|coat|blast|surface prep|grind|laser|UHP|waterjet|高压水|干冰", re.I)
+    r"rust|paint|coat|blast|surface prep|grind|laser|UHP|waterjet|高压水|干冰|"
+    r"塗装|ブラスト|도장|블라스팅", re.I)
 
 
 def keep(title):
@@ -442,6 +445,17 @@ YARD_QUERIES = [
     ("英文船厂装备", 'shipyard blasting OR coating robot OR automation installation', "en"),
 ]
 
+# 韩日查询组：韩国船厂（韩华海洋/HD现代）与日本船厂（川崎重工等）在涂装自动化上
+# 最激进，但这些新闻不进英文索引 —— 中英文查询一条都搜不到。实测韩国"도장 로봇
+# 조선"年内 7 条、日本"塗装ロボット 造船"年内 9 条，含川崎重工「溶接・塗装自動化
+# ロボット 造船企業などに展開」这类正题。
+KR_JA_QUERIES = [
+    ("韩媒涂装机器人", '도장 로봇 조선 OR 조선소', "ko"),
+    ("韩媒喷砂除锈", '블라스팅 OR 샌드블라스팅 OR 표면처리 조선소 OR 선박', "ko"),
+    ("日媒涂装机器人", '塗装ロボット 造船 OR 造船所', "ja"),
+    ("日媒喷砂除锈", 'サンドブラスト OR 除錆 OR 塗装自動化 造船所 OR 船体', "ja"),
+]
+
 # GDELT：全文匹配的第三索引（不同源），查询用引号短语收紧，避免 blasting 撞爆炸新闻
 GDELT_QUERIES = [
     '("shot blasting" OR "abrasive blasting") (shipyard OR "ship repair" OR hull)',
@@ -453,11 +467,17 @@ GDELT_QUERIES = [
 ]
 
 
+GN_LOCALE = {
+    "zh": "hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "ko": "hl=ko&gl=KR&ceid=KR:ko",
+    "ja": "hl=ja&gl=JP&ceid=JP:ja",
+    "en": "hl=en-US&gl=US&ceid=US:en",
+}
+
+
 def _gn_plain_url(query, lang):
     base = "https://news.google.com/rss/search?q=" + urllib.parse.quote_plus(query)
-    if lang == "zh":
-        return base + "&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
-    return base + "&hl=en-US&gl=US&ceid=US:en&num=100"
+    return base + "&" + GN_LOCALE.get(lang, GN_LOCALE["en"]) + "&num=100"
 
 
 def _collect_rss(op, url, days, tag, out):
@@ -521,20 +541,30 @@ def fetch_site_archive(days):
     return total
 
 
-def fetch_yard_queries(days):
-    """② 中文船厂名查询（(label, query, lang) 列表）。"""
+def fetch_plain_queries(queries, days, tag_prefix):
+    """通用的「无时间算子查询」执行器：(label, query, lang) 列表 → 命中条目。"""
     direct, default = _openers()
     out = []
-    for label, query, lang in YARD_QUERIES:
+    for label, query, lang in queries:
         url = _gn_plain_url(query, lang)
         n = -1
         for op in (direct, default):
-            n = _collect_rss(op, url, days, "船厂检索·" + label, out)
+            n = _collect_rss(op, url, days, tag_prefix + label, out)
             if n >= 0:
                 break
         print(f"  · {label}：{n if n >= 0 else '失败'} 条")
         time.sleep(1.5)
     return out
+
+
+def fetch_yard_queries(days):
+    """② 中文船厂名查询（中文装备新闻多以「某船厂+某装备」形式出现）。"""
+    return fetch_plain_queries(YARD_QUERIES, days, "船厂检索·")
+
+
+def fetch_krja_queries(days):
+    """⑤ 韩日船厂涂装自动化查询（中英文索引里查不到）。"""
+    return fetch_plain_queries(KR_JA_QUERIES, days, "韩日检索·")
 
 
 def fetch_gdelt(days):
@@ -823,6 +853,10 @@ def main():
     yard_got = fetch_yard_queries(args.days)
     print(f"  船厂检索：{len(yard_got)} 条")
     fresh.extend(yard_got)
+    # 3b) 韩日船厂涂装自动化（中英文索引不覆盖）
+    krja_got = fetch_krja_queries(args.days)
+    print(f"  韩日检索：{len(krja_got)} 条")
+    fresh.extend(krja_got)
     # 4) GDELT（第三索引，best-effort）
     gd_got = fetch_gdelt(args.days)
     print(f"  GDELT 通道：{len(gd_got)} 条")
