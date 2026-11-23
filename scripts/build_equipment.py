@@ -51,6 +51,11 @@ EQUIP_QUERIES = [
      '除锈 OR 喷砂 OR 除漆 OR 抛丸 船厂 OR 船舶 OR 船体', "zh"),
     ("中文机器人涂装",
      '喷涂机器人 OR 除锈机器人 OR 爬壁机器人 OR 涂装机器人 船舶 OR 船厂 OR 修船', "zh"),
+    ("涂层检测与测厚",
+     '"coating thickness" OR "dry film thickness" OR "coating inspection" '
+     'OR "holiday detection" shipyard OR hull OR ship', "en"),
+    ("中文涂装车间与涂装线",
+     '涂装车间 OR 涂装线 OR 喷漆房 OR 烘干房 船厂 OR 船舶', "zh"),
 ]
 
 
@@ -182,25 +187,58 @@ def _core(t):
             if w not in _STOP}
 
 
+def _clean_title(t):
+    """去掉 Google News 拼在标题尾部/开头的噪音，再算相似度：
+    尾部「 - 媒体名」、开头「【栏目】」都会稀释中文标题的相似度
+    （实测同一事件两条标题 J 从 0.39 提到 0.46）。"""
+    s = str(t or "")
+    s = re.sub(r"\s*[-–|]\s*[^-–|]{2,20}\s*$", "", s)
+    s = re.sub(r"^[【\[（(][^】\]）)]{1,12}[】\]）)]", "", s)
+    return s.strip()
+
+
+def _lcs(a, b):
+    """最长公共子串长度（仅用于中文标题的同事件判断）。"""
+    if not a or not b:
+        return 0
+    prev = [0] * (len(b) + 1)
+    best = 0
+    for i in range(1, len(a) + 1):
+        cur = [0] * (len(b) + 1)
+        ai = a[i - 1]
+        for j in range(1, len(b) + 1):
+            if ai == b[j - 1]:
+                cur[j] = prev[j - 1] + 1
+                if cur[j] > best:
+                    best = cur[j]
+        prev = cur
+    return best
+
+
 def dedupe_items(items):
     """★2026-11-23 跨源同事件合并：一桩事件被多家媒体转述只留最新一条，
     其余家数记在 n 字段、页面上显示「另 N 家转述」。
-    判据两条取其一：
+    判据任一条成立即视为同一事件：
       ① 标题 Jaccard：英文 ≥0.52 / 中文 ≥0.72（沿用主报告口径）；
-      ② 实体词重合 ≥2 个（新闻标题改写后 Jaccard 常常只有 0.2-0.3，
-         实测同一桩「路易达孚 × Neptune 机器人洗船体」六家标题 J 仅 0.16-0.36，
-         纯相似度抓不住，只能靠专名）。入参须按日期倒序。"""
+      ② 实体词重合 ≥2 个（英文新闻改写后 J 只有 0.2-0.3，实测同一桩
+         「路易达孚 × Neptune 机器人洗船体」六家标题 J 仅 0.16-0.36，
+         纯相似度抓不住，只能靠 louis/dreyfus/neptune 这类专名）；
+      ③ 中文标题最长公共子串 ≥8 字（中文改写常整句换说法，
+         但事件主体名与型号名会原样保留，如「新一代双高脉冲船舶涂装激光清洗」）。
+    入参须按日期倒序。"""
     kept = []
     for it in items:
         t = it.get("t", "")
-        cjk = bool(_CJK_RE.search(t))
-        core = _core(t)
+        ct = _clean_title(t)
+        cjk = bool(_CJK_RE.search(ct))
+        core = _core(ct)
         hit = None
         for k in kept:
-            kt = k.get("t", "")
+            kt = _clean_title(k.get("t", ""))
             thr = 0.72 if (cjk and _CJK_RE.search(kt)) else 0.52
-            if (_jac(t, kt) >= thr
-                    or len(core & _core(kt)) >= 2):
+            if (_jac(ct, kt) >= thr
+                    or len(core & _core(kt)) >= 2
+                    or (cjk and _CJK_RE.search(kt) and _lcs(ct, kt) >= 8)):
                 hit = k
                 break
         if hit is not None:
@@ -232,7 +270,7 @@ def _gn_url(query, start, end, lang):
     return base + "&hl=en-US&gl=US&ceid=US:en&num=100"
 
 
-def fetch_gn(feeds, days, windows=4):
+def fetch_gn(feeds, days, windows=6):
     """按时间段分窗直采装备类查询，返回 [(date, title, url, src)]。
     ★2026-11-23：改为 after:/before: 分窗回溯。无算子查询只回「最相关 10 条」
     （实测最旧 2014 年），一年窗口靠它等于白抓；分窗后每窗口能取回 4-9 条，
