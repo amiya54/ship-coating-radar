@@ -280,37 +280,37 @@ rss:
     # 涂装总查询：marine coatings / antifouling / foul release
     - id: "gnews-coating"
       name: "GN · 船舶涂装总览"
-      url: "https://news.google.com/rss/search?q=%22marine+coatings%22+OR+antifouling+OR+%22anti-fouling%22+OR+%22foul+release%22+ship&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22marine+coatings%22+OR+antifouling+OR+%22anti-fouling%22+OR+%22foul+release%22+ship+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # PSPC 主线：压载舱 / 货油舱涂层性能标准
     - id: "gnews-pspc"
       name: "GN · PSPC与涂层标准"
-      url: "https://news.google.com/rss/search?q=PSPC+OR+%22performance+standard+for+protective+coatings%22+OR+%22ballast+tank+coating%22+OR+%22cargo+tank+coating%22&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=PSPC+OR+%22performance+standard+for+protective+coatings%22+OR+%22ballast+tank+coating%22+OR+%22cargo+tank+coating%22+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # 防污底公约与生物杀灭剂合规（AFS / BPR / cybutryne / 船体清洗）
     - id: "gnews-afs"
       name: "GN · 防污底公约与生物杀灭剂"
-      url: "https://news.google.com/rss/search?q=%22AFS+convention%22+OR+%22anti-fouling+system%22+OR+cybutryne+OR+%22hull+cleaning%22+OR+biocidal&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22AFS+convention%22+OR+%22anti-fouling+system%22+OR+cybutryne+OR+%22hull+cleaning%22+OR+biocidal+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # 船级社涂装相关规范动态
     - id: "gnews-class"
       name: "GN · 船级社涂装规范动态"
-      url: "https://news.google.com/rss/search?q=DNV+OR+Lloyd+OR+ClassNK+OR+%22Bureau+Veritas%22+ship+coating+paint+rules&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=DNV+OR+Lloyd+OR+ClassNK+OR+%22Bureau+Veritas%22+ship+coating+paint+rules+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # IMO 决议与生效（涂层 / 涂料限定，防跑偏成泛航运新闻）
     - id: "gnews-imo-reg"
       name: "GN · IMO决议与涂层生效"
-      url: "https://news.google.com/rss/search?q=IMO+MSC+OR+MEPC+OR+%22entry+into+force%22+coating+OR+paint+OR+antifouling&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=IMO+MSC+OR+MEPC+OR+%22entry+into+force%22+coating+OR+paint+OR+antifouling+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # 涂料供应商动态（型式认可 / 新产品 / 工厂）
     - id: "gnews-supplier"
       name: "GN · 涂料供应商动态"
-      url: "https://news.google.com/rss/search?q=Jotun+OR+Hempel+OR+AkzoNobel+OR+PPG+OR+Chugoku+marine+coatings+paint&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=Jotun+OR+Hempel+OR+AkzoNobel+OR+PPG+OR+Chugoku+marine+coatings+paint+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # ── 中文源（行业站里唯一有原生 RSS 的 imarine 已停用，中文靠 GN）──
     - id: "gnews-cn"
       name: "GN · 国内涂装与涂料动态"
-      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6%E6%B6%82%E8%A3%85+OR+%E8%88%B9%E8%88%B6%E6%B6%82%E6%96%99+OR+%E9%98%B2%E6%B1%A1%E6%BC%86+OR+%E6%B6%82%E5%B1%82+%E8%A7%84%E8%8C%83+OR+%E8%88%B9%E7%BA%A7%E7%A4%BE+%E6%B6%82%E6%96%99&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6%E6%B6%82%E8%A3%85+OR+%E8%88%B9%E8%88%B6%E6%B6%82%E6%96%99+OR+%E9%98%B2%E6%B1%A1%E6%BC%86+OR+%E6%B6%82%E5%B1%82+%E8%A7%84%E8%8C%83+OR+%E8%88%B9%E7%BA%A7%E7%A4%BE+%E6%B6%82%E6%96%99+when:14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
     # ★扩容（2026-11-11）：首轮 103 条新增只命中 20 条，源量不够。
     #   新增 4 条 GN 定向查询，覆盖首轮没有抓到的涂装相邻话题。
@@ -318,49 +318,49 @@ rss:
     #      跑一次看 Actions 日志里对应名字的「获取 N 条」是否 >0。
     - id: "gnews-hullclean"
       name: "GN · 船体清洁与污损管理"
-      url: "https://news.google.com/rss/search?q=hull+cleaning+OR+%22in-water+cleaning%22+OR+propeller+cleaning+OR+hull+performance+ship&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=hull+cleaning+OR+%22in-water+cleaning%22+OR+propeller+cleaning+OR+hull+performance+ship+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-drydock"
       name: "GN · 船厂涂装与干坞作业"
-      url: "https://news.google.com/rss/search?q=shipyard+painting+OR+%22dry+dock%22+coating+OR+blasting+painting+shipyard&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=shipyard+painting+OR+%22dry+dock%22+coating+OR+blasting+painting+shipyard+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-coatfail"
       name: "GN · 涂层失效与重涂维修"
-      url: "https://news.google.com/rss/search?q=%22coating+failure%22+OR+%22paint+defect%22+OR+recoating+ship+OR+repaint+hull&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22coating+failure%22+OR+%22paint+defect%22+OR+recoating+ship+OR+repaint+hull+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-corrosion"
       name: "GN · 船体腐蚀与防腐"
-      url: "https://news.google.com/rss/search?q=marine+anticorrosive+OR+%22corrosion+protection%22+ship+hull+OR+ballast+tank+corrosion&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=marine+anticorrosive+OR+%22corrosion+protection%22+ship+hull+OR+ballast+tank+corrosion+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # ★环保涂料与VOCs治理专项（2026-11-12 用户需求）：
     #   最前沿船舶环保涂料 + 低VOC喷涂工艺 + 修造船无组织VOCs排放。
     #   英文两条打技术线（涂料体系 / 施工工艺），中文一条打监管与行业线。
     - id: "gnews-ecocoat"
       name: "GN · 环保船漆与低VOC涂料"
-      url: "https://news.google.com/rss/search?q=marine+coating+%22low+VOC%22+OR+%22volatile+organic%22+OR+biocide-free+OR+eco-friendly+antifouling+OR+waterborne+coating+ship&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=marine+coating+%22low+VOC%22+OR+%22volatile+organic%22+OR+biocide-free+OR+eco-friendly+antifouling+OR+waterborne+coating+ship+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-spraytech"
       name: "GN · 喷涂工艺与固化技术"
-      url: "https://news.google.com/rss/search?q=%22airless+spray%22+OR+%22painting+robot%22+OR+robotic+coating+OR+%22UV+cur%22+OR+%22powder+coating%22+shipyard+OR+vessel+OR+marine&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22airless+spray%22+OR+%22painting+robot%22+OR+robotic+coating+OR+%22UV+cur%22+OR+%22powder+coating%22+shipyard+OR+vessel+OR+marine+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-voc-cn"
       name: "GN · 修造船VOCs治理"
-      url: "https://news.google.com/rss/search?q=%E4%BF%AE%E8%88%B9+OR+%E9%80%A0%E8%88%B9+VOCs+%E6%B2%BB%E7%90%86+OR+%E6%97%A0%E7%BB%84%E7%BB%87%E6%8E%92%E6%94%BE+OR+%E8%88%B9%E8%88%B6+%E6%B0%B4%E6%80%A7%E6%B6%82%E6%96%99+OR+%E7%BB%BF%E8%89%B2%E4%BF%AE%E8%88%B9&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+      url: "https://news.google.com/rss/search?q=%E4%BF%AE%E8%88%B9+OR+%E9%80%A0%E8%88%B9+VOCs+%E6%B2%BB%E7%90%86+OR+%E6%97%A0%E7%BB%84%E7%BB%87%E6%8E%92%E6%94%BE+OR+%E8%88%B9%E8%88%B6+%E6%B0%B4%E6%80%A7%E6%B6%82%E6%96%99+OR+%E7%BB%BF%E8%89%B2%E4%BF%AE%E8%88%B9+when:14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
     # ★环保线二次扩容（2026-11-13）：首轮环保专项只落地 10+8+2 条，
     #   再补三条查询把「船厂排放合规 / 生物基新型涂料 / 中文环保涂料」
     #   三条相邻话题线补齐。
     - id: "gnews-shipyard-emi"
       name: "GN · 船厂排放与环保合规"
-      url: "https://news.google.com/rss/search?q=shipyard+VOC+emissions+OR+%22volatile+organic+compounds%22+shipyard+OR+%22fugitive+emissions%22+painting+OR+%22air+quality%22+shipyard&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=shipyard+VOC+emissions+OR+%22volatile+organic+compounds%22+shipyard+OR+%22fugitive+emissions%22+painting+OR+%22air+quality%22+shipyard+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-biobased"
       name: "GN · 生物基与新型环保涂料"
-      url: "https://news.google.com/rss/search?q=%22bio-based%22+OR+biobased+OR+%22solvent-free%22+OR+%22high-solid%22+marine+coating+ship&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22bio-based%22+OR+biobased+OR+%22solvent-free%22+OR+%22high-solid%22+marine+coating+ship+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-ecocoat-cn"
       name: "GN · 中文环保船漆动态"
-      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6%E6%B6%82%E6%96%99+%E7%8E%AF%E4%BF%9D+OR+%E8%88%B9%E8%88%B6+%E6%B0%B4%E6%80%A7%E6%B6%82%E6%96%99+OR+%E7%8E%AF%E4%BF%9D%E6%B6%82%E6%96%99+%E9%80%A0%E8%88%B9+OR+%E4%BD%8EVOC%E6%B6%82%E6%96%99&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6%E6%B6%82%E6%96%99+%E7%8E%AF%E4%BF%9D+OR+%E8%88%B9%E8%88%B6+%E6%B0%B4%E6%80%A7%E6%B6%82%E6%96%99+OR+%E7%8E%AF%E4%BF%9D%E6%B6%82%E6%96%99+%E9%80%A0%E8%88%B9+OR+%E4%BD%8EVOC%E6%B6%82%E6%96%99+when:14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
     # ★法规线扩容（2026-11-19）：用户反馈法规前沿只有一条渔船指南（无关）。
     #   措施一：加涂层法规专项 GN 查询，盯 IMO/MSC 决议与 PSPC 修正案；
@@ -369,7 +369,7 @@ rss:
     #   措施三：词表与 AI 提示词把渔船/游艇类法规整体排除。
     - id: "gnews-coatreg"
       name: "GN · 涂层标准与法规动态"
-      url: "https://news.google.com/rss/search?q=PSPC+OR+%22performance+standard+for+protective+coatings%22+OR+%22protective+coatings%22+IMO+amendment+OR+resolution+OR+guideline&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=PSPC+OR+%22performance+standard+for+protective+coatings%22+OR+%22protective+coatings%22+IMO+amendment+OR+resolution+OR+guideline+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "govuk-coating"
       name: "GOV.UK · 涂装关键词公告"
@@ -381,37 +381,37 @@ rss:
     #   配合补丁N 的主题闸门，能保证进来的都是船舶涂装内容而不是泛涂料。
     - id: "gnews-marinepaint"
       name: "GN · 船舶漆与防污新品"
-      url: "https://news.google.com/rss/search?q=%22marine+paint%22+OR+%22ship+paint%22+OR+%22marine+coating%22+OR+%22antifouling+paint%22+ship+vessel&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22marine+paint%22+OR+%22ship+paint%22+OR+%22marine+coating%22+OR+%22antifouling+paint%22+ship+vessel+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-yardpaint"
       name: "GN · 船厂喷涂与表面处理"
-      url: "https://news.google.com/rss/search?q=shipyard+%22surface+preparation%22+OR+%22blasting%22+OR+%22painting+process%22+OR+%22shop+primer%22+OR+%22dry+dock%22+painting&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=shipyard+%22surface+preparation%22+OR+%22blasting%22+OR+%22painting+process%22+OR+%22shop+primer%22+OR+%22dry+dock%22+painting+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-vocship"
       name: "GN · 船舶涂装VOC与废气治理"
-      url: "https://news.google.com/rss/search?q=shipbuilding+OR+shipyard+%22VOC%22+OR+%22volatile+organic%22+OR+%22fugitive+emissions%22+coating+paint&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=shipbuilding+OR+shipyard+%22VOC%22+OR+%22volatile+organic%22+OR+%22fugitive+emissions%22+coating+paint+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-coatcn2"
       name: "GN · 船舶涂装工艺中文"
-      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6+%E6%B6%82%E8%A3%85+OR+%E8%88%B9%E8%88%B6+%E5%96%B7%E6%B6%82+OR+%E8%88%B9%E4%BD%93+%E9%98%B2%E8%85%90+OR+%E4%BF%AE%E8%88%B9+%E6%B6%82%E6%96%99&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6+%E6%B6%82%E8%A3%85+OR+%E8%88%B9%E8%88%B6+%E5%96%B7%E6%B6%82+OR+%E8%88%B9%E4%BD%93+%E9%98%B2%E8%85%90+OR+%E4%BF%AE%E8%88%B9+%E6%B6%82%E6%96%99+when:14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
     - id: "gnews-tankcoat"
       name: "GN · 压载舱与货油舱涂层"
-      url: "https://news.google.com/rss/search?q=%22ballast+tank%22+coating+OR+%22cargo+tank%22+coating+OR+PSPC+OR+%22tank+coating%22+ship+inspection&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22ballast+tank%22+coating+OR+%22cargo+tank%22+coating+OR+PSPC+OR+%22tank+coating%22+ship+inspection+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # ★装备专项线（2026-11-20）：修造船除锈/除漆、喷漆先进设备。
     #   闸门已保证船舶相关性，查询用「船体/船厂 + 装备词」双语境卡位。
     - id: "gnews-rustblast"
       name: "GN · 船体除锈与喷砂装备"
-      url: "https://news.google.com/rss/search?q=shipyard+OR+hull+OR+ship+%22rust+removal%22+OR+%22paint+removal%22+OR+%22abrasive+blasting%22+OR+%22shot+blasting%22+OR+%22waterjet%22+OR+%22ultra-high+pressure%22+equipment&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=shipyard+OR+hull+OR+ship+%22rust+removal%22+OR+%22paint+removal%22+OR+%22abrasive+blasting%22+OR+%22shot+blasting%22+OR+%22waterjet%22+OR+%22ultra-high+pressure%22+equipment+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-laserrob"
       name: "GN · 激光除锈与机器人涂装"
-      url: "https://news.google.com/rss/search?q=%22laser+rust+removal%22+OR+%22laser+cleaning%22+hull+OR+marine+OR+shipyard+OR+%22blasting+robot%22+OR+%22painting+robot%22+OR+%22grinding+robot%22+ship+vessel&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22laser+rust+removal%22+OR+%22laser+cleaning%22+hull+OR+marine+OR+shipyard+OR+%22blasting+robot%22+OR+%22painting+robot%22+OR+%22grinding+robot%22+ship+vessel+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-blast-cn"
       name: "GN · 修船除锈与涂装装备中文"
-      url: "https://news.google.com/rss/search?q=%E4%BF%AE%E8%88%B9+OR+%E9%80%A0%E8%88%B9+OR+%E8%88%B9%E5%8E%82+%E9%99%A4%E9%94%88+OR+%E9%99%A4%E6%BC%86+OR+%E9%AB%98%E5%8E%8B%E6%B0%B4%E9%99%A4%E9%94%88+OR+%E6%8A%9B%E4%B8%B8+OR+%E5%96%B7%E7%A0%82%E6%9C%BA%E5%99%A8%E4%BA%BA+OR+%E6%B6%82%E8%A3%85%E6%9C%BA%E5%99%A8%E4%BA%BA&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+      url: "https://news.google.com/rss/search?q=%E4%BF%AE%E8%88%B9+OR+%E9%80%A0%E8%88%B9+OR+%E8%88%B9%E5%8E%82+%E9%99%A4%E9%94%88+OR+%E9%99%A4%E6%BC%86+OR+%E9%AB%98%E5%8E%8B%E6%B0%B4%E9%99%A4%E9%94%88+OR+%E6%8A%9B%E4%B8%B8+OR+%E5%96%B7%E7%A0%82%E6%9C%BA%E5%99%A8%E4%BA%BA+OR+%E6%B6%82%E8%A3%85%E6%9C%BA%E5%99%A8%E4%BA%BA+when:14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
     # ★扩容第三轮（2026-11-23）：上一轮 125 条候选只匹配 8 条，源量仍不够。
     #   增补四条查询补空白：涂层检验资质 / 修船坞修涂装 / 钢材预处理与车间
@@ -419,21 +419,21 @@ rss:
     #   已把 rss.request_interval 提到 2.5s 配套。
     - id: "gnews-coatinspect"
       name: "GN · 涂层检验与涂装质检"
-      url: "https://news.google.com/rss/search?q=%22coating+inspector%22+OR+%22coating+survey%22+OR+%22coating+inspection%22+OR+FROSIO+ship+OR+vessel+OR+marine&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22coating+inspector%22+OR+%22coating+survey%22+OR+%22coating+inspection%22+OR+FROSIO+ship+OR+vessel+OR+marine+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-shiprepair"
       name: "GN · 修船坞修与船体维护涂装"
-      url: "https://news.google.com/rss/search?q=shiprepair+OR+%22ship+repair%22+OR+shiprefit+OR+refit+hull+coating+OR+paint+OR+blasting&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=shiprepair+OR+%22ship+repair%22+OR+shiprefit+OR+refit+hull+coating+OR+paint+OR+blasting+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-shopprimer"
       name: "GN · 钢材预处理与车间底漆"
-      url: "https://news.google.com/rss/search?q=%22shop+primer%22+OR+%22steel+pretreatment%22+OR+%22surface+preparation+line%22+OR+%22shot+blasting+line%22+shipbuilding+OR+steel+OR+shipyard&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22shop+primer%22+OR+%22steel+pretreatment%22+OR+%22surface+preparation+line%22+OR+%22shot+blasting+line%22+shipbuilding+OR+steel+OR+shipyard+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-cn-newprod"
       name: "GN · 中文涂装线与喷涂车间"
       # 2026-11-23 实跑「船舶涂料+新品/发布/投产」组合返回 0（组词太严），
       # 换成行业里真实出现的说法；陆上涂装线新闻由词表+主题闸门兜底过滤。
-      url: "https://news.google.com/rss/search?q=%E6%B6%82%E8%A3%85%E7%BA%BF+OR+%E6%B6%82%E8%A3%85%E8%BD%A6%E9%97%B4+OR+%E8%88%B9%E5%8E%82+%E5%96%B7%E6%B6%82&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+      url: "https://news.google.com/rss/search?q=%E6%B6%82%E8%A3%85%E7%BA%BF+OR+%E6%B6%82%E8%A3%85%E8%BD%A6%E9%97%B4+OR+%E8%88%B9%E5%8E%82+%E5%96%B7%E6%B6%82+when:14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
     # ── 涂装行业垂直媒体（实测有原生 RSS，2026-11-11 验证 200）──
     #   European Coatings：欧洲涂料行业门户，单次可抓 190+ 条，量大；

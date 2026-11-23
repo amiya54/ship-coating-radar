@@ -351,8 +351,6 @@ airless spray
 静电喷涂
 electrostatic
 喷涂机器人
-自动喷涂
-painting robot
 robotic coating
 paint robot
 喷漆房
