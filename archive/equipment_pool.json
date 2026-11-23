@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-23",
- "ai_summary": "从清单归纳，激光除锈与清洗线目前是实船项目试用加新品发布：2026-11-16舟山中远海运重工64000吨散货船项目采用新工艺，2026-11-10有新一代双高脉冲船舶涂装激光清洗设备发布，尚未看到批量应用报道，成熟度偏早期；对造船线可从涂装前处理试用切入，对修船坞更适合局部除锈清洗场景，但清单未给出修船坞批量证据（常识推断）。超高压水/干冰/海绵除漆线近一年未见报道，清单没有相关具体事件，成熟度无法据清单判断，按常识推断该类低尘、低损伤除漆在修船坞局部作业更有场景，但造船线需验证效率与废水、废弃物回收（常识推断）。喷砂抛丸与磨料线清单集中在喷砂抛丸装备和机器人集成：沪东中华完成国产化抛丸机器人实船应用试验（2026-10-26），C&C Marine and Repair机器人喷砂设施已完成700艘驳船（2026-04-28报道），HII、Seaspan引入机器人用于打磨、喷砂和涂装，韩华费城推进扩大涂装、喷砂作业区；磨料本身未见专门报道。该线报道密度较高且出现批量设施和船厂采用，成熟度相对较高，但国内抛丸机器人仍处实船试验；对造船线适合分段和船体表面处理，对修船坞适合驳船修理等大面积喷砂，需同步环保配套。机器人与自动化作业线报道最密，涵盖海桓科技进博会首发船底除锈与涂装机器人、具身智能船舶喷涂机器人亮相、Raise Robotics开发船厂涂装机器人、政府/船厂铺设智能基站、HD现代三湖和川崎重工坂出实证AI焊接涂装机器人、K-造船焊接机器人与涂装VR，以及HII、Seaspan、C&C的喷砂涂装机器人；成熟度呈分层：新品和具身智能偏发布、开发，AI基站和焊接涂装机器人处实证，驳船喷砂设施已批量，整体由试验向批量过渡；对造船线适合固定工位、分段焊接涂装，对修船坞适合船底除锈涂装和驳船修理，但船型多变要求柔性。喷涂与固化设备线有PPG静电涂装应用白皮书（2026-06-02），机器人喷涂在清单中多次出现，说明喷涂正与自动化结合推广；固化设备近一年未见专门报道，成熟度上喷涂偏应用推广、固化无清单证据；对造船线静电喷涂适合批量分段、船体，对修船坞可用于局部修补喷涂，固化受坞内环境限制（常识推断）。",
+ "ai_summary": "激光除锈与清洗方面，清单有舟山中远海运重工64000吨散货船项目用激光“洗”锈（2026-11-16）和双高脉冲船舶涂装激光清洗设备发布（2026-11-10），说明已从设备发布进入实船试用，但近一年仅两条，成熟度处应用验证向小批量推广过渡；造船线宜用于焊缝、切割边、局部返锈和高值区域，修船坞宜用于局部修补和舱内低尘清洗，大面积船壳效率与一致性待验证。超高压水/干冰/海绵除漆线近一年未见报道，不能据清单判断应用；常识推断，修船坞对低尘除漆有需求，但需验证废水废料收集和停航窗口，造船线可作分段除漆补充。喷砂抛丸与磨料方面，清单显示沪东中华完成国产化抛丸机器人实船应用试验（2026-10-26），韩华费城推进扩大涂装、喷砂作业区（2026-10-26），C&C Marine and Repair机器人喷砂设施已完成700艘驳船（2026-04-28，数字出自该报道），HII、Seaspan也在推进打磨、喷砂和涂装自动化，行业在用机器人抛丸/喷砂和自动化设施，兼有试验与批量运营，报道较密且有批量实绩，相对成熟但船厂间不均衡；造船线适合钢板预处理、分段和车间抛丸，修船坞适合外板、驳船等规则表面，复杂舱室仍需人工，磨料回收与粉尘控制关键。机器人与自动化作业方面，清单报道最密集：海桓科技进博会首发船底除锈与涂装机器人（2026-11-08），具身智能船舶喷涂机器人亮相（2026-10-17），并有智能基站、AI网络控制焊接涂装机器人及川崎在坂出实证焊接·涂装自动化（2026-08-26）等，涂装、除锈机器人多处首发、示范、实证和网络化集成阶段，尚未全船批量替代；造船线可先在标准分段、外板和高重复区域上线，修船坞适合船底、外板等可达区域，复杂舱室仍需人工兜底。喷涂与固化设备方面，PPG白皮书讨论船用静电喷涂应用（2026-06-02），机器人和自动化报道也涉及涂装，但固化设备近一年未见明确报道；喷涂有研究和集成示范，成熟度偏早中期，固化设备缺清单证据，只能作早期判断（常识推断）；造船线可结合分段涂装房和机器人喷涂验证静电喷涂与参数控制，修船坞宜先做局部、可移动喷涂和固化方案验证，关注通风、膜厚与环保合规。",
  "ai_date": "2026-11-23",
  "items": [
   {
@@ -15,7 +15,7 @@
    "t": "新一代双高脉冲船舶涂装激光清洗设备正式发布 - 国际科技创新中心",
    "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5xMnNqVVdWd0t5Rktsbjl4TjVyZ2FyRTV3STNraEJDazF0NGExNXY4d0RMeVBpNFpwRzY3bTZ1XzB3MmJuTU5kek1VVElnVXVvY2NpdEtSTV9wbnJ3czEtWXJFeVloYnJHdDFyZ01mRTc?oc=5",
    "s": "船厂检索·大船厂甲",
-   "n": 13
+   "n": 17
   },
   {
    "d": "2026-11-08",
@@ -58,24 +58,8 @@
    "t": "“조선소 로봇 용접·도장 작업 애로 없도록”...정부, 지능형 기지국 설치 추진 - 로봇신문",
    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1lUE4zOHE5QTVVZ1ZQa21tSEF0Nm9WdU1kTTdJbF9QcmtqZ00teUlEdVVTLWJ6YW5aWXNQb2V6SDY3d1pHaTRfTTFPQmVtMnpsSlZjcENybllyUkhXcTA4LUE4QUhWWkthQTNwVA?oc=5",
    "s": "韩日检索·韩媒涂装机器人",
-   "n": 1,
-   "tz": "政府推进船厂安装智能基站，让焊接涂装机器人作业无碍"
-  },
-  {
-   "d": "2026-09-10",
-   "t": "HD현대삼호 조선소에 AI 용접·도장 로봇…AI-RAN 실증 - 신아일보",
-   "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9XbE1ocXlxdGQ1VDdwNkNoSkxhZ3REVFFVRzl4WWtnb2pWTi1vcjduUlZ5bHdFNDVxNUhXQmYxb1pFSjUtYU12RDhyTVoyaDBqWVNlS2tpVEljaUdXMkxkV2dxcDFCdko5OEJCMU9OMFM?oc=5",
-   "s": "韩日检索·韩媒涂装机器人",
    "n": 3,
-   "tz": "HD현대삼호(HD现代三湖)船厂实证AI焊接·涂装机器人和AI-RAN"
-  },
-  {
-   "d": "2026-09-10",
-   "t": "`AI 기지국` 만나 똑똑해진 로봇…조선소 용접·도장 실증 - 디지털데일리",
-   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9PM2pjelotTkVobkUwYUlHX2t4WDRwVXdOcjMzVGlUZFJFZndkcGd1dEl5MUpiaVdPNTVxZHN3X3VtdFBXdEFMaldVbjZoZXUzWWVrS3VGejBKYVQ3ZlVzR1R3?oc=5",
-   "s": "韩日检索·韩媒涂装机器人",
-   "n": 2,
-   "tz": "AI基站让机器人更智能，船厂实证焊接·涂装"
+   "tz": "政府推进船厂安装智能基站，让焊接涂装机器人作业无碍"
   },
   {
    "d": "2026-09-09",
@@ -99,6 +83,14 @@
    "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1jTlVaVjg2dDhNNjZJUjFuM3Rscm93M3dYZTBISjVJMWlMZmo1eTAtcWc0alNqQThxTGRRSGF6d2RaNEp2SUtIMlZsUEFSUEZn?oc=5",
    "s": "韩日检索·韩媒涂装机器人",
    "tz": "从设计到涂装、焊接全能…穿梭船厂的“机器人军团",
+   "n": 1
+  },
+  {
+   "d": "2026-07-14",
+   "t": "\"조선소 용접·도장 로봇 AI로 제어\"...KT·삼성전자·HD현대삼호, AI 네트워크 구축 맞손 - 뉴스퀘스트",
+   "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBVYnFzbVg2N3BRV283OEpzbTkzRVhBcjlZR0F3ZDVGRUN1SU9WbnNYMmlBbVc3dUlKUV9yOXJ0STdYeGo2WWVHZ0s1QmU2c2w2UzZtMHI5SkVjbjYyTnpyNnJpOEYwWUI5em02c1FQWQ?oc=5",
+   "s": "韩日检索·韩媒涂装机器人",
+   "tz": "KT、삼성전자、HD현대삼호（HD现代三湖）共建AI网络，以AI控制船厂焊接·涂装机器人",
    "n": 1
   },
   {
