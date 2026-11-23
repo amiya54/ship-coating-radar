@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-23",
- "ai_summary": "激光除锈与清洗方面，清单仅见2026年11月广州发布的新一代双高脉冲船舶涂装激光清洗机器人（广州日报、中华网为同一发布），属刚发布，未见实船批量应用，成熟度偏早期；对造船线可用于涂装前局部除锈清洗，对修船坞更适合外板、舱室局部除漆除锈，但需实船验证。超高压水、干冰、海绵除漆线近一年未见报道；清单中的船底“洗澡”/hull cleaning机器人未说明采用上述介质，成熟度无法由清单判断，按常识推断超高压水在修船坞外板除漆较常用，干冰、海绵适合局部受限场景，仍需实船验证；修船坞优先，造船线用于返工和局部处理。喷砂抛丸与磨料方面，沪东中华完成国产化抛丸机器人实船试验（2026-10-26），C&C Marine机器人喷砂设施完成700艘驳船（2026-",
+ "ai_summary": "激光除锈与清洗方面，清单近一年只有2026-11-08新一代双高脉冲船舶涂装激光清洗产品发布会，属刚发布，未见实船应用或批量应用报道；成熟度判断为早期/产品导入期。对造船线，可用于焊缝、边角及局部返工清洗；对修船坞，可用于局部除锈和涂层清除，但全船大面积除锈的效率与成本仍需实船验证。\n\n超高压水/干冰/海绵除漆方面，该线近一年未见报道，无法由清单判断其试验或批量状态；按行业常识推断，超高压水在修船坞大面积剥漆、干冰/海绵在局部清洁更有应用基础，但废水、耗材和效率配套是关键（常识推断）。造船线更适合局部返工清洁，修船坞大面积除漆适用性相对更高，仍需现场验证。\n\n喷砂抛丸与磨料方面，沪东中华完成国产化抛丸机器人实船应用试验，属试验；C&C Marine and Repair机器人喷砂设施完成700艘驳船（数字出自2026-04-28该报道），属批量应用；HII和Seaspan分别引入机器人打磨、喷砂、涂装及喷砂涂装自动化，属应用引入。报道密度高且实船/批量数据多，判断较成熟。造船线适合分段表面处理，抛丸机器人仍试验；修船坞适合驳船等批量船型，复杂船型需适配；磨料本身清单未给具体信息。\n\n机器人与自动化作业方面，海桓科技首发船底除锈与涂装机器人、具身智能船舶喷涂机器人亮相，属刚发布；Raise Robotics开发船厂涂装机器人，属研发中；HII、Seaspan、C&C和沪东中华条目显示机器人在喷砂、抛丸、打磨和涂装已有应用或试验。整体报道密度高，但批量成熟集中在喷砂抛丸及驳船设施，船底除锈和喷涂机器人仍偏早期到导入期。造船线适合重复工位和分段作业，修船坞适合船底、船壳等区域，船型多变要求柔性化。\n\n喷涂与固化设备方面，PPG白皮书强调静电涂装在船舶行业的效益，属技术论证和推广，非设备发布；具身智能喷涂机器人亮相、HII和Seaspan引入机器人涂装、海桓科技船底除锈与涂装搭档，说明喷涂自动化有发布和引入，但清单无批量实船数据；固化设备近一年未见独立报道，按常识推断仍处早期（常识推断）。造船线静电涂装和自动化喷涂更适合分段批量作业；修船坞喷涂机器人适合船底等区域，固化设备需结合现场条件和涂层体系验证。清单中2026-05-15海军舰船创新除锈报道未披露技术路线，未纳入具体线判断。",
  "ai_date": "2026-11-23",
  "items": [
   {
@@ -15,27 +15,13 @@
    "t": "“精激光·创未来”新一代双高脉冲船舶涂装激光清洗产品发布会在广州举办 - 中华网",
    "u": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1wREd4V1hRSFJUVUlnN0hib3B6cjRCaXd1UlA0QlRBMVAyLUs0WGVxRlZCbUVTVHU4bHNqSUVBSUV4SnkzdURJa1ZSZnYyYXg2VkhydnpuaWNKdnYtVW9GNjdweXcxc1BEUW10dm1B?oc=5",
    "s": "装备检索·中文除锈喷砂",
-   "n": 2
-  },
-  {
-   "d": "2026-11-07",
-   "t": "【进博时刻】给船底“洗澡”的机器人来了！海桓科技全球首发 - 新浪财经_金融信息服务商",
-   "u": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBTbXJ5cmY4V2Myck0teW95SGM4T3hhbHZac09QN3BHSmtYWVVRVGNLRWh1TkZrLWVfclMxM2dMLWlDbVd0LWZ3Tm1QOU1GTVNGRlhtRy1oazMwVnNBVmVaV1FKY3IzX0Y5bHlFb3lhWXJTaDZqbVpNMA?oc=5",
-   "s": "装备检索·中文除锈喷砂",
-   "n": 1
+   "n": 3
   },
   {
    "d": "2026-10-26",
    "t": "沪东中华完成国产化抛丸机器人实船应用试验- 船厂动态 - 国际船舶网",
    "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9MVG1tVlRscnVXeGhCXzNsZ21PU0U5OFdOTHZnOEs0WE1pc0EycVNvV3hYSXJVMV9pOFJTVGh3d1dXV2tiNjVreDNtUlQ3YWxNRmt4ZXBuSEdvVDdqLXlMWXhCd2lDXzJ3TnVMOHExTEg?oc=5",
    "s": "GN · 修船除锈与涂装装备中文",
-   "n": 1
-  },
-  {
-   "d": "2026-10-26",
-   "t": "Chinese shipyard robots complete 4.3 km of welds - Splash247",
-   "u": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9GT21ULTFqY1dTaGQ4QUE0WjktV2R1Y013cVdHWFdlNkdjMDEyWnNGNnV2Snpnb3FfZDNwVEFDQ1VLSWtmbFoydGNXbElJMTNzRWZndG44M3FrSVpwR0RXTVE1eWVKb1VZS3RiaWRJZWloSXNRakR5TTlwQQ?oc=5",
-   "s": "装备检索·表面处理与喷涂设备",
    "n": 1
   },
   {
@@ -46,20 +32,6 @@
    "n": 1
   },
   {
-   "d": "2026-10-05",
-   "t": "力抗中国造船竞争 日韩企业推机器人“上阵” - 诗华日报",
-   "u": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8xNTVTUTNfNGw3aDBwWUU5cG1rM0pNZkdlMWRaX0U2bzN5RXY2ckRydmN6czI0c2Q1aGJudkx2bzNPczFlTG9PSGJ0OWJ0UQ?oc=5",
-   "s": "GN · 修船除锈与涂装装备中文",
-   "n": 1
-  },
-  {
-   "d": "2026-09-21",
-   "t": "RobotPlusPlus lands fresh funding for maritime robot expansion - Splash247",
-   "u": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNSmRQNkE1U3VOV3RUUlJWZUhRVnRRWEROWUVDNEd3LTlwZVNDS1dpNl9ES2JmZk8tZGFJNzBjMFQ5M0FacGdGc3FoWUluQ0czMFZQRjY5enNBMzhKYXBLZlgwNENRV1c5eFNDYkdNdG9QdnFKZ1VXd3lVZlZlQnZFcUc5ZGFvUzBXUUxLOUFR?oc=5",
-   "s": "装备检索·除锈与除漆",
-   "n": 1
-  },
-  {
    "d": "2026-09-16",
    "t": "Raise Robotics Developing Robots for Shipyard Coating Work - Seapower Magazine",
    "u": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOeEZiVzl4NktpemNFQXUzSlE4aHZFdmc1LV9BMXVCdGFHeXFwZkdobm1kNWJTOFFHdVY3RGFRZm05WUhET3FlUUpwVHREY1B3bWM0WWJWOVgtZ3pjMzJEa2tTZGNBRVZyZzY5WU1LWEpZakEtbGFQUG0yNkZmelpHUUVhRllXbnFCdVc0MDdJdEdQUQ?oc=5",
@@ -67,45 +39,10 @@
    "n": 1
   },
   {
-   "d": "2026-08-07",
-   "t": "HII Teams Up with GrayMatter and Path for Robotic Shipbuilding - Tectonic Defense",
-   "u": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQeTZaNDFzbzg0eDBtX3E1UXJ1NTliNHBYZVg4bHJlLTV0WXBIaGFFOVpSbDFlUTFnLTMwaGNhNWt2YlBYMXF1OGJWWDdCRG8wR3hzV1E2ejNtSUp0MHpXMzN3N2RnYWMxYkstWmMzZHRrTVB6R1h6eVVIdTFVZDZDZnhweEl2bGhVLWdSRWZfRWs5OVBFS092eVBmWQ?oc=5",
-   "s": "GN · 喷涂工艺与固化技术",
-   "n": 7
-  },
-  {
-   "d": "2026-08-07",
-   "t": "HII partners with robotics firms to automate U.S. Navy ship production - Interesting Engineering",
-   "u": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNMldQbDNzbVRhMVB0U0N2TGdkS0J0VDFXQWdkZ3FGNngxTEpMcXdiTGZkdXpHazVZMG1YODJZVFVscXVlYl9CcTZKTGlWSU4xc0EtMmp4eXZLM3RHTGo5OTl1dmMyQ1FhWGRwci1saXFlakE4LWNIVm9CNzF4by1TNDRXVG55ZVZqeEZ1U1FR?oc=5",
-   "s": "装备检索·喷砂与抛丸",
-   "n": 1
-  },
-  {
-   "d": "2026-07-26",
-   "t": "让机器人自主造船！韩国欲打造“未来智能先进船厂” - 国际船舶网",
-   "u": "https://news.google.com/rss/articles/CBMiekFVX3lxTE11X0RCOVFhY3BBcjA1N0QtbVZRcVN3a3R4dFdqcXh0YTIycXhNMVllOEVpbzhKSlR1aXBMcDZQVldIV3h5MlFQR2tfSmFiVllXN19tUUhaU2NiLXp1NFBIYUlia1phMk1Eclh5bFFkZk5KMkR2U1N4bmV3?oc=5",
-   "s": "GN · 修船除锈与涂装装备中文",
-   "n": 1
-  },
-  {
-   "d": "2026-07-24",
-   "t": "Navy, Shipbuilders Bringing Robots Online to Build, Maintain Fleet - National Defense Magazine",
-   "u": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOeVlaOU5HQllBb203cVV4ZnhQdE5fTElyT3FRa0doTF9nS0VaU0YteFhpZnVHWl9BSV9yMjBPU2ZuV2U0Vy1yeURVYjNIYlpTdVUyN1hKOUFoUHhaSFQwakdDQ2FXVUpBdUJtZm01RDcxVlJlTy02RFpRYTdHS0oxMWUtS1V6ckRKdlp1UEZpLTc2d2RHSjJXUGpOU09OZExjaVZONDk0MGlHSm5SMEpiRjBVQ00wUENXcGlkdmRDbE8?oc=5",
-   "s": "装备检索·喷砂与抛丸",
-   "n": 1
-  },
-  {
-   "d": "2026-06-18",
-   "t": "HD Hyundai Unveils Industry’s First Fully Robotic End-to-End Hull Management Solution - Marine Insight",
-   "u": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQMVN2MlpEbGYxSFg5ZThvQTg0cVJUdUNvcE5ReDM0R01jWnNKQjN3T0lwN2E5Tllja1lTZzNsdlhiaUZvR2xteGFqbUozYngyR0JMaE5sU0NUMm1lcndMZHVKMkdXMncyUHdGRVo2eV93VHhWcXVHaUlrRGxoRnpEbnFfeEVSelpHcXlldTJmZWEweUpNblF0VjZqTmNjVUdESEs2M25hN19xZlIwNzlER0c4NXE4Zw?oc=5",
-   "s": "GN · 喷涂工艺与固化技术",
-   "n": 1
-  },
-  {
-   "d": "2026-06-17",
-   "t": "Korean Partners to Develop Robotic “Total Hull Care Solution” - Marine News Magazine",
-   "u": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNQzRoZi1vbW5tYi1jaHpsOGl2MVBnRDQzNk1kUkh1Q2xMUktfSFBkQXgzTHFvaHVfV0UzdU1HclQxMkkwYXpwa0NxTDVkTHVYVTRPVXpYZDh6ZnZtbFpjMUZJOEtzSy1hbFJLZzdFanUxbzVlbTBmcVJsWV9DZEJxNkhR?oc=5",
-   "s": "GN · 喷涂工艺与固化技术",
+   "d": "2026-06-02",
+   "t": "PPG white paper highlights benefits of electrostatic coating application to marine industry - PPG Industries",
+   "u": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNaW5ZejdXcEpwNDN3cUkzTzZWeFotaTdtX3NtYkJkbDJaMXJfVkNocVpEeGNkb1pjS1RRSVVfaUJxeWR1cTBBQkliTmdOVHJ2VktaQUl2dDIyVU4xaXZkWVpKVXAweU51UUlfaVpyLUMteWprNzNnQ2Q1S1lZYy1FNTFXVUIyMFFndEl1U1IyM2Qxb1lKLUlkc2I1RlhpeVhmM1VqOVFhZmhqN1J1M3NCZ2lEZENNQ3Y2TVN3dFM1Ml91clpvWmZabDlKcmU4NWJvQnczMlhWWWZ0M3NwWTZHSG8xaUdTWVE?oc=5",
+   "s": "装备检索·涂装施工设备",
    "n": 1
   },
   {
@@ -113,13 +50,6 @@
    "t": "Innovative rust removal for Navy ships at Norfolk Naval Station - WAVY.com",
    "u": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNdVJ5X2h4ckVVRUI5UjQwY1cwOWt1Z1pjbEtWNmF1cWtxUUdzbC1GeXhkWkRSai1ESDlHSTF1VzYxeDNTamYtamdHeVhMWGpGeFJld01fZjh2T25rNTVkX1VkUEptNkpUeU9iVTkwVE93R2pkZHZmWXFGSnpMR3hpTnRGTUEtUnotTGdnRnpSblc3U1phQW80R0loUVNvYVl00gGmAUFVX3lxTE91LUl5ZXZ4aG9wOEVxZlVyRXRqT2FDSE1xU3QyUmo5V3JRREExek8yTlB0enVIa0V6bHl2eUl5TUlQdUlKR2dPSjRxZ2tTNGVKUERpNU8tRXRfaHhJTHFibk83VTVHcnVEdEhlZWdiWnFTWEw2UW41aGgxU0JCRmdzMzhodzV6QlRRVVJTZkoyeTVfRk1xcTBXWFRhSU9SUWhTM0xiblE?oc=5",
    "s": "装备检索·除锈与除漆",
-   "n": 1
-  },
-  {
-   "d": "2026-05-07",
-   "t": "Gecko Robotics’ Komodo Robot Aids Ship Flight Deck Maintenance - Seapower Magazine",
-   "u": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQSjFBdk9falN0ZXlVTFJmOHJzVzdzdDVlMTh1WXZuUTA4V1k0N21kWDhJNkJtdWZBUFhydmVMNFVpakxHVVM1UTRLWWlId1U3TUlzMjNVcDdEa09zWEtWZGFmRXFWMmlXR3NRQkh2Ym11MUVMaFpOdjgwdndOWXdxeWhBN1JNdGdhazgwNUtkNnZBQThlZ3c?oc=5",
-   "s": "装备检索·机器人除锈喷涂",
    "n": 1
   },
   {
@@ -137,31 +67,10 @@
    "n": 1
   },
   {
-   "d": "2026-04-07",
-   "t": "Green Tech: Rise Of The [Hull Clening] Robots - Marine Technology News",
-   "u": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5KQ3Z4YWNURVNXMDBwR0VGY2ZEc3RaUnpsUlh5ZDNsbHNhYlV6UDZUcl9WanFMdlI0aXFHMC13SXhZeTdEVDNYZDBfdVZPR3hZdE1YUXhEdnpYWFRLV2tKSWhlWkZhRGFZWHVzUnVfWkluMlVBOWFHVg?oc=5",
-   "s": "GN · 喷涂工艺与固化技术",
-   "n": 1
-  },
-  {
-   "d": "2026-04-06",
-   "t": "A top US shipbuilder is exploring how AI and robots can do some of the hardest jobs on the production floor - Business Insider",
-   "u": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPSjR2SkVyZl8tVG1CS3RzdF93cmgwWDE5YUJ5YV9tU1VJSklFdE5lUi01cU1pc28zUVdYVm8tQktlZ0hqa0NzcEYyS3RJRDFneXNhcWdQcGRZWE5MN3QtRW9DYktoNG9UdVNhTDk1RGtVaVpjemQyZWFEMDdtQnBOS2dlRHdLUXVsbjJzRWlQZmV6LWVLeko5U1lNSGhpQkZQOHc?oc=5",
-   "s": "装备检索·喷砂与抛丸",
-   "n": 3
-  },
-  {
    "d": "2026-02-26",
    "t": "Seaspan taps robotics firm to automate blast and paint operations - WorkBoat",
    "u": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNbWJBbmd4cmw1YjRYdVlRUml3V3Vick1CLVpzMnU5X3VfcDE5S3U4cV9BVkxjREJPUl9FUHBVZHhYZVRrRXlCWms4Zzk2WDlkaERoZlhTTjY1SE1RcC1rZFB5ekFEbFB6a2x6RFRjbWEzSktpbldoZ2ZJZjlKeElQVVREbllKSEdkdklLQWlkb1M5WnUw?oc=5",
    "s": "GN · 喷涂工艺与固化技术",
-   "n": 1
-  },
-  {
-   "d": "2026-02-20",
-   "t": "减少高危作业风险！加拿大船厂启用机器人 - 国际船舶网",
-   "u": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5PUHBnaXJ3amFkME95dzZmd1ljdjVSdUttM21ROENvS3JBMkNIa25YVjZBdDA2UktFRmVkTVJ0aDQzN3VZQUVhUUV1SGlQNC1CcjFRNl82eUFSaUxscWd0c09USlRLSDM2S2ZUNHlwTGNJTDBSWDBHb09R?oc=5",
-   "s": "装备检索·中文除锈喷砂",
    "n": 1
   }
  ]
