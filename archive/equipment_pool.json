@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-23",
- "ai_summary": "激光除锈与清洗方面，清单近一年有两条事件：2026-11-16报道舟山中远海运重工在64000吨散货船项目采用激光“洗”锈新工艺，2026-11-10报道新一代双高脉冲船舶涂装激光清洗设备发布。前者是单船项目应用，后者是设备发布，尚看不到批量船队或坞内规模化报道，成熟度判断为早期偏试用。对造船线可用于新建船涂装前表面处理验证；修船坞锈蚀和旧涂层工况更复杂，适配性需靠实船试验积累，当前清单不足以证明批量适用。\n\n超高压水/干冰/海绵除漆方面，该线近一年未见报道。常识推断，修船坞和造船线均有除漆、清洗需求，但本清单无法判断这些装备的实际应用与成熟度。\n\n喷砂抛丸与磨料方面，清单事件集中在抛丸/喷砂机器人及设施：2026-10-26沪东中华完成国产化抛丸机器人实船应用试验；2026-04-28报道C&C Marine and Repair机器人喷砂设施完成700艘驳船；2026-04-09、2026-02-26分别报道HII、Seaspan引入机器人自动化喷砂涂装；2026-10-26另有韩华费城造船厂推进涂装·喷砂作业区扩大。报道密度高，且有700艘驳船批量化数字（2026-04-28报道）和实船试验，成熟度判断为较成熟，但试验与批量并存。造船线适用于分段和船体表面处理自动化；修船坞在驳船等批量修理场景已有验证，非标船型仍需评估。清单未单列磨料技术进展。\n\n机器人与自动化作业方面，2026-11-08海桓科技首发船底除锈与涂装机器人，2026-10-17报道具身智能船舶喷涂机器人亮相，2026-09-16报道Raise Robotics开发船厂涂装机器人，另有韩国AI-RAN焊接涂装机器人实证、川崎重工焊接涂装自动化机器人实证等。整体报道密度高，但多为发布、研发和实证，除与喷砂抛丸交叉的机器人外，批量实船应用证据有限，成熟度为早期至局部试用。造船线适合重复性分段焊接涂装自动化；修船坞适合船底、外板等场景，但需现场适配。\n\n喷涂与固化设备方面，清单中喷涂侧有2026-06-02 PPG白皮书讨论船舶行业静电涂装应用效益，以及多条喷涂机器人、自动化喷涂报道；固化设备近一年未见报道。喷涂设备多处于应用研究、机器人集成和实证阶段，成熟度早期偏验证；固化无法由清单判断，常识推断其与涂料体系和环境控制相关，但本清单不足以评估。造船线可关注静电涂装与自动化喷涂在新建船涂装线的适配；修船坞可关注机器人喷涂在坞内和外板的试用，固化设备需另行验证。",
+ "ai_summary": "从清单归纳，激光除锈与清洗线目前是实船项目试用加新品发布：2026-11-16舟山中远海运重工64000吨散货船项目采用新工艺，2026-11-10有新一代双高脉冲船舶涂装激光清洗设备发布，尚未看到批量应用报道，成熟度偏早期；对造船线可从涂装前处理试用切入，对修船坞更适合局部除锈清洗场景，但清单未给出修船坞批量证据（常识推断）。超高压水/干冰/海绵除漆线近一年未见报道，清单没有相关具体事件，成熟度无法据清单判断，按常识推断该类低尘、低损伤除漆在修船坞局部作业更有场景，但造船线需验证效率与废水、废弃物回收（常识推断）。喷砂抛丸与磨料线清单集中在喷砂抛丸装备和机器人集成：沪东中华完成国产化抛丸机器人实船应用试验（2026-10-26），C&C Marine and Repair机器人喷砂设施已完成700艘驳船（2026-04-28报道），HII、Seaspan引入机器人用于打磨、喷砂和涂装，韩华费城推进扩大涂装、喷砂作业区；磨料本身未见专门报道。该线报道密度较高且出现批量设施和船厂采用，成熟度相对较高，但国内抛丸机器人仍处实船试验；对造船线适合分段和船体表面处理，对修船坞适合驳船修理等大面积喷砂，需同步环保配套。机器人与自动化作业线报道最密，涵盖海桓科技进博会首发船底除锈与涂装机器人、具身智能船舶喷涂机器人亮相、Raise Robotics开发船厂涂装机器人、政府/船厂铺设智能基站、HD现代三湖和川崎重工坂出实证AI焊接涂装机器人、K-造船焊接机器人与涂装VR，以及HII、Seaspan、C&C的喷砂涂装机器人；成熟度呈分层：新品和具身智能偏发布、开发，AI基站和焊接涂装机器人处实证，驳船喷砂设施已批量，整体由试验向批量过渡；对造船线适合固定工位、分段焊接涂装，对修船坞适合船底除锈涂装和驳船修理，但船型多变要求柔性。喷涂与固化设备线有PPG静电涂装应用白皮书（2026-06-02），机器人喷涂在清单中多次出现，说明喷涂正与自动化结合推广；固化设备近一年未见专门报道，成熟度上喷涂偏应用推广、固化无清单证据；对造船线静电喷涂适合批量分段、船体，对修船坞可用于局部修补喷涂，固化受坞内环境限制（常识推断）。",
  "ai_date": "2026-11-23",
  "items": [
   {
@@ -15,7 +15,7 @@
    "t": "新一代双高脉冲船舶涂装激光清洗设备正式发布 - 国际科技创新中心",
    "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5xMnNqVVdWd0t5Rktsbjl4TjVyZ2FyRTV3STNraEJDazF0NGExNXY4d0RMeVBpNFpwRzY3bTZ1XzB3MmJuTU5kek1VVElnVXVvY2NpdEtSTV9wbnJ3czEtWXJFeVloYnJHdDFyZ01mRTc?oc=5",
    "s": "船厂检索·大船厂甲",
-   "n": 9
+   "n": 13
   },
   {
    "d": "2026-11-08",
@@ -36,7 +36,8 @@
    "t": "[한화] 한화 필리조선소 도장·블라스팅 작업구역 확대 추진 - www.ebn.co.kr",
    "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFB2STlxQTZUZkwzSEUtUW9wTDg0LWlxMVNTSWZQZ2xqcGR0LVdSTmpWLW8xUmprRFpEbDYzWG9ZTlA5N2c3c00ySElFd0ZGWFAyZUN6SHlZVkN3a3pidXhZNEUwT2ZjQlVB?oc=5",
    "s": "韩日检索·韩媒喷砂除锈",
-   "n": 1
+   "n": 1,
+   "tz": "한화(韩华) 필리조선소(费城造船厂)推进扩大涂装、喷砂作业区"
   },
   {
    "d": "2026-10-17",
@@ -57,27 +58,47 @@
    "t": "“조선소 로봇 용접·도장 작업 애로 없도록”...정부, 지능형 기지국 설치 추진 - 로봇신문",
    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1lUE4zOHE5QTVVZ1ZQa21tSEF0Nm9WdU1kTTdJbF9QcmtqZ00teUlEdVVTLWJ6YW5aWXNQb2V6SDY3d1pHaTRfTTFPQmVtMnpsSlZjcENybllyUkhXcTA4LUE4QUhWWkthQTNwVA?oc=5",
    "s": "韩日检索·韩媒涂装机器人",
-   "n": 1
+   "n": 1,
+   "tz": "政府推进船厂安装智能基站，让焊接涂装机器人作业无碍"
   },
   {
    "d": "2026-09-10",
    "t": "HD현대삼호 조선소에 AI 용접·도장 로봇…AI-RAN 실증 - 신아일보",
    "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9XbE1ocXlxdGQ1VDdwNkNoSkxhZ3REVFFVRzl4WWtnb2pWTi1vcjduUlZ5bHdFNDVxNUhXQmYxb1pFSjUtYU12RDhyTVoyaDBqWVNlS2tpVEljaUdXMkxkV2dxcDFCdko5OEJCMU9OMFM?oc=5",
    "s": "韩日检索·韩媒涂装机器人",
-   "n": 2
+   "n": 3,
+   "tz": "HD현대삼호(HD现代三湖)船厂实证AI焊接·涂装机器人和AI-RAN"
   },
   {
    "d": "2026-09-10",
    "t": "`AI 기지국` 만나 똑똑해진 로봇…조선소 용접·도장 실증 - 디지털데일리",
    "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9PM2pjelotTkVobkUwYUlHX2t4WDRwVXdOcjMzVGlUZFJFZndkcGd1dEl5MUpiaVdPNTVxZHN3X3VtdFBXdEFMaldVbjZoZXUzWWVrS3VGejBKYVQ3ZlVzR1R3?oc=5",
    "s": "韩日检索·韩媒涂装机器人",
-   "n": 2
+   "n": 2,
+   "tz": "AI基站让机器人更智能，船厂实证焊接·涂装"
+  },
+  {
+   "d": "2026-09-09",
+   "t": "[AI픽] 조선소에 '지능형 기지국' 깐다…AI 로봇이 용접·도장 - 연합뉴스",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE10ZzJKRi1IOXktZ2JfTWEtaVVvZU83djIyVG4yYTdndUx0U3c3VE1pSzdfb3ZQTXdjUnV6TEQ2cDJRQjU0UFhoTW5ZYW8wYXBrQkFFMmdkeWRyNkXSAWBBVV95cUxNNGFLOXRoVTh6RHItY2E2Q00zUkhHVy1MZzU1dWhRdzc5XzEtYWhkWmgxakZiSFBTUkpCSmFTQUVrTUFxTkQtb0psbzFMWVJEb0JOaVo5SVlqYlRYd2FheGE?oc=5",
+   "s": "韩日检索·韩媒涂装机器人",
+   "tz": "船厂将铺设智能基站，AI机器人负责焊接·涂装",
+   "n": 1
   },
   {
    "d": "2026-08-26",
    "t": "川崎重工業 溶接・塗装自動化ロボット 造船企業などに展開 坂出で実証、AI開発も（日刊産業新聞） - Yahoo!ニュース",
    "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9HRUdlc2x0bU1oQXNSa2FWV1dZSndpVVVPWWZfdGhVOWhNOWkwVkVmTmMwTGdBcE45dEpTZEFYRW9IUnB3MVdUcEV4M1NZWVRJeUxwME9HMnRmc1RmWjgxWXl6MG50U21TMHVpWXl4UVl1Y1o4LTVmbTRGRTB4cFU?oc=5",
    "s": "韩日检索·日媒涂装机器人",
+   "n": 1,
+   "tz": "川崎重工業在坂出实证焊接·涂装自动化机器人并开发AI，向造船企业推广"
+  },
+  {
+   "d": "2026-07-27",
+   "t": "설계·도장·용접까지 척척… 조선소 누비는 ‘로봇군단’ - 문화일보",
+   "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1jTlVaVjg2dDhNNjZJUjFuM3Rscm93M3dYZTBISjVJMWlMZmo1eTAtcWc0alNqQThxTGRRSGF6d2RaNEp2SUtIMlZsUEFSUEZn?oc=5",
+   "s": "韩日检索·韩媒涂装机器人",
+   "tz": "从设计到涂装、焊接全能…穿梭船厂的“机器人军团",
    "n": 1
   },
   {
@@ -99,7 +120,8 @@
    "t": "용접 로봇·도장 VR…‘K-조선’ 최신 기술 관람 [현장영상] - KBS 뉴스",
    "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9VYTVnSm5oNkhQOERuRXR0VXduUE83TnB2eHc1aG8wM3pKaTJyNHpYcEppUGppWjVYUjJjTTZLdHBCaDlQNW5hdFhZbGN5NjZ1anFNYlN4cV93Qm8?oc=5",
    "s": "韩日检索·韩媒涂装机器人",
-   "n": 1
+   "n": 1,
+   "tz": "焊接机器人、涂装VR…参观“K-造船”最新技术[现场视频]"
   },
   {
    "d": "2026-04-28",
@@ -120,7 +142,8 @@
    "t": "'HD현대 파트너' HII, 선박 표면처리 공정에 자동화 기술 적용 - 더구루",
    "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1pOFpHTlp3bV9VeENKQUZNbWJId204Z2NvRk4xTnV5MnBUay1uUGhiUmZ1Zkg1dXoxaUdNN21LcHloMWJUaDJrcGd6TElZXzRSVUdHdXNtbGZkbXN5?oc=5",
    "s": "韩日检索·韩媒喷砂除锈",
-   "n": 1
+   "n": 1,
+   "tz": "HD현대(HD现代)伙伴HII将自动化技术用于船舶表面处理工序"
   },
   {
    "d": "2026-02-26",
