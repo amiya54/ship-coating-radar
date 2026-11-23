@@ -1,0 +1,34 @@
+name: Probe GN Range
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe date-range operators
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          probe () {
+            body=$(curl -s -m 30 -A "$UA" "$1")
+            n=$(printf '%s' "$body" | grep -o "<item>" | wc -l)
+            newest=$(printf '%s' "$body" | grep -o "<pubDate>[^<]*" | sed 's/<pubDate>//' | head -1)
+            oldest=$(printf '%s' "$body" | grep -o "<pubDate>[^<]*" | sed 's/<pubDate>//' | tail -1)
+            echo "$2 => $n 条 | 新:$newest | 旧:$oldest"
+            sleep 3
+          }
+          B='https://news.google.com/rss/search?q='
+          T='&hl=en-US&gl=US&ceid=US:en'
+          echo "---- 装备主题 · 无算子 ----"
+          probe "${B}shipyard+blasting+OR+%22hull+blasting%22+OR+%22abrasive+blasting%22${T}" "equip baseline"
+          echo "---- when:90d / 180d / 365d ----"
+          probe "${B}shipyard+blasting+OR+%22hull+blasting%22+OR+%22abrasive+blasting%22+when:90d${T}" "equip when90d"
+          probe "${B}shipyard+blasting+OR+%22hull+blasting%22+OR+%22abrasive+blasting%22+when:180d${T}" "equip when180d"
+          probe "${B}shipyard+blasting+OR+%22hull+blasting%22+OR+%22abrasive+blasting%22+when:365d${T}" "equip when365d"
+          echo "---- after/before 分季回溯 ----"
+          probe "${B}shipyard+blasting+OR+%22hull+blasting%22+after:2026-08-01+before:2026-11-01${T}" "equip Q3 range"
+          probe "${B}shipyard+blasting+OR+%22hull+blasting%22+after:2026-05-01+before:2026-08-01${T}" "equip Q2 range"
+          probe "${B}shipyard+blasting+OR+%22hull+blasting%22+after:2026-02-01+before:2026-05-01${T}" "equip Q1 range"
+          echo "---- 中文对照 ----"
+          probe "${B}%E9%99%A4%E9%94%88+OR+%E5%96%B7%E7%A0%82+%E8%88%B9%E5%8E%82+when:180d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans" "cn when180d"
+          probe "${B}%E9%99%A4%E9%94%88+OR+%E5%96%B7%E7%A0%82+%E8%88%B9%E5%8E%82+after:2026-05-01+before:2026-08-01&hl=zh-CN&gl=CN&ceid=CN:zh-Hans" "cn Q2 range"
