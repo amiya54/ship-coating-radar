@@ -390,6 +390,255 @@ def fetch_rss_equip(days):
     return out
 
 
+# ═══════════════════════════════════════════════════════════════════════
+#  ★2026-11-23 第三轮召回扩容：用户问「RSS 只能搜到这么一些吗，能搜到更多吗」
+#  实测结论：新闻索引里「修造船涂装装备」的存量就是这么大，换技术词榨不出更多
+#  （涂装房除湿/磨料回收/真空吸砂/漆雾治理 中英文查询全年 0 条）。真正的增量在
+#  两个没被用过的通道：
+#    ① Google News 的 site: 限定查询 —— 不带时间算子时不做 10 条截断
+#       （实测 marinelink 回 56 条、gcaptain 回 60 条、国际船舶网回 60 条），
+#       等于逐家翻媒体档案，再用 365 天日期闸筛。挖到过：舟山中远「激光洗锈」、
+#       Everett 两套 UHP 水除锈系统、C&C 机器人喷砂车间 —— 都是原来漏的。
+#    ② 中文船厂名查询 —— 中文装备新闻几乎都写成「某船厂+某装备」，按技术词查
+#       反而查不到（沪东中华抛丸机器人、广船国际激光清洗都是这么找到的）。
+#  另加 GDELT DOC API 作 best-effort 第三索引（全文匹配、可跨一年、单次 250 条），
+#  它常对云/代理 IP 限流，故失败只记日志不中断。
+# ═══════════════════════════════════════════════════════════════════════
+
+SITE_TERMS_EN = ('(blasting OR "laser cleaning" OR "paint removal" OR "coating removal" '
+                 'OR "surface preparation" OR "painting robot" OR "coating application" '
+                 'OR "paint shop" OR "shot blasting")')
+SITE_TERMS_ZH = '(涂装 OR 除锈 OR 喷砂 OR 抛丸 OR 喷涂机器人 OR 除锈机器人)'
+
+# (domain, lang) —— 英文贸易媒体 + 中文行业门户
+SITE_DOMAINS = [
+    ("marinelink.com", "en"),
+    ("maritime-executive.com", "en"),
+    ("workboat.com", "en"),
+    ("drydockmagazine.com", "en"),
+    ("marinelog.com", "en"),
+    ("rivieramm.com", "en"),
+    ("bairdmaritime.com", "en"),
+    ("splash247.com", "en"),
+    ("seatrade-maritime.com", "en"),
+    ("hellenicshippingnews.com", "en"),
+    ("offshore-energy.biz", "en"),
+    ("gcaptain.com", "en"),
+    ("marineinsight.com", "en"),
+    ("eworldship.com", "zh"),
+    ("cnss.com.cn", "zh"),
+    ("imarine.cn", "zh"),
+    ("xindemarinenews.com", "zh"),
+    ("chinashipnet.cn", "zh"),
+]
+
+# 中文船厂名查询（(label, query, lang)）
+YARD_QUERIES = [
+    ("大船厂甲", '沪东中华 OR 江南造船 OR 外高桥造船 OR 广船国际 涂装 OR 除锈 OR 喷砂 OR 机器人', "zh"),
+    ("大船厂乙", '大连船舶 OR 青岛北海 OR 招商局重工 OR 中远海运重工 涂装 OR 喷砂 OR 除锈', "zh"),
+    ("大船厂丙", '新时代造船 OR 扬子江船业 OR 中船澄西 OR 黄埔文冲 涂装 OR 机器人 OR 除锈', "zh"),
+    ("修船涂装", '修船厂 OR 船舶修理 除锈 OR 喷砂 OR 涂装 设备', "zh"),
+    ("装备投用", '船舶 涂装 设备 发布 OR 交付 OR 投用', "zh"),
+    ("英文船厂装备", 'shipyard blasting OR coating robot OR automation installation', "en"),
+]
+
+# GDELT：全文匹配的第三索引（不同源），查询用引号短语收紧，避免 blasting 撞爆炸新闻
+GDELT_QUERIES = [
+    '("shot blasting" OR "abrasive blasting") (shipyard OR "ship repair" OR hull)',
+    '("laser cleaning" OR "laser rust removal") (shipyard OR hull OR vessel)',
+    '("paint removal" OR "coating removal" OR "coating stripping") (shipyard OR hull)',
+    '("painting robot" OR "blasting robot" OR "crawling robot") shipyard OR hull',
+    '("paint booth" OR "blasting facility" OR "coating facility") shipyard',
+    '("ultra high pressure" OR "water jetting") hull blasting shipyard',
+]
+
+
+def _gn_plain_url(query, lang):
+    base = "https://news.google.com/rss/search?q=" + urllib.parse.quote_plus(query)
+    if lang == "zh":
+        return base + "&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+    return base + "&hl=en-US&gl=US&ceid=US:en&num=100"
+
+
+def _collect_rss(op, url, days, tag, out):
+    """抓一个 RSS，把窗口内且过装备闸的条目追加进 out，返回新增条数。"""
+    today = dt.date.today()
+    try:
+        xml = op.open(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}),
+                      timeout=30).read()
+        root = ET.fromstring(xml)
+    except Exception:                       # noqa: BLE001
+        return -1
+    n = 0
+    for it in root.iter("item"):
+        t = (it.findtext("title") or "").strip()
+        u = (it.findtext("link") or "").strip()
+        pd = it.findtext("pubDate") or ""
+        try:
+            d = email.utils.parsedate_to_datetime(pd)
+        except Exception:                   # noqa: BLE001
+            continue
+        if d.tzinfo is None:
+            d = d.replace(tzinfo=dt.timezone.utc)
+        if d.date() < today - dt.timedelta(days=days) or not keep(t):
+            continue
+        out.append((d.date().isoformat(), t, u, tag))
+        n += 1
+    return n
+
+
+def _openers():
+    """返回 (直连, 兜底) 两个 opener。设了 EQUIP_HTTP_PROXY 时走该代理，
+    方便在本机（需 Clash）端到端验证；Actions 里直连即可。"""
+    prox = os.environ.get("EQUIP_HTTP_PROXY", "").strip()
+    if prox:
+        o = urllib.request.build_opener(
+            urllib.request.ProxyHandler({"http": prox, "https": prox}))
+        return o, o
+    return (urllib.request.build_opener(urllib.request.ProxyHandler({})),
+            urllib.request.build_opener())
+
+
+def fetch_site_archive(days):
+    """① site: 限定逐家翻媒体档案（不带时间算子，GN 不截断到 10 条）。"""
+    direct, default = _openers()
+    out = []
+    total = 0
+    for dom, lang in SITE_DOMAINS:
+        terms = SITE_TERMS_ZH if lang == "zh" else SITE_TERMS_EN
+        url = _gn_plain_url("site:" + dom + " " + terms, lang)
+        n = -1
+        for op in (direct, default):
+            n = _collect_rss(op, url, days, "站内档案·" + dom, out)
+            if n >= 0:
+                break
+        if n < 0:
+            continue
+        if n:
+            print(f"  · 站内档案 {dom}：{n} 条")
+        total += max(0, n)
+        time.sleep(1.2)
+    return total
+
+
+def fetch_yard_queries(days):
+    """② 中文船厂名查询（(label, query, lang) 列表）。"""
+    direct, default = _openers()
+    out = []
+    for label, query, lang in YARD_QUERIES:
+        url = _gn_plain_url(query, lang)
+        n = -1
+        for op in (direct, default):
+            n = _collect_rss(op, url, days, "船厂检索·" + label, out)
+            if n >= 0:
+                break
+        print(f"  · {label}：{n if n >= 0 else '失败'} 条")
+        time.sleep(1.5)
+    return out
+
+
+def fetch_gdelt(days):
+    """③ GDELT DOC API：全文匹配的第三索引，可跨一年、单次最多 250 条。
+    官方限流「5 秒一次」，超了返回纯文本提示，故串行 + 6.5 秒间隔；
+    对云/代理 IP 常直接限流 —— best-effort，失败不中断整个流程。"""
+    out = []
+    today = dt.date.today()
+    start = (today - dt.timedelta(days=days)).strftime("%Y%m%d") + "000000"
+    end = today.strftime("%Y%m%d") + "235959"
+    opener = _openers()[0]
+    for q in GDELT_QUERIES:
+        url = ("https://api.gdeltproject.org/api/v2/doc/doc"
+               + "?query=" + urllib.parse.quote(q)
+               + "&mode=artlist&maxrecords=250&format=json"
+               + "&startdatetime=" + start + "&enddatetime=" + end)
+        n = 0
+        try:
+            raw = opener.open(urllib.request.Request(
+                url, headers={"User-Agent": "Mozilla/5.0"}), timeout=45).read()
+            data = json.loads(raw.decode("utf-8", "replace"))
+            for a in data.get("articles", []):
+                t = (a.get("title") or "").strip()
+                u = (a.get("url") or "").strip()
+                sd = (a.get("seendate") or "")[:8]
+                if len(sd) != 8 or not t:
+                    continue
+                d = sd[:4] + "-" + sd[4:6] + "-" + sd[6:8]
+                if d < (today - dt.timedelta(days=days)).isoformat() or not keep(t):
+                    continue
+                out.append((d, t, u, "GDELT·" + (a.get("domain") or "")))
+                n += 1
+        except Exception as e:              # noqa: BLE001
+            print(f"  ⚠️ GDELT 跳过（{type(e).__name__}）")
+            break
+        print(f"  · GDELT「{q[:34]}…」：{n} 条")
+        time.sleep(6.5)
+    return out
+
+
+# WordPress 站点支持 ?paged=N 逐页翻历史 —— 「RSS 只有最新 10 条」其实不成立：
+# 实测 drydockmagazine 翻到第 5 页就回到 2025-08。这三家是能翻页里最对口的
+# （Drydock 是修船/坞修专业刊），逐页翻到最旧一条早于窗口为止。
+PAGED_RSS = [
+    ("Drydock Magazine", "https://www.drydockmagazine.com/feed/", 16),
+    ("Splash 247", "https://splash247.com/feed/", 10),
+    ("Marine Insight", "https://www.marineinsight.com/feed/", 12),
+]
+
+
+def fetch_rss_paged(days):
+    """逐页翻 WordPress feed，翻到窗口边界或达上限即停。"""
+    direct, default = _openers()
+    out = []
+    today = dt.date.today()
+    cutoff = today - dt.timedelta(days=days)
+    for name, base, max_pages in PAGED_RSS:
+        got = 0
+        for pg in range(1, max_pages + 1):
+            url = "%s?paged=%d" % (base, pg)
+            xml = None
+            for op in (direct, default):
+                try:
+                    xml = op.open(urllib.request.Request(
+                        url, headers={"User-Agent": "Mozilla/5.0"}), timeout=25).read()
+                    break
+                except Exception:           # noqa: BLE001
+                    continue
+            if xml is None:
+                break
+            try:
+                root = ET.fromstring(xml)
+            except Exception:               # noqa: BLE001
+                break
+            oldest = today
+            page_n = 0
+            for it in root.iter("item"):
+                t = (it.findtext("title") or "").strip()
+                u = (it.findtext("link") or "").strip()
+                pd = it.findtext("pubDate") or ""
+                try:
+                    d = email.utils.parsedate_to_datetime(pd)
+                except Exception:           # noqa: BLE001
+                    continue
+                if d.tzinfo is None:
+                    d = d.replace(tzinfo=dt.timezone.utc)
+                day = d.date()
+                if day < oldest:
+                    oldest = day
+                if day < cutoff or not keep(t):
+                    continue
+                out.append((day.isoformat(), t, u, name))
+                got += 1
+                page_n += 1
+            if page_n == 0 and oldest >= cutoff:
+                # 整页都在窗口内却一条没过闸：继续翻（内容可能还没到装装备话题）
+                pass
+            if oldest < cutoff:
+                break
+            time.sleep(1.0)
+        print(f"  · 翻页 {name}：{got} 条（翻到 {pg} 页）")
+    return out
+
+
 def scan_ledger(ledger_path, days):
     """扫台账历史事件（issue 日期为基准）"""
     out = []
@@ -567,11 +816,25 @@ def main():
     got = fetch_gn(EQUIP_QUERIES, args.days)
     print(f"  直采装备 GN：{len(got)} 条")
     fresh.extend(got)
-    # 2) 垂直媒体 RSS（补主报告 14 天窗口漏掉的稍旧条目）
+    # 2) site: 限定逐家翻媒体档案（不带时间算子，GN 不截断到 10 条）
+    site_n = fetch_site_archive(args.days)
+    print(f"  站内档案通道：{site_n} 条")
+    # 3) 中文船厂名查询（中文装备新闻以「某船厂+某装备」形式出现）
+    yard_got = fetch_yard_queries(args.days)
+    print(f"  船厂检索：{len(yard_got)} 条")
+    fresh.extend(yard_got)
+    # 4) GDELT（第三索引，best-effort）
+    gd_got = fetch_gdelt(args.days)
+    print(f"  GDELT 通道：{len(gd_got)} 条")
+    fresh.extend(gd_got)
+    # 5) 垂直媒体 RSS + WordPress 翻页历史
     rss_got = fetch_rss_equip(args.days)
     print(f"  垂直媒体 RSS：{len(rss_got)} 条")
     fresh.extend(rss_got)
-    # 3) 台账历史
+    paged_got = fetch_rss_paged(args.days)
+    print(f"  翻页历史：{len(paged_got)} 条")
+    fresh.extend(paged_got)
+    # 6) 台账历史
     lg = scan_ledger(arch / "ledger.json", args.days)
     print(f"  台账历史命中：{len(lg)} 条")
     fresh.extend(lg)
