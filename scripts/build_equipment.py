@@ -19,11 +19,40 @@ import json
 import os
 import re
 import sys
+import time
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-EQUIP_FEED_IDS = ["gnews-rustblast", "gnews-laserrob", "gnews-blast-cn", "gnews-spraytech", "gnews-yardpaint"]
+# ★2026-11-23 重构：装备专栏不再复用 config.yaml 里的主报告查询。
+#   原因（实测证据）：主报告查询统一加了 when:14d 抢新鲜度，装备要的是
+#   一年窗口，两者口径相反；且 Google News 无算子查询只返回「最相关的 10 条」，
+#   实测最旧一条是 2014 年 —— 这正是「一年池子只有 20 条」的真正原因：
+#   每轮拿到 10 条、绝大多数是旧闻，过完 365 天窗口就只剩个位数。
+#   对策：自建查询组 + after:/before: 按季度回溯（实测 Q1/Q2/Q3 各能取回 4-9 条）。
+#   (label, query, lang)  lang: en / zh
+EQUIP_QUERIES = [
+    ("喷砂与抛丸",
+     'shipyard blasting OR "hull blasting" OR "abrasive blasting" OR "shot blasting" ship', "en"),
+    ("除锈与除漆",
+     '"rust removal" OR "paint removal" OR "coating removal" OR derusting ship OR hull OR shipyard', "en"),
+    ("激光清洗除锈",
+     '"laser cleaning" OR "laser rust removal" OR "laser ablation" hull OR shipyard OR vessel', "en"),
+    ("超高压水与干冰",
+     '"ultra high pressure" OR UHP OR "water jetting" OR "dry ice blasting" shipyard OR hull OR ship', "en"),
+    ("机器人除锈喷涂",
+     '"painting robot" OR "spraying robot" OR "coating robot" OR "blasting robot" '
+     'OR "crawling robot" ship OR shipyard OR hull', "en"),
+    ("表面处理与喷涂设备",
+     '"surface preparation" OR "shop primer" OR "paint booth" OR "airless spray" '
+     'OR "spray painting" shipyard OR shipbuilding', "en"),
+    ("中文除锈喷砂",
+     '除锈 OR 喷砂 OR 除漆 OR 抛丸 船厂 OR 船舶 OR 船体', "zh"),
+    ("中文机器人涂装",
+     '喷涂机器人 OR 除锈机器人 OR 爬壁机器人 OR 涂装机器人 船舶 OR 船厂 OR 修船', "zh"),
+]
+
 
 # 装备语境词（标题须命中其一）
 EQUIP_RE = re.compile(
@@ -43,7 +72,19 @@ MARINE_RE = re.compile(
     re.I,
 )
 # 明确排除（汽车/家具等陆上行业即使带了 equipment 词也不收）
-EXCLUDE_RE = re.compile(r"automotive|car |vehicle|furniture|wood|-electric|EV |手机|家具|木材", re.I)
+# ★2026-11-23 修（用户反馈"一堆未见的"）：
+#   · 水下船体清洗/螺旋桨抛光属【在航污损管理】，不是修造船除锈喷漆装备；
+#     此前 6 家媒体转述同一桩机器人洗船体事件全进了"机器人"类。
+#   · waterjet 推进器（Kongsberg 喷水推进订单）≠ 高压水除锈装备。
+#   · 市场规模/前景展望类研究报告，不是"在用装备"动态。
+EXCLUDE_RE = re.compile(
+    r"automotive|car |vehicle|furniture|wood|-electric|EV |手机|家具|木材|"
+    r"weapon|武器|导弹|"
+    r"hull cleaning|in-water cleaning|propeller cleaning|hull grooming|"
+    r"船体清洁|水下清洗|螺旋桨清洗|洗船体|"
+    r"waterjet (contract|propulsion|driven|system|order)|jet propulsion|喷水推进|"
+    r"market (size|outlook|forecast|report|growth)|市场(规模|前景|展望|报告)|至20\d\d年",
+    re.I)
 
 CATEGORIES = [
     ("laser", "激光除锈与清洗",
@@ -98,6 +139,78 @@ def norm_title(t):
     return re.sub(r"[^0-9a-z\u4e00-\u9fff]+", "", s)[:64]
 
 
+_CJK_RE = re.compile(r"[\u4e00-\u9fff]+")
+
+
+def _tokens(t):
+    """标题词袋：中文取二元组，英文/数字取 ≥2 长度单词。"""
+    t = str(t or "").lower()
+    out = set()
+    for run in _CJK_RE.findall(t):
+        if len(run) == 1:
+            out.add(run)
+        for i in range(len(run) - 1):
+            out.add(run[i:i + 2])
+    for w in re.findall(r"[a-z0-9]{2,}", t):
+        out.add(w)
+    return out
+
+
+def _jac(a, b):
+    ta, tb = _tokens(a), _tokens(b)
+    return len(ta & tb) / len(ta | tb) if ta and tb else 0.0
+
+
+_STOP = set("""and the for with from that this its are was were has have not but can will
+ship ships vessel vessels hull shipyard yard marine maritime boat barge barges tanker
+robot robots robotic robotics automated automation system systems technology tech
+new launch launches launched unveil unveils unveiling introduce introduces
+test tests testing trial trials partner partners partnership programme program project
+facility facilities first largest next major new
+cleaning clean blast blasting blasted paint painting coating coated corrosion rust
+removal surface preparation equipment solution solutions provider company companies group
+news report magazine international global offshore industry industrial
+set to of in on at by as an a is be it or
+""".split())
+
+
+def _core(t):
+    """标题的「实体词」：去掉行业泛词与虚词后的英文/数字词。
+    同一桩事被多家改写的标题，海务泛词几乎全重叠，真正能区分事件的
+    是船东/厂商/地名这类专名（louis、dreyfus、neptune…）。"""
+    return {w for w in re.findall(r"[a-z0-9&]{2,}", str(t or "").lower())
+            if w not in _STOP}
+
+
+def dedupe_items(items):
+    """★2026-11-23 跨源同事件合并：一桩事件被多家媒体转述只留最新一条，
+    其余家数记在 n 字段、页面上显示「另 N 家转述」。
+    判据两条取其一：
+      ① 标题 Jaccard：英文 ≥0.52 / 中文 ≥0.72（沿用主报告口径）；
+      ② 实体词重合 ≥2 个（新闻标题改写后 Jaccard 常常只有 0.2-0.3，
+         实测同一桩「路易达孚 × Neptune 机器人洗船体」六家标题 J 仅 0.16-0.36，
+         纯相似度抓不住，只能靠专名）。入参须按日期倒序。"""
+    kept = []
+    for it in items:
+        t = it.get("t", "")
+        cjk = bool(_CJK_RE.search(t))
+        core = _core(t)
+        hit = None
+        for k in kept:
+            kt = k.get("t", "")
+            thr = 0.72 if (cjk and _CJK_RE.search(kt)) else 0.52
+            if (_jac(t, kt) >= thr
+                    or len(core & _core(kt)) >= 2):
+                hit = k
+                break
+        if hit is not None:
+            hit["n"] = hit.get("n", 1) + 1
+            continue
+        it["n"] = it.get("n", 1)
+        kept.append(it)
+    return kept
+
+
 def classify(title):
     for key, rx in CAT_RE.items():
         if rx.search(title):
@@ -111,42 +224,62 @@ def keep(title):
     return bool(EQUIP_RE.search(title) and MARINE_RE.search(title))
 
 
-def fetch_gn(feeds, days):
-    """直采装备类 GN 查询，返回 [(date, title, url, src)]。
-    先试直连（Actions 环境），再退回系统代理（本机沙箱场景）。"""
+def _gn_url(query, start, end, lang):
+    q = f"{query} after:{start} before:{end}"
+    base = "https://news.google.com/rss/search?q=" + urllib.parse.quote_plus(q)
+    if lang == "zh":
+        return base + "&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+    return base + "&hl=en-US&gl=US&ceid=US:en&num=100"
+
+
+def fetch_gn(feeds, days, windows=4):
+    """按时间段分窗直采装备类查询，返回 [(date, title, url, src)]。
+    ★2026-11-23：改为 after:/before: 分窗回溯。无算子查询只回「最相关 10 条」
+    （实测最旧 2014 年），一年窗口靠它等于白抓；分窗后每窗口能取回 4-9 条，
+    四个窗口拼起来才真正覆盖一年。先试直连（Actions 环境），再退回系统代理。"""
     direct = urllib.request.build_opener(urllib.request.ProxyHandler({}))
     default = urllib.request.build_opener()
     out = []
-    cutoff = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=days)
-    for f in feeds:
-        xml = None
-        for op in (direct, default):
-            try:
-                req = urllib.request.Request(f["url"], headers={"User-Agent": "Mozilla/5.0"})
-                xml = op.open(req, timeout=30).read()
-                break
-            except Exception as e:
-                last = e
-        if xml is None:
-            print(f"  ⚠️ 拉取 {f.get('name')} 失败：{type(last).__name__} {last}")
-            continue
-        try:
-            root = ET.fromstring(xml)
-            for it in root.iter("item"):
-                t = (it.findtext("title") or "").strip()
-                u = (it.findtext("link") or "").strip()
-                pd = it.findtext("pubDate") or ""
+    today = dt.date.today()
+    span = max(1, days // windows)
+    for label, query, lang in feeds:
+        got = 0
+        for w in range(windows):
+            end = today - dt.timedelta(days=w * span)
+            start = end - dt.timedelta(days=span)
+            url = _gn_url(query, start.isoformat(), end.isoformat(), lang)
+            xml = None
+            last = None
+            for op in (direct, default):
                 try:
-                    d = email.utils.parsedate_to_datetime(pd)
-                except Exception:
-                    continue
-                if d.tzinfo is None:
-                    d = d.replace(tzinfo=dt.timezone.utc)
-                if d < cutoff or not keep(t):
-                    continue
-                out.append((d.date().isoformat(), t, u, f.get("name", "GN")))
-        except Exception as e:
-            print(f"  ⚠️ 解析 {f.get('name')} 失败：{type(e).__name__} {e}")
+                    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                    xml = op.open(req, timeout=30).read()
+                    break
+                except Exception as e:      # noqa: BLE001
+                    last = e
+            if xml is None:
+                print(f"  ⚠️ {label} [{start}~{end}] 失败：{type(last).__name__} {last}")
+                continue
+            try:
+                root = ET.fromstring(xml)
+                for it in root.iter("item"):
+                    t = (it.findtext("title") or "").strip()
+                    u = (it.findtext("link") or "").strip()
+                    pd = it.findtext("pubDate") or ""
+                    try:
+                        d = email.utils.parsedate_to_datetime(pd)
+                    except Exception:
+                        continue
+                    if d.tzinfo is None:
+                        d = d.replace(tzinfo=dt.timezone.utc)
+                    if d.date() < today - dt.timedelta(days=days) or not keep(t):
+                        continue
+                    out.append((d.date().isoformat(), t, u, "装备检索·" + label))
+                    got += 1
+            except Exception as e:          # noqa: BLE001
+                print(f"  ⚠️ 解析 {label} 失败：{type(e).__name__} {e}")
+            time.sleep(2.5)
+        print(f"  · {label}：{got} 条")
     return out
 
 
@@ -172,8 +305,9 @@ def scan_ledger(ledger_path, days):
 def build_section(pool, ai_text="", ai_date="", per_cat=6):
     """按类目精选生成 HTML（每类取最近 per_cat 条，总量上限 24）"""
     by_cat = {k: [] for k, _, _ in CATEGORIES}
-    for it in pool:  # pool 已按日期倒序，元素为 {d,t,u,s}
-        by_cat[classify(it["t"])].append((it["d"], it["t"], it["u"], it["s"]))
+    for it in pool:  # pool 已按日期倒序、已同事件合并，元素为 {d,t,u,s,n}
+        by_cat[classify(it["t"])].append(
+            (it["d"], it["t"], it["u"], it["s"], it.get("n", 1)))
     rows = []
     total = 0
     for key, name, blurb in CATEGORIES:
@@ -181,8 +315,10 @@ def build_section(pool, ai_text="", ai_date="", per_cat=6):
         if not items:
             continue
         lis = []
-        for d, t, u, s in items:
+        for d, t, u, s, n in items:
             src = s.split("·")[-1].strip() if s else ""
+            if n and n > 1:
+                src = f"{src}（另{n - 1}家转述）" if src else f"另{n - 1}家转述"
             if u:
                 a = f'<a href="{html_escape(u)}" target="_blank" rel="noopener">{html_escape(t)}</a>'
             else:
@@ -278,24 +414,6 @@ def ai_analyze(items, config_path):
 
 
 
-def load_equip_feeds(config_path):
-    """零依赖解析 config.yaml，抽取装备类 GN 查询的 name/url。
-    按 `- id: "xxx"` 切块，块内抓 name 与 url 行。"""
-    txt = Path(config_path).read_text(encoding="utf-8")
-    blocks = re.split(r'\n\s*-\s+id:\s*"', txt)
-    feeds = []
-    for b in blocks[1:]:
-        m_id = re.match(r'([^"]+)"', b)
-        if not m_id or m_id.group(1) not in EQUIP_FEED_IDS:
-            continue
-        m_name = re.search(r'name:\s*"([^"]+)"', b)
-        m_url = re.search(r'url:\s*"([^"]+)"', b)
-        # enabled: false 的跳过
-        m_en = re.search(r'enabled:\s*false', b)
-        if m_name and m_url and not m_en:
-            feeds.append({"id": m_id.group(1), "name": m_name.group(1), "url": m_url.group(1)})
-    return feeds
-
 
 def inject(report, section_html):
     p = Path(report)
@@ -337,24 +455,24 @@ def main():
             pool = {}
 
     fresh = []
-    # 1) 直采装备类 GN（近一年）。零依赖：正则抽 config.yaml 里的 feed 定义，
-    #    不 import yaml（Actions 的裸 python 环境没有 pyyaml）。
-    try:
-        feeds = load_equip_feeds(args.config)
-        print(f"  装备类查询：{[f['name'] for f in feeds]}")
-    except Exception as e:
-        print(f"  ⚠️ 读配置失败（{type(e).__name__}），跳过直采只用台账")
-        feeds = []
-    if feeds:
-        got = fetch_gn(feeds, args.days)
-        print(f"  直采装备 GN：{len(got)} 条")
-        fresh.extend(got)
+    # 1) 装备类查询：自建查询组 + 按季度回溯一年（不依赖 config.yaml 的
+    #    主报告查询，后者带 when:14d，口径与一年窗口相反）。
+    got = fetch_gn(EQUIP_QUERIES, args.days)
+    print(f"  直采装备 GN：{len(got)} 条")
+    fresh.extend(got)
     # 2) 台账历史
     lg = scan_ledger(arch / "ledger.json", args.days)
     print(f"  台账历史命中：{len(lg)} 条")
     fresh.extend(lg)
 
     cutoff = (dt.date.today() - dt.timedelta(days=args.days)).isoformat()
+    # ★2026-11-23：池内历史条目也要过一遍现行规则 —— 排除词是后来才加的，
+    #   不清洗的话，早期混进来的水下清洗机器人、市场报告会永久留在页面上。
+    _before = len(pool)
+    pool = {k: v for k, v in pool.items() if keep(v.get("t", ""))}
+    if _before != len(pool):
+        print(f"  池内清洗：{_before} → {len(pool)} 条"
+              f"（按现行排除规则剔除 {_before - len(pool)} 条）")
     for d, t, u, s in fresh:
         k = norm_title(t)
         old = pool.get(k)
@@ -363,6 +481,11 @@ def main():
     # 过期清理
     pool = {k: v for k, v in pool.items() if v.get("d", "0000") >= cutoff}
     items = sorted(pool.values(), key=lambda x: x.get("d", ""), reverse=True)
+    # ★跨源同事件合并（6 家媒体转述同一桩事 → 收敛成 1 条）
+    raw_n = len(items)
+    items = dedupe_items(items)
+    if raw_n != len(items):
+        print(f"  同事件合并：{raw_n} → {len(items)} 条（{raw_n - len(items)} 条为多源转述）")
 
     # 3) AI 研判（对装备池整体，一年窗口）：成功则缓存，失败沿用上次结果
     old_ai = {}
