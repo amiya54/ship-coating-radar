@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-23",
- "ai_summary": "激光除锈与清洗方面，该线近一年未见报道，无法从清单判断已有试验或应用，按清单只能归为空白/早期。常识推断，激光适合焊缝、局部薄锈和精密表面，造船线与修船坞可作局部补充，大面积除锈仍难替代喷砂（常识推断）。\n\n超高压水/干冰/海绵除漆方面，该线近一年未见报道；2026-04-08“Kongsberg Maritime secures largest-ever waterjet contract”是喷水推进合同，不能作超高压水除漆证据，按清单为未验证。常识推断，超高压水在修船坞除漆较常见但废水回收要求高，干冰/海绵多用于局部敏感表面；造船线前处理仍以喷砂为主，修船坞可优先验证超高压水（常识推断）。\n\n喷砂抛丸与磨料方面，清单显示其仍是主力并与机器人结合：2026-10-26沪东中华完成国产化抛丸机器人实船应用试验，属试验；2026-04-28 C&C Marine and Repair机器人喷砂设施完成700艘驳船，属批量应用；2026-04-09 HII、2026-02-26 Seaspan把喷砂/喷漆自动化纳入船厂。成熟度上工艺成熟，机器人抛丸有批量案例，国产化实船仍早期。造船线适合钢板预处理、分段抛丸和车间自动化；修船坞适合船体大面积除锈，但受坞期、形状和环保约束。\n\n机器人与自动化作业方面，清单报道最密，覆盖船体清洁、抛丸喷砂、磨削喷漆和造船合作。2026-11-17至11-23 Louis Dreyfus与Neptune Robotics在新加坡开展AI船体清洁试验，属试验；2026-06-18 HD Hyundai发布全机器人端到端船体管理方案，属刚发布；前述HII、Seaspan及C&C的700艘驳船案例显示船厂内喷砂喷漆自动化已有应用/批量。成熟度分化：船厂内自动化较成熟，船体清洁AI端到端仍早期。造船线适合车间、分段和智能船厂；修船坞适合船体清洁与坞内除锈喷漆，但船型多变、坞期紧，需模块化和远程操作。\n\n喷涂与固化设备方面，清单未见专门喷涂或固化设备报道，仅在2026-04-09 HII“grinding, blasting and painting”和2026-02-26 Seaspan“blast and paint operations”中把喷漆纳入机器人自动化范围，属项目集成信息，按清单为早期/信息不足。常识推断，造船线分段涂装和车间喷涂更易自动化；修船坞受船体姿态、坞期和通风温湿度影响，喷涂与固化适用性有限（常识推断）。",
+ "ai_summary": "激光除锈与清洗线近一年未见报道。清单无激光试验或实船应用，无法归纳效率、等级；常识推断仅适合船厂薄板/焊缝和修船局部低尘清理，成熟度早期，造船宜作补充，修船坞宜定点使用，不宜作主工艺。\n\n超高压水/干冰/海绵除漆线近一年未见直接报道。清单仅有2026-04-08 Kongsberg “largest-ever waterjet contract”归uhp类，标题未说明用于除漆，不能作成熟度证据；干冰、海绵无报道。常识推断该路线在修船坞外板及敏感区域有低尘优势，但废水固废收集和效率受限，按早期试用看；造船线适用性弱于修船。\n\n喷砂抛丸与磨料线报道密度较高。2026-10-26沪东中华完成国产化抛丸机器人实船应用试验，属造船线验证；2026-04-28、04-27 C&C Marine and Repair机器人喷砂设施完成“700 barges”（报道原文），显示修船/驳船批量喷砂较成熟；2026-04-09 HII、2026-02-26 Seaspan推进打磨喷砂喷漆自动化。总体较成熟但分工明显：修船坞已有批量喷砂设施，造船线处抛丸机器人试验和产线导入。\n\n机器人与自动化作业线最密集。Neptune Robotics与Louis Dreyfus在新加坡MPA创新计划下做AI船体清洁实船试验/规模化试用（2026-11-23多篇、11-20、11-17）；HD Hyundai发布全流程机器人船体管理方案（2026-06-18），HII联合GrayMatter与Path推进机器人造船（2026-08-07），韩国推进“未来智能先进船厂”（2026-07-26）。船体清洁机器人报道多且进入实船试验，修船端较成熟；船厂建造机器人多为项目/试验，处早期到中期导入。修船坞优先清洁除锈喷漆，造船线优先打磨抛丸及分段产线，需匹配节拍。\n\n喷涂与固化设备线近一年未见专门报道。清单只在HII（2026-04-09）与Seaspan（2026-02-26）自动化喷砂喷漆标题中提及喷涂，未给固化设备、参数或应用数字，不能判成熟度。常识推断修船坞更适合柔性移动式喷涂与局部固化，造船线更易做喷砂—喷涂—固化连续工位，但当前按早期导入看，需补实船/车间验证。",
  "ai_date": "2026-11-23",
  "items": [
   {
@@ -16,6 +16,24 @@
    "s": "The Maritime Executive"
   },
   {
+   "d": "2026-11-23",
+   "t": "Louis Dreyfus Company to trial robotic hull cleaning - Smart Maritime Network",
+   "u": "https://news.google.com/rss/articles/CBMingFBVV95cUxPZ1l5am9VTjFkOUtqaGFOSGVvQ2Y1OGYwRUV3cTh3T1kyczNRRk5ndVpjYWRjbnlJdHNJa2RNbGNmNHJ6dXRWOHNldWRHd3gzMm5neGYydnlOZWstWTFtUjdTM0dLdjQxOXlBU3BQWkVSUVFpTG91bEhNR3lmaWRVVFVRWFkzRTdNb1FKOWxZSDRoaDNPb29CNFJWb1M3UQ?oc=5",
+   "s": "GN · 防污底公约与生物杀灭剂"
+  },
+  {
+   "d": "2026-11-23",
+   "t": "Louis Dreyfus joins robotic hull cleaning trials in Singapore - Splash247",
+   "u": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPSkplZGVVM0EzM05nNGxpSDdsTWIwVkVKejNBNWh2Mmlzai1HbkdjamJpbVNxdzFMUDB6WDFKRWp0R3g5SzA1VDZQajFscGh6VGlvTVNHY0NqRVhYdjR4MTI3ektPOTFxZTdLdlRWRy1mVmFDS3ltcldEREdTc3lXOWNIVE5pUjR4cXozRQ?oc=5",
+   "s": "GN · 防污底公约与生物杀灭剂"
+  },
+  {
+   "d": "2026-11-23",
+   "t": "Louis Dreyfus Company and Neptune Robotics Partner on Robotic Hull Cleaning Programme under the Maritime and Port Authority of Singapore's Innovation Programme - Voice of ASIA",
+   "u": "https://news.google.com/rss/articles/CBMingJBVV95cUxPeUVsRFFYMzNFcFNrYWVTUVJTYkNRQjlhMGlUUUdVZC1iNDYzZkZaekRvLUg5ZlBxZ2Z4QWd6Z20yc0w4OURGNTZkVjVRX25mZEw2RmFZTVJfdi1qT1JvOHRmSkV3Qzl0RFFiMkVnX01rTVdjOGozR1hJWDFxcnpxdlIyOHg4ajJfU2s2RlRaNmdXUUtidHZkUkd3V3pwb2RDOWVoMHhsWS1nbjNDV1hOeEJCR0ZVNDRrVGFkMGdvNW9nbGNYalZGbkdvOEhQRjVqNkJsbFhNTUU3Y2Vfd3BFLWtUa3VyRUJTcTRIdmNVNHc4TXRfamhWZHkyb1JlZ1NITTlSa29TaTVSSV9qN2tHa0hjRFhzTmJxMW4xa2xR?oc=5",
+   "s": "GN · 防污底公约与生物杀灭剂"
+  },
+  {
    "d": "2026-11-20",
    "t": "LDC, Neptune Robotics partner on Robotic Hull Cleaning Programme - Comunicaffe International",
    "u": "https://news.google.com/rss/articles/CBMilgJBVV95cUxQbmljVWJrcVVESXNFazZhdzdLdWU3WndfYTQ0bndIclhETUJhekhVakFxWlZtdGQ3cTlONGE2R1JQYUg4R1pXWVFIdXZVUkZzb0tLbWNZcDRSSGdRRXE5TnA5bE5KaDNFdm9nRFZ5Y2JoZVBaeFRuc09sU1phLXNCVXk3TV95ZVlUYzZJUDVNZFc2WkRZWkRhM1I1ZklSM1JVWTBsT1FJQURwV21nb0lpWFRGYUpjWjd0NThXejRrdUVYS3gzeXRkMmVncnlUa3BkcHBNTy14QmZtSl93WVNKWHRVRFpLU1lNQ0t2dk84Yjk3cFNwYksydGhaeF9SVjBvXzh6S3ZmYlBDckQ3S3ZaYlZrMlBlZw?oc=5",
@@ -23,27 +41,9 @@
   },
   {
    "d": "2026-11-20",
-   "t": "Louis Dreyfus Company to trial robotic hull cleaning - Smart Maritime Network",
-   "u": "https://news.google.com/rss/articles/CBMingFBVV95cUxPZ1l5am9VTjFkOUtqaGFOSGVvQ2Y1OGYwRUV3cTh3T1kyczNRRk5ndVpjYWRjbnlJdHNJa2RNbGNmNHJ6dXRWOHNldWRHd3gzMm5neGYydnlOZWstWTFtUjdTM0dLdjQxOXlBU3BQWkVSUVFpTG91bEhNR3lmaWRVVFVRWFkzRTdNb1FKOWxZSDRoaDNPb29CNFJWb1M3UQ?oc=5",
-   "s": "GN · 防污底公约与生物杀灭剂"
-  },
-  {
-   "d": "2026-11-20",
-   "t": "Louis Dreyfus joins robotic hull cleaning trials in Singapore - Splash247",
-   "u": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPSkplZGVVM0EzM05nNGxpSDdsTWIwVkVKejNBNWh2Mmlzai1HbkdjamJpbVNxdzFMUDB6WDFKRWp0R3g5SzA1VDZQajFscGh6VGlvTVNHY0NqRVhYdjR4MTI3ektPOTFxZTdLdlRWRy1mVmFDS3ltcldEREdTc3lXOWNIVE5pUjR4cXozRQ?oc=5",
-   "s": "GN · 防污底公约与生物杀灭剂"
-  },
-  {
-   "d": "2026-11-20",
    "t": "喷砂磨料市场展望至2035年：造船与基础设施维护驱动增长 - 新闻和统计 - IndexBox",
    "u": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOM2JVZjFXLUV3Q2lpZnpfT3hNeUtRcjdyd1lIeHVYeFpPTEpYdUphUy1rS2RhLXhXdm5IcUJKTE1oa3VNSENIVzlOZTdLckFISms2Mko2N21LMjRRY3VWRGZ4eDBiZkhncC1EUWNKUTMxQ1FoV01aNlFQSzNSdDVMN0dxUDJJVVdIN2tKdHRyUjduRkoySGRRam5fNUxfaFZ5VGpjT01JdkxVRk40dFJoQUZYV2xxNWM4S0ZJSHU1Y0lqN3JYc0ktNGpKNl9ZNFRweDlaZE9SV3RzUQ?oc=5",
    "s": "GN · 修船除锈与涂装装备中文"
-  },
-  {
-   "d": "2026-11-19",
-   "t": "Louis Dreyfus Company and Neptune Robotics Partner on Robotic Hull Cleaning Programme under the Maritime and Port Authority of Singapore's Innovation Programme - Macau Business",
-   "u": "https://news.google.com/rss/articles/CBMikwJBVV95cUxPSVotejFFdDRkZXRfRmM2MUdXLWE1V25femdGLXFudHJBYldIeEdXVFVzdDhMQUs5cnVhMVJYdTMxY3FhZjQ3ZHVsb2tZRHVXS2N2TzVDOHlkcndvcjhvb1A5TVlHQ1kzeG1uaWc4MnVGRjNFdkNQSzNZbnBLQ0ZuXzVPM1Z3dFppa0dOa3RJWXNGNDd6WUdUb2dUbGo4LTZqMUpvaDNoeXBkRW5wcGpRc05rWk1GSFdIdVlWU1M5dkVRNmZxQjUwWEZWbmdSV21wWXlBNGRULWNuakw3MnY2ejdFT0lhbnlHeVJvZy01WHRkT1dtSUUwaGsyMEJPSXVjem5EdThwR0tvcXB5cEZVSjFjQQ?oc=5",
-   "s": "GN · 防污底公约与生物杀灭剂"
   },
   {
    "d": "2026-11-17",
