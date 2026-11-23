@@ -1,0 +1,32 @@
+name: Probe GN
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe Google News query variants
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          probe () {
+            n=$(curl -s -m 30 -A "$UA" "$1" | grep -c "<item>" || true)
+            echo "$2 => $n 条"
+            sleep 3
+          }
+          B='https://news.google.com/rss/search?q='
+          T='&hl=en-US&gl=US&ceid=US:en'
+          echo "---- 无 when 算子 ----"
+          probe "${B}%22marine+coatings%22+OR+antifouling${T}" "baseline coating"
+          probe "${B}PSPC+OR+ballast+tank+coating${T}" "baseline pspc"
+          echo "---- 加 when:14d ----"
+          probe "${B}%22marine+coatings%22+OR+antifouling+when:14d${T}" "when14d coating"
+          probe "${B}PSPC+OR+ballast+tank+coating+when:14d${T}" "when14d pspc"
+          echo "---- when:14d + num=100 ----"
+          probe "${B}%22marine+coatings%22+OR+antifouling+when:14d${T}&num=100" "when14d+num100 coating"
+          probe "${B}PSPC+OR+ballast+tank+coating+when:14d${T}&num=100" "when14d+num100 pspc"
+          echo "---- when:30d 对照 ----"
+          probe "${B}%22marine+coatings%22+OR+antifouling+when:30d${T}" "when30d coating"
+          probe "${B}PSPC+OR+ballast+tank+coating+when:30d${T}" "when30d pspc"
+          echo "---- 新鲜度抽样：when:14d 结果的最旧日期 ----"
+          curl -s -m 30 -A "$UA" "${B}%22marine+coatings%22+OR+antifouling+when:14d${T}" | grep -o "<pubDate>[^<]*" | sed 's/<pubDate>//' | sort | head -3
