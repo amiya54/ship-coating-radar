@@ -1,13 +1,19 @@
 {
- "updated": "2026-11-20",
- "ai_summary": "从近一年清单看，五条装备线冷热不均。激光除锈与清洗线近一年未见报道，清单中的“清洗”主要是机器人船体清洁，并非激光除锈；成熟度只能列为早期观察项（常识推断：激光适合薄板、焊缝和高价值局部除锈），造船线可试用于分段局部清洗，修船坞可试用于外板局部除锈。超高压水/干冰/海绵除漆线近一年未见报道；唯一标注uhp的Kongsberg largest-ever waterjet contract（2026-04-08）标题为waterjet，不是除漆设备，不能作证据，干冰、海绵也无报道；成熟度属早期（常识推断：修船坞局部除漆和替代干喷砂有需求），造船线与修船坞均需验证。喷砂抛丸与磨料线报道密度较高：沪东中华完成国产化抛丸机器人实船应用试验（2026-10-26 国际船舶网），C&C Marine机器人喷砂设施累计完成700艘驳船（2026-04-28 Marine News Magazine），HII、Seaspan推动打磨喷砂涂装自动化（2026-04-09 The Maritime Executive、2026-02-26 WorkBoat）；磨料有市场展望至2035、由造船与基础设施维护驱动（2026-11-20 IndexBox）。该线较成熟，驳船修理机器人喷砂已批量应用，造船线抛丸机器人处于试验/引入；造船线适合钢板预处理、分段抛丸和打磨喷砂，修船坞适合外板及驳船批量喷砂。机器人与自动化作业线报道最密：Neptune与Louis Dreyfus在新加坡试验机器人船体清洁（2026-11-20多篇、2026-11-19等），HD Hyundai发布全流程机器人船体管理方案（2026-06-18 Marine Insight），韩国",
- "ai_date": "2026-11-20",
+ "updated": "2026-11-23",
+ "ai_summary": "激光除锈与清洗方面，该线近一年未见报道，无法从清单判断已有试验或应用，按清单只能归为空白/早期。常识推断，激光适合焊缝、局部薄锈和精密表面，造船线与修船坞可作局部补充，大面积除锈仍难替代喷砂（常识推断）。\n\n超高压水/干冰/海绵除漆方面，该线近一年未见报道；2026-04-08“Kongsberg Maritime secures largest-ever waterjet contract”是喷水推进合同，不能作超高压水除漆证据，按清单为未验证。常识推断，超高压水在修船坞除漆较常见但废水回收要求高，干冰/海绵多用于局部敏感表面；造船线前处理仍以喷砂为主，修船坞可优先验证超高压水（常识推断）。\n\n喷砂抛丸与磨料方面，清单显示其仍是主力并与机器人结合：2026-10-26沪东中华完成国产化抛丸机器人实船应用试验，属试验；2026-04-28 C&C Marine and Repair机器人喷砂设施完成700艘驳船，属批量应用；2026-04-09 HII、2026-02-26 Seaspan把喷砂/喷漆自动化纳入船厂。成熟度上工艺成熟，机器人抛丸有批量案例，国产化实船仍早期。造船线适合钢板预处理、分段抛丸和车间自动化；修船坞适合船体大面积除锈，但受坞期、形状和环保约束。\n\n机器人与自动化作业方面，清单报道最密，覆盖船体清洁、抛丸喷砂、磨削喷漆和造船合作。2026-11-17至11-23 Louis Dreyfus与Neptune Robotics在新加坡开展AI船体清洁试验，属试验；2026-06-18 HD Hyundai发布全机器人端到端船体管理方案，属刚发布；前述HII、Seaspan及C&C的700艘驳船案例显示船厂内喷砂喷漆自动化已有应用/批量。成熟度分化：船厂内自动化较成熟，船体清洁AI端到端仍早期。造船线适合车间、分段和智能船厂；修船坞适合船体清洁与坞内除锈喷漆，但船型多变、坞期紧，需模块化和远程操作。\n\n喷涂与固化设备方面，清单未见专门喷涂或固化设备报道，仅在2026-04-09 HII“grinding, blasting and painting”和2026-02-26 Seaspan“blast and paint operations”中把喷漆纳入机器人自动化范围，属项目集成信息，按清单为早期/信息不足。常识推断，造船线分段涂装和车间喷涂更易自动化；修船坞受船体姿态、坞期和通风温湿度影响，喷涂与固化适用性有限（常识推断）。",
+ "ai_date": "2026-11-23",
  "items": [
   {
-   "d": "2026-11-20",
+   "d": "2026-11-23",
    "t": "Neptune Robotics to Test AI Hull Cleaning on Louis Dreyfus Vessels - Marine News Magazine",
    "u": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOamJ1bEF1RHlVOUhBanhQUWp6aWdwTldPOXA5bXNYc1RCVkJHS1RnUTBhc0ZpZnNiQjF3NGNfTC1RUWE5NFFQWmxKQmNZczBvZmpXaV9TY1ZtTV96VEtLREtfQWgxNGFLTUFCRWxtREdyZElxRFUtV3lPbXFzMXVRblAzUQ?oc=5",
-   "s": "GN · 防污底公约与生物杀灭剂"
+   "s": "GN · 船体清洁与污损管理"
+  },
+  {
+   "d": "2026-11-23",
+   "t": "Louis Dreyfus Tests Out Robotic Hull Cleaning at Scale",
+   "u": "https://maritime-executive.com/article/neptune-secures-partnerships-to-advance-robotic-hull-cleaning",
+   "s": "The Maritime Executive"
   },
   {
    "d": "2026-11-20",

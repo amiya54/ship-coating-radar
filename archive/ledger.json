@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-20",
+ "updated": "2026-11-23",
  "issues": [
   {
    "date": "2026-11-11",
@@ -1358,6 +1358,77 @@
     "new": 0,
     "pool": 1,
     "closed": 3
+   }
+  },
+  {
+   "date": "2026-11-23",
+   "items": 8,
+   "events": [
+    {
+     "cite": 1,
+     "title": "Louis Dreyfus Tests Out Robotic Hull Cleaning at Scale",
+     "url": "https://maritime-executive.com/article/neptune-secures-partnerships-to-advance-robotic-hull-cleaning",
+     "src": "The Maritime Executive",
+     "stage": "testing"
+    },
+    {
+     "cite": 2,
+     "title": "With an antifouling coating like this, the boat’s hull cleans itself - Giornale della Vela",
+     "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOS3M4RC10cEpkWXJ2bmdvOTZuM3lWVWplTUpwN2lTNXFVTllacU9XZW42NEpxTzNvOHJuQ0phOTdldGhLVTR5cVpQTjRnRk5OVTE2OV8tRUxXdzRscUpSNTRzbFo0UlRCaDVXc2FXU203V0diMVduVTJFU3ZJQkZSbFFjMklFWGt1OFdKZnRiM2hIdXRwcXBkRUx5WE5BSEpLalp6eG02V0FGZkFSUktRMjROMlN1WGFMUlF2WQ?oc=5",
+     "src": "GN · 船舶涂装总览",
+     "stage": "other"
+    },
+    {
+     "cite": 3,
+     "title": "Neptune Robotics to Test AI Hull Cleaning on Louis Dreyfus Vessels - Marine News Magazine",
+     "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOamJ1bEF1RHlVOUhBanhQUWp6aWdwTldPOXA5bXNYc1RCVkJHS1RnUTBhc0ZpZnNiQjF3NGNfTC1RUWE5NFFQWmxKQmNZczBvZmpXaV9TY1ZtTV96VEtLREtfQWgxNGFLTUFCRWxtREdyZElxRFUtV3lPbXFzMXVRblAzUQ?oc=5",
+     "src": "GN · 船体清洁与污损管理",
+     "stage": "testing"
+    },
+    {
+     "cite": 4,
+     "title": "ISO 6319 and the Shift from Reactive Hull Cleaning to Proactive Biofouling Management - Riviera Maritime Media",
+     "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQZ0F4TE1WZEhUanJocEhKaV8weHIxLXduVUUzVGZNOWJuRUhWZGd3bHUyaXg5V1V3UHBmZUhTdXBaaWhLQ2FpcWNWYWdUaGhienlZUS1KdWhZOC1lSzVmc0NPek1SUF9BVGtZX2JJMlVhMjRpTmYxRlRZUDU2STljVG84YXBpeG1vOEZQN1NfX19Ka1NFZkdSMWQyUHlrVjMtbGluc2ppOUs2eVd1U0UyZkhzclNXRi0wNVVvaHhObnZDQQ?oc=5",
+     "src": "GN · 船体清洁与污损管理",
+     "stage": "other"
+    },
+    {
+     "cite": 5,
+     "title": "Proactive hull cleaning brings measurable fuel and emissions gains - Riviera Maritime Media",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPTTZ2dkdhV2M2TDVHWmVLOHp3RDJsSElQY3p6QWhCSkhwYWxUbGlRRGF2ZVJtRnlWbUtBM3FtaGxtWVF6YlpSdkVKQzZkakp6UG5EOVRVckhNNEN3ejVqSEpIcGpYZTU4RzlEY3FVcFk3QXNQd0doYmFxRmJ2YWxZQzNhaExkMWFTUGpSM3VjQVByRDhNNFFhaktoM2s4MHFBX2xfUENvZ3RpS3ZOYTBJTHdldkFlQQ?oc=5",
+     "src": "GN · 船体清洁与污损管理",
+     "stage": "other"
+    },
+    {
+     "cite": 6,
+     "title": "Austal USA Selects Thrustmaster of Texas to Supply Bow Tunnel Thrusters for the U.S. Navy Vessels",
+     "url": "https://www.marinelink.com/news/austal-usa-selects-thrustmaster-texas-544502",
+     "src": "MarineLink",
+     "stage": "planned"
+    },
+    {
+     "cite": 7,
+     "title": "【资讯】瑞易德牵手GIT，将世界级石墨烯船舶涂料技术带入中国 - Sohu",
+     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNOVpPTGo3OWl5djNNRHVPRFZ1UEg4NzdqQkNndklPcEFLam1jM3hOXzlTRFVqOHhTZHI4TWlLUTRjckYwNE1Td2xaX2otdmtjZTEyS0QxYm9HTFlPdTBMRUM2R0NnNVY3bWM2YjFqTnBGOGZwM2VaT2hiY3lIRFVoRnd6QjR5UUJz?oc=5",
+     "src": "GN · 船舶涂装工艺中文",
+     "stage": "other"
+    },
+    {
+     "cite": 8,
+     "title": "[4617.T FY2026 Q2 Earnings Call] Chugoku Marine Paints H1 Operating Profit Up 26.4% to ¥11.4 Billion — Southeast Asia and Price Pass-Through Drive Results, Full-Year Profit Forecasts Raised Across the Board - finance.biggo.com",
+     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB4VktpOS0zNjdUUzFrT2JkZ19TY0d4aXhFTDNFNVg3eC1ycWpjZUxuZlU3Wkp3V2V4Y1VWeXhKY2lzX2JfRmJGZnRzUWxmblk5STNUaFZWT2ZjV2tEWDlwNA?oc=5",
+     "src": "GN · 涂料供应商动态",
+     "stage": "operating"
+    }
+   ],
+   "summary": {
+    "done": 0,
+    "policy": 0,
+    "progress": 1,
+    "watching": 0,
+    "new": 1,
+    "pool": 3,
+    "closed": 2
    }
   }
  ]
