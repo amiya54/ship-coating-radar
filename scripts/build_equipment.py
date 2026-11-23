@@ -51,11 +51,14 @@ EQUIP_QUERIES = [
      '除锈 OR 喷砂 OR 除漆 OR 抛丸 船厂 OR 船舶 OR 船体', "zh"),
     ("中文机器人涂装",
      '喷涂机器人 OR 除锈机器人 OR 爬壁机器人 OR 涂装机器人 船舶 OR 船厂 OR 修船', "zh"),
-    ("涂层检测与测厚",
-     '"coating thickness" OR "dry film thickness" OR "coating inspection" '
-     'OR "holiday detection" shipyard OR hull OR ship', "en"),
-    ("中文涂装车间与涂装线",
-     '涂装车间 OR 涂装线 OR 喷漆房 OR 烘干房 船厂 OR 船舶', "zh"),
+    ("喷涂车间与作业设施",
+     'shipyard "paint shop" OR "blasting facility" OR "coating facility" OR "paint facility"', "en"),
+    ("涂装施工设备",
+     '"coating application" OR "paint application" OR "coating equipment" ship OR hull OR shipyard', "en"),
+    ("坞修涂装作业",
+     'drydock OR "dry dock" painting OR blasting OR coating "ship repair" OR refit', "en"),
+    ("中文修船涂装设备",
+     '修船 OR 坞修 涂装 OR 喷砂 OR 除锈 设备 OR 机器人', "zh"),
 ]
 
 
@@ -85,8 +88,8 @@ MARINE_RE = re.compile(
 EXCLUDE_RE = re.compile(
     r"automotive|car |vehicle|furniture|wood|-electric|EV |手机|家具|木材|"
     r"weapon|武器|导弹|"
-    r"hull cleaning|in-water cleaning|propeller cleaning|hull grooming|"
-    r"船体清洁|水下清洗|螺旋桨清洗|洗船体|"
+    r"hull cle|in-water cleaning|propeller cleaning|hull grooming|hull management|hull care|"
+    r"船体清洁|水下清洗|螺旋桨清洗|洗船体|飞行甲板|"
     r"waterjet (contract|propulsion|driven|system|order)|jet propulsion|喷水推进|"
     r"market (size|outlook|forecast|report|growth)|市场(规模|前景|展望|报告)|至20\d\d年",
     re.I)
@@ -256,10 +259,23 @@ def classify(title):
     return "other"
 
 
+# ★2026-11-23：机器人是最大的误判来源 —— 焊接、装配、探伤、船体清洁机器人
+#   都会命中「robot + ship」，但它们不是涂装装备。仅靠机器人命中的标题，
+#   必须再出现一条涂装/表面处理作业词才算数。
+ROBOT_RE = re.compile(r"机器人|robot|automated|无人", re.I)
+COAT_OP_RE = re.compile(
+    r"除锈|除漆|喷砂|抛丸|喷涂|喷漆|涂装|涂层|涂料|漆|打磨|探厚|测厚|"
+    r"rust|paint|coat|blast|surface prep|grind|laser|UHP|waterjet|高压水|干冰", re.I)
+
+
 def keep(title):
     if EXCLUDE_RE.search(title):
         return False
-    return bool(EQUIP_RE.search(title) and MARINE_RE.search(title))
+    if not (EQUIP_RE.search(title) and MARINE_RE.search(title)):
+        return False
+    if ROBOT_RE.search(title) and not COAT_OP_RE.search(title):
+        return False
+    return True
 
 
 def _gn_url(query, start, end, lang):
