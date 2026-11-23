@@ -1362,7 +1362,7 @@
   },
   {
    "date": "2026-11-23",
-   "items": 20,
+   "items": 18,
    "events": [
     {
      "cite": 1,
@@ -1387,118 +1387,104 @@
     },
     {
      "cite": 4,
-     "title": "LDC, Neptune Robotics partner on Robotic Hull Cleaning Programme - Comunicaffe International",
-     "url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxQbmljVWJrcVVESXNFazZhdzdLdWU3WndfYTQ0bndIclhETUJhekhVakFxWlZtdGQ3cTlONGE2R1JQYUg4R1pXWVFIdXZVUkZzb0tLbWNZcDRSSGdRRXE5TnA5bE5KaDNFdm9nRFZ5Y2JoZVBaeFRuc09sU1phLXNCVXk3TV95ZVlUYzZJUDVNZFc2WkRZWkRhM1I1ZklSM1JVWTBsT1FJQURwV21nb0lpWFRGYUpjWjd0NThXejRrdUVYS3gzeXRkMmVncnlUa3BkcHBNTy14QmZtSl93WVNKWHRVRFpLU1lNQ0t2dk84Yjk3cFNwYksydGhaeF9SVjBvXzh6S3ZmYlBDckQ3S3ZaYlZrMlBlZw?oc=5",
-     "src": "GN · 防污底公约与生物杀灭剂",
-     "stage": "other"
-    },
-    {
-     "cite": 5,
      "title": "Neptune Robotics to Test AI Hull Cleaning on Louis Dreyfus Vessels - Marine News Magazine",
      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOamJ1bEF1RHlVOUhBanhQUWp6aWdwTldPOXA5bXNYc1RCVkJHS1RnUTBhc0ZpZnNiQjF3NGNfTC1RUWE5NFFQWmxKQmNZczBvZmpXaV9TY1ZtTV96VEtLREtfQWgxNGFLTUFCRWxtREdyZElxRFUtV3lPbXFzMXVRblAzUQ?oc=5",
      "src": "GN · 防污底公约与生物杀灭剂",
      "stage": "testing"
     },
     {
-     "cite": 6,
+     "cite": 5,
      "title": "Louis Dreyfus Company to trial robotic hull cleaning - Smart Maritime Network",
      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPZ1l5am9VTjFkOUtqaGFOSGVvQ2Y1OGYwRUV3cTh3T1kyczNRRk5ndVpjYWRjbnlJdHNJa2RNbGNmNHJ6dXRWOHNldWRHd3gzMm5neGYydnlOZWstWTFtUjdTM0dLdjQxOXlBU3BQWkVSUVFpTG91bEhNR3lmaWRVVFVRWFkzRTdNb1FKOWxZSDRoaDNPb29CNFJWb1M3UQ?oc=5",
      "src": "GN · 防污底公约与生物杀灭剂",
      "stage": "testing"
     },
     {
-     "cite": 7,
+     "cite": 6,
      "title": "Louis Dreyfus joins robotic hull cleaning trials in Singapore - Splash247",
      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPSkplZGVVM0EzM05nNGxpSDdsTWIwVkVKejNBNWh2Mmlzai1HbkdjamJpbVNxdzFMUDB6WDFKRWp0R3g5SzA1VDZQajFscGh6VGlvTVNHY0NqRVhYdjR4MTI3ektPOTFxZTdLdlRWRy1mVmFDS3ltcldEREdTc3lXOWNIVE5pUjR4cXozRQ?oc=5",
      "src": "GN · 防污底公约与生物杀灭剂",
      "stage": "testing"
     },
     {
-     "cite": 8,
+     "cite": 7,
      "title": "Louis Dreyfus Company and Neptune Robotics Partner on Robotic Hull Cleaning Programme under the Maritime and Port Authority of Singapore's Innovation Programme - PR Newswire",
      "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxPalltb1NEc09BZDNERTEtWFRENXBHRWkxMWhKT2hQaTZjQmkxWlhmY29ZVkw0VU9CME5MLVVQdWVrZzZKd3FKOTlobHVSd1JPMmZYeTZsSVFxdkhCY2xheFpyc2NzSHZPQVFqSllqWl9BWUxaMVJLQzlnYTZaT0swQ21HTENORHNSYk1FUFkzNWJtU1Fnb2pVR2xkcW5ZcWU3c0daNUlLV0xLSUs1RjFaWV8yM3A3WW1iRkFWWFBUQlQtdkRjQnFzcHVYdy01eHlraV9WMmZoSTE3VkduTzZjc1J2c3VvcHd6LUtUNmEtakVjbjFGMEdUaWdBN21JRE5ncUJlY01DVzZTNnZ5TDNsRnlRRnJUMkhuWXZ2SWxwYlgtMGc4cGxlNzMzeVNucWV3YnNwc0lQWFEzOFJUN2VLcQ?oc=5",
-     "src": "GN · 船体清洁与污损管理",
+     "src": "GN · 防污底公约与生物杀灭剂",
      "stage": "other"
     },
     {
-     "cite": 9,
+     "cite": 8,
      "title": "ISO 6319 and the Shift from Reactive Hull Cleaning to Proactive Biofouling Management - Riviera Maritime Media",
      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQZ0F4TE1WZEhUanJocEhKaV8weHIxLXduVUUzVGZNOWJuRUhWZGd3bHUyaXg5V1V3UHBmZUhTdXBaaWhLQ2FpcWNWYWdUaGhienlZUS1KdWhZOC1lSzVmc0NPek1SUF9BVGtZX2JJMlVhMjRpTmYxRlRZUDU2STljVG84YXBpeG1vOEZQN1NfX19Ka1NFZkdSMWQyUHlrVjMtbGluc2ppOUs2eVd1U0UyZkhzclNXRi0wNVVvaHhObnZDQQ?oc=5",
      "src": "GN · 防污底公约与生物杀灭剂",
      "stage": "other"
     },
     {
-     "cite": 10,
+     "cite": 9,
      "title": "Proactive hull cleaning brings measurable fuel and emissions gains - Riviera Maritime Media",
      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPTTZ2dkdhV2M2TDVHWmVLOHp3RDJsSElQY3p6QWhCSkhwYWxUbGlRRGF2ZVJtRnlWbUtBM3FtaGxtWVF6YlpSdkVKQzZkakp6UG5EOVRVckhNNEN3ejVqSEpIcGpYZTU4RzlEY3FVcFk3QXNQd0doYmFxRmJ2YWxZQzNhaExkMWFTUGpSM3VjQVByRDhNNFFhaktoM2s4MHFBX2xfUENvZ3RpS3ZOYTBJTHdldkFlQQ?oc=5",
      "src": "GN · 防污底公约与生物杀灭剂",
      "stage": "other"
     },
     {
-     "cite": 11,
+     "cite": 10,
      "title": "Austal USA Selects Thrustmaster of Texas to Supply Bow Tunnel Thrusters for the U.S. Navy Vessels",
      "url": "https://www.marinelink.com/news/austal-usa-selects-thrustmaster-texas-544502",
      "src": "MarineLink",
      "stage": "planned"
     },
     {
-     "cite": 12,
+     "cite": 11,
      "title": "A 324-foot covered barge with a roof that slides open was built to hide the giant claw that reached for a sunken Soviet submarine, later hid the Navy's stealth ship while it was built and tested, and today works as a floating dry dock at a commercial shipyard on S - Autonocion",
      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNd0ZZNmdXazROdVN3cTBpU21VUTh2N09RZUxfZ0hwUjNHNURLQ0dSY0ZHSmJidVk1b1pSOWZuTV81WHdwdllEeUNOSmlkaWhTUHFvNU5ueU8tQUZQV2dHNXBWMzN1c3hOam9JdTVaUElZeUFVWlF6UERWaURMaExQdnFxZC1mMi01N3JrWjhGUzFzTHZ2WEt2SmQ5aFN5a2dlcHp1aVItUDhXZmYxX21VYnZVN04zcU0?oc=5",
      "src": "GN · 船厂喷涂与表面处理",
      "stage": "testing"
     },
     {
-     "cite": 13,
+     "cite": 12,
      "title": "Jotun to Supply Coatings for Knutsen LNG Newbuild Project - Marine News Magazine",
      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBVMlNEdFduZDVHcEZnNDEzOHZUQnlOT0pPWnhoU0YzMFJJMDVpV1o4NVFENWZjZm1yUGpCWEMtcUhQSVBZSXFvbW1takh5WnhpWEZLQnNUd3dxRHdNbVR2cVVxUDZjM2EtMUkzOTF3bnVNTzl2N1VXNzJ4SF8?oc=5",
-     "src": "GN · 船体清洁与污损管理",
+     "src": "GN · 船舶涂装总览",
      "stage": "other"
     },
     {
-     "cite": 14,
+     "cite": 13,
      "title": "The new digital paint for boats that pings a phone when there’s rust - Be Giant",
      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9lOEswb3hHTnFHMENXek5MT2VhbkV1eXpPTF9UOEFLNF9BLTZ6dHY0YzhNUGRqeEZNWXdFS3ZnRVYxeEwwNVEycnpyZEg4bEFnQlRseElTeVY3aEI0Smd3MzNHajBmUldwb0ptY29aWQ?oc=5",
      "src": "GN · 船级社涂装规范动态",
      "stage": "other"
     },
     {
-     "cite": 15,
+     "cite": 14,
      "title": "Jotun wins LNG carriers coatings deal - The Motorship",
      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQZE90bmRGSTgyYXFHc3B1bURCNG1nZV9EOW9VemZ4OU5DM3NBZlc4NGpRb19SbVE4N2R1b2ZWNGk0NEdvbEZqMnpuU1pCbWRDc0tRTlNXN21MYnZDMjdoUmI0OEhPV29QekVGTm1VMEpDWEVVMU1EZ2VabnNFSEp2Vkg1MnRPNFNreUFiWVFVcw?oc=5",
      "src": "GN · 船舶涂装总览",
      "stage": "other"
     },
     {
-     "cite": 16,
+     "cite": 15,
      "title": "Nippon Paint Marine Malaysia Partners with Shin Yang Trading - Coatings World",
      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPYThFdDI5U1FpTmpOX3dOMWY4SDBvT0t6Mjc4ckFSdG5vOThkSjdwUmUyb3BZeWhQUU5ya2ZoZmdiUzFVaUxFbG5xUWF0aGdkZUdHSHlVMW02blZUSXNLTXlGVldKMEdxZnRhd2wtUG5IUGlSSmh2MDQxNm5DSHpsMEI4T0QxTWJ4emw5ckxQSWZKNGlTRWlNTURGeFVGVkFPenlJQTRHcUM?oc=5",
      "src": "GN · 涂料供应商动态",
      "stage": "other"
     },
     {
-     "cite": 17,
+     "cite": 16,
      "title": "Grand Bahama Shipyard Completes $600 Million Expansion, Adding Two Floating Dry Docks - Caribbean Journal",
      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5ybURJOXBLZnVhQmx1QUc3M0NYMkFIU3ZYVlk3RzV4V2FwY1VObm5iNDIwTW1TM2RoSUgtc2VuVFRpNzZBS2lyOWc4UjRsT29GOGJXXy1GOFdxREdrdzE2REJ4MERlLWRZTHZ1WDhtRFhtay1O?oc=5",
      "src": "GN · 船厂喷涂与表面处理",
      "stage": "operating"
     },
     {
-     "cite": 18,
+     "cite": 17,
      "title": "Nippon Paint India to Launch NIPPON CERAMO, Expanding Its Marine Coatings Portfolio - Coatings World",
      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOMFFna3FyalljZ05iRHViN1hJX19mcjBIc0tEWHJJcmZ3NEE4a21WcDN4YlZxSzc5eW9SaGFjUklhLVROQW03dG51bkFJNUdkU2tBWXZ3ejZyNS04TDNKNUxvX2hWVWtINldieGM5eXpuYzQ5V09SRkVLVGZYWUcyTjVSdG9HZTFoLVQzZnMzTlAxTV96amstdU1wTmUwWlVtWG1MdHJqQ05pcjZyVURHQTNDQ2I2MWxJc0dBU2tXbFBfNFlpN0E?oc=5",
      "src": "GN · 船舶涂装总览",
      "stage": "operating"
     },
     {
-     "cite": 19,
-     "title": "Matthieu Perrotin as MacKinnon's d-comm; Lisa Marykuca is parliamentary affairs secretary assistant to PSPC - iPolitics",
-     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9NYUhUaE12MXBHVUJVWkF1blpPMkZaMTg0cmpHZnY2VEJLTkFaeXZkUE8xVHVnX2RFeG5peHFrRS1HT1VPVHNjcHZtbnc5Z1Q4WkJ3RlA1blBiRkJlMFBMWlY5SVIzc2c0Z2Vwdzk0aDdsZEhvRG8yVG5vd2l2QQ?oc=5",
-     "src": "GN · PSPC与涂层标准",
-     "stage": "other"
-    },
-    {
-     "cite": 20,
+     "cite": 18,
      "title": "Tanker inferno greets UN oceans advocate’s swim through Hormuz",
      "url": "https://splash247.com/tanker-inferno-greets-un-oceans-advocates-swim-through-hormuz/",
      "src": "Splash 247",
