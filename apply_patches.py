@@ -2195,16 +2195,23 @@ def patch_search_feedback(root, log):
 
 
 # ──────────────────────────────────────────────────────────────────────
-# ★补丁N：船舶涂装主题闸门（2026-11-19）
+# ★补丁N：船舶涂装主题闸门（2026-11-19，v2 修订 2026-11-23）
 #   问题：词表命中即入报，导致「State Elections 对涂料行业的影响」「蛋壳涂层
 #   降低木材火灾风险」「IMO 净零框架」「邮轮母港协议」等泛词条目混入报告。
 #   闸门：标题必须满足以下之一才能进任何词组——
 #     ① 强船舶涂装词（antifouling / marine coating / shipyard / 船舶涂料 / 坞修…）
 #     ② 同时含「船舶语境词」与「涂装语境词」（ship+coating、船+漆…）
 #   实现：注入到 matches_word_groups() 最前面，早于任何词组判断。
+#
+#   ★v2（2026-11-23）：PSPC 从「强词」里摘出来单独判 ——
+#   用户点名 2026-11-23 期「法规原文」唯一一条是
+#   「…parliamentary affairs secretary assistant to PSPC - iPolitics」，
+#   即加拿大公共服务与采购部（Public Services and Procurement Canada）的
+#   人事任命报道。缩写撞车导致它靠 ① 直接过闸，又被词表的 /\bpspc\b/
+#   塞进「法规原文」。现在 PSPC 必须同时带涂层/船舶语境才算数。
 # ──────────────────────────────────────────────────────────────────────
 N_GATE_FUNC = r'''
-# ═══════════ 补丁N：船舶涂装主题闸门（用户 2026-11-19 要求）═══════════
+# ═══════════ 补丁N v2：船舶涂装主题闸门（2026-11-19 立，2026-11-23 修订）═══════════
 _N_MARINE_RE = re.compile(
     r"ship|vessel|marine|maritime|shipyard|shipbuilding|dockyard|drydock|dry dock|"
     r"hull|ballast|freighter|barge|naval|newbuild|newbuilding|fleet|"
@@ -2213,21 +2220,31 @@ _N_MARINE_RE = re.compile(
     r"舰|艇|航运|海船|渔船|游艇", re.I)
 _N_COATING_RE = re.compile(
     r"coat|paint|primer|epoxy|zinc|antifoul|fouling|blasting|surface prep|"
-    r"dft|voc|solvent|corrosion|rust|spray|ceramic|silicone|curing|linings?|"
+    r"dft|\bvocs?\b|solvent|corrosion|\brust|spray|ceramic|silicone|curing|linings?|"
     r"涂层|涂料|涂装|油漆|漆|防污|污损|喷涂|喷砂|抛丸|除锈|防腐|防锈|"
-    r"膜厚|固化|voc|无组织|附着力|车间底漆", re.I)
+    r"膜厚|固化|无组织|附着力|车间底漆", re.I)
 _N_STRONG_RE = re.compile(
     r"antifouling|anti-fouling|marine coat|shipyard|drydock|hull clean|"
-    r"ballast tank coat|painted hull|\bpspc\b|afs convention|ship paint|marine paint|"
+    r"ballast tank coat|painted hull|afs convention|ship paint|marine paint|"
     r"船舶涂料|船舶涂装|防污漆|防污涂料|坞修|涂装工艺|无组织排放|修船|"
     r"ship.?building|hull fouling", re.I)
+# ★v2：PSPC 是歧义缩写（加拿大公共服务与采购部 / 保护涂层性能标准），
+#   不能再当无条件强词；必须与涂层或船舶语境共现才认。
+_N_PSPC_RE = re.compile(r"\bpspc\b", re.I)
+_N_PSPC_CTX_RE = re.compile(
+    r"coat|paint|ballast|cargo tank|hull|shipyard|shipbuild|shipown|\bships?\b|vessel|"
+    r"marin|imo|msc\.?\s?\d|protective|corrosion|foul|"
+    r"涂装|涂层|涂料|压载舱|货油舱|船舶|船体|防腐|防锈|性能标准", re.I)
 
 def _n_marine_coating_gate(title):
     """船舶涂装主题闸：非船舶涂装条目直接拒绝，防止泛词混入报告。"""
     if not title:
         return False
-    return bool(_N_STRONG_RE.search(title)
-                or (_N_MARINE_RE.search(title) and _N_COATING_RE.search(title)))
+    if _N_STRONG_RE.search(title):
+        return True
+    if _N_PSPC_RE.search(title) and _N_PSPC_CTX_RE.search(title):
+        return True
+    return bool(_N_MARINE_RE.search(title) and _N_COATING_RE.search(title))
 # ═════════════════════════════════════════════════════════════════════
 
 '''
@@ -2239,26 +2256,40 @@ N_GATE_CALL = ("    title_lower = title.lower()\n\n"
                "        return False\n")
 
 
+N_GATE_VER = "# ═══════════ 补丁N v2"
+
+
 def patch_topic_gate(root, log):
-    """★补丁N：往 frequency.py 注入船舶涂装主题闸门。"""
+    """★补丁N：往 frequency.py 注入船舶涂装主题闸门（v2 可原地升级）。"""
     path = os.path.join(root, "trendradar", "core", "frequency.py")
     if not os.path.exists(path):
         log.append("  ✗ [N] 找不到 trendradar/core/frequency.py，跳过")
         return
     text = read(path)
-    if "_n_marine_coating_gate" in text:
-        log.append("  = [N] 主题闸门已打过，跳过")
+    if N_GATE_VER in text:
+        log.append("  = [N] 主题闸门 v2 已打过，跳过")
         return
     if "def matches_word_groups(" not in text or N_GATE_ANCHOR not in text:
         log.append("  ✗ [N] 找不到 matches_word_groups 锚点，跳过（防半改）")
         return
+
+    # 旧版（v1）注入块若在，先整块剥掉再重装，避免同函数定义两份。
+    #   块的头是「补丁N：」，尾紧贴 def matches_word_groups(。
+    stale = text.find("# ═══════════ 补丁N：")
+    if stale >= 0:
+        end = text.find("def matches_word_groups(", stale)
+        if end > stale:
+            text = text[:stale] + text[end:]
+
+    # 调用点：若旧块已带过调用就别重复插（同一个 title_lower 锚点只能插一次）
+    if "★补丁N：船舶涂装主题闸门" not in text:
+        text = text.replace(N_GATE_ANCHOR, N_GATE_CALL, 1)
+
     # 函数定义插到 matches_word_groups 之前（模块级定义）
     text = text.replace("def matches_word_groups(",
                         N_GATE_FUNC + "def matches_word_groups(", 1)
-    # 调用插到 title_lower 之后（第一个匹配处即 matches_word_groups 内）
-    text = text.replace(N_GATE_ANCHOR, N_GATE_CALL, 1)
     write(path, text)
-    log.append("  ✓ [N] 船舶涂装主题闸门已注入（标题须含船舶+涂装语境）")
+    log.append("  ✓ [N] 船舶涂装主题闸门 v2 已注入（PSPC 须带涂层语境）")
 
 
 def main():

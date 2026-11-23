@@ -283,9 +283,11 @@ rss:
       url: "https://news.google.com/rss/search?q=%22marine+coatings%22+OR+antifouling+OR+%22anti-fouling%22+OR+%22foul+release%22+ship+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # PSPC 主线：压载舱 / 货油舱涂层性能标准
+    #   ⚠️ 2026-11-23：裸 PSPC 会搜到加拿大公共服务与采购部（同名缩写）的
+    #      人事新闻，故 PSPC 分支一律改为 "PSPC" + coating 双词约束。
     - id: "gnews-pspc"
       name: "GN · PSPC与涂层标准"
-      url: "https://news.google.com/rss/search?q=PSPC+OR+%22performance+standard+for+protective+coatings%22+OR+%22ballast+tank+coating%22+OR+%22cargo+tank+coating%22+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22PSPC%22+coating+OR+%22performance+standard+for+protective+coatings%22+OR+%22ballast+tank+coating%22+OR+%22cargo+tank+coating%22+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # 防污底公约与生物杀灭剂合规（AFS / BPR / cybutryne / 船体清洗）
     - id: "gnews-afs"
@@ -369,7 +371,7 @@ rss:
     #   措施三：词表与 AI 提示词把渔船/游艇类法规整体排除。
     - id: "gnews-coatreg"
       name: "GN · 涂层标准与法规动态"
-      url: "https://news.google.com/rss/search?q=PSPC+OR+%22performance+standard+for+protective+coatings%22+OR+%22protective+coatings%22+IMO+amendment+OR+resolution+OR+guideline+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22PSPC%22+coating+OR+%22performance+standard+for+protective+coatings%22+OR+%22protective+coatings%22+IMO+amendment+OR+resolution+OR+guideline+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "govuk-coating"
       name: "GOV.UK · 涂装关键词公告"
@@ -397,7 +399,7 @@ rss:
 
     - id: "gnews-tankcoat"
       name: "GN · 压载舱与货油舱涂层"
-      url: "https://news.google.com/rss/search?q=%22ballast+tank%22+coating+OR+%22cargo+tank%22+coating+OR+PSPC+OR+%22tank+coating%22+ship+inspection+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
+      url: "https://news.google.com/rss/search?q=%22ballast+tank%22+coating+OR+%22cargo+tank%22+coating+OR+%22PSPC%22+coating+OR+%22tank+coating%22+ship+inspection+when:14d&hl=en-US&gl=US&ceid=US:en&num=100"
 
     # ★装备专项线（2026-11-20）：修造船除锈/除漆、喷漆先进设备。
     #   闸门已保证船舶相关性，查询用「船体/船厂 + 装备词」双语境卡位。

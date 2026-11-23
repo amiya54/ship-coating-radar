@@ -54,7 +54,11 @@
 实施指南
 征求意见
 材料与焊接
-/\bpspc\b/
+# ⚠️ PSPC 是歧义缩写：既是「保护涂层性能标准」，也是加拿大公共服务与采购部
+#    （Public Services and Procurement Canada）。2026-11-23 期实测，
+#    裸写 /\bpspc\b/ 把「…parliamentary affairs secretary assistant to PSPC」
+#    这条人事任命报道直接塞进了「法规原文」栏。改为必须与涂层/船舶语境共现。
+/(?=.*\bpspc\b)(?=.*(涂装|涂层|涂料|防腐|防污|protective coat|performance standard|ballast|压载舱|货油舱|coating|paint|imo|msc))/
 /\bafs\b/
 # ★筛选收紧（2026-11-19）：用户点名商船与渔船类公告与涂装无关。
 #   排除词让命中渔船/游艇的条目连本组都进不去，落到后面组；
@@ -85,7 +89,8 @@ cybutryne
 性能标准
 performance standard
 protective coating
-/\bpspc\b/
+# ⚠️ 同 [法规原文] 组：PSPC 必须带涂层语境，防「加拿大公共服务与采购部」撞词
+/(?=.*\bpspc\b)(?=.*(涂装|涂层|涂料|防腐|防污|protective coat|performance standard|ballast|压载舱|货油舱|coating|paint|imo|msc))/
 MSC.215
 MSC.288
 ballast tank coating
