@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-23",
- "ai_summary": "从近一年清单看，船舶涂装装备的主线是激光清洗、喷砂抛丸机器人化和喷涂自动化，但多数事件仍处发布、试验或局部部署阶段，不能把单条新闻等同于成熟工艺。激光除锈与清洗方面，清单有舟山中远海运重工在64000吨散货船项目“用上新工艺”（2026-11-16）和“新一代双高脉冲船舶涂装激光清洗设备正式发布”（2026-11-10）两条，前者属项目应用，后者属刚发布；报道密度中等、实船批量数据不足，成熟度判断为早期至试点应用。对造船线，较适合分段、焊缝和局部区域的除锈清洗；对修船坞，适合局部除锈与清洗作业，但清单未给效率、除锈等级和批量应用数据，适用性仍需实船验证。超高压水/干冰/海绵除漆该线近一年未见报道；常识推断，这类工艺在修船坞外板除漆和局部返工中仍有现实需求，但本清单不足以判断装备成熟度。喷砂抛丸与磨料方面，清单出现沪东中华国产化抛丸机器人实船应用试验（2026-10-26）、C&C Marine and Repair机器人喷砂设施完成700艘驳船（2026-04-28）、HII引入机器人做打磨喷砂喷涂（2026-04-09）和Seaspan合作自动化喷砂喷涂（2026-02-26）；有试验、批量设施和船厂部署，报道密度最高，相对较成熟，但磨料本身未见专门报道。该线对造船线适合分段和舱室抛丸喷砂，对修船坞适合驳船及外板批量除漆除锈，700艘驳船一项说明批量修船场景已有实践。机器人与自动化作业方面，清单有海桓科技首发船底除锈与涂装机器人（2026-11-08）、具身智能船舶喷涂机器人亮相（2026-10-17，报道称“全球首个”）、Raise Robotics开发船厂涂装机器人（2026-09-16），并与上述抛丸、喷砂、喷涂部署交叉；报道密度高，覆盖开发、发布、试验和批量设施，但具身智能等仍偏早期，整体是较活跃但未全面普及。对造船线适合分段打磨、喷砂和喷涂，对修船坞适合船底除锈涂装及驳船批量作业。喷涂与固化设备方面，清单有PPG静电喷涂应用白皮书（2026-06-02）以及机器人喷涂发布/开发报道，喷涂以应用论证和机器人集成为主；固化设备近一年未见报道，常识推断固化是涂装质量关键环节，但本清单无装备事件可判成熟度。对造船线，喷涂设备可面向分段涂装，修船坞可面向外板与舱室喷涂；固化设备对两线的适用性暂无法由清单判断。",
+ "ai_summary": "激光除锈与清洗方面，清单近一年有两条事件：2026-11-16报道舟山中远海运重工在64000吨散货船项目采用激光“洗”锈新工艺，2026-11-10报道新一代双高脉冲船舶涂装激光清洗设备发布。前者是单船项目应用，后者是设备发布，尚看不到批量船队或坞内规模化报道，成熟度判断为早期偏试用。对造船线可用于新建船涂装前表面处理验证；修船坞锈蚀和旧涂层工况更复杂，适配性需靠实船试验积累，当前清单不足以证明批量适用。\n\n超高压水/干冰/海绵除漆方面，该线近一年未见报道。常识推断，修船坞和造船线均有除漆、清洗需求，但本清单无法判断这些装备的实际应用与成熟度。\n\n喷砂抛丸与磨料方面，清单事件集中在抛丸/喷砂机器人及设施：2026-10-26沪东中华完成国产化抛丸机器人实船应用试验；2026-04-28报道C&C Marine and Repair机器人喷砂设施完成700艘驳船；2026-04-09、2026-02-26分别报道HII、Seaspan引入机器人自动化喷砂涂装；2026-10-26另有韩华费城造船厂推进涂装·喷砂作业区扩大。报道密度高，且有700艘驳船批量化数字（2026-04-28报道）和实船试验，成熟度判断为较成熟，但试验与批量并存。造船线适用于分段和船体表面处理自动化；修船坞在驳船等批量修理场景已有验证，非标船型仍需评估。清单未单列磨料技术进展。\n\n机器人与自动化作业方面，2026-11-08海桓科技首发船底除锈与涂装机器人，2026-10-17报道具身智能船舶喷涂机器人亮相，2026-09-16报道Raise Robotics开发船厂涂装机器人，另有韩国AI-RAN焊接涂装机器人实证、川崎重工焊接涂装自动化机器人实证等。整体报道密度高，但多为发布、研发和实证，除与喷砂抛丸交叉的机器人外，批量实船应用证据有限，成熟度为早期至局部试用。造船线适合重复性分段焊接涂装自动化；修船坞适合船底、外板等场景，但需现场适配。\n\n喷涂与固化设备方面，清单中喷涂侧有2026-06-02 PPG白皮书讨论船舶行业静电涂装应用效益，以及多条喷涂机器人、自动化喷涂报道；固化设备近一年未见报道。喷涂设备多处于应用研究、机器人集成和实证阶段，成熟度早期偏验证；固化无法由清单判断，常识推断其与涂料体系和环境控制相关，但本清单不足以评估。造船线可关注静电涂装与自动化喷涂在新建船涂装线的适配；修船坞可关注机器人喷涂在坞内和外板的试用，固化设备需另行验证。",
  "ai_date": "2026-11-23",
  "items": [
   {
@@ -15,7 +15,7 @@
    "t": "新一代双高脉冲船舶涂装激光清洗设备正式发布 - 国际科技创新中心",
    "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5xMnNqVVdWd0t5Rktsbjl4TjVyZ2FyRTV3STNraEJDazF0NGExNXY4d0RMeVBpNFpwRzY3bTZ1XzB3MmJuTU5kek1VVElnVXVvY2NpdEtSTV9wbnJ3czEtWXJFeVloYnJHdDFyZ01mRTc?oc=5",
    "s": "船厂检索·大船厂甲",
-   "n": 5
+   "n": 9
   },
   {
    "d": "2026-11-08",
@@ -29,6 +29,13 @@
    "t": "沪东中华完成国产化抛丸机器人实船应用试验- 船厂动态 - 国际船舶网",
    "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9MVG1tVlRscnVXeGhCXzNsZ21PU0U5OFdOTHZnOEs0WE1pc0EycVNvV3hYSXJVMV9pOFJTVGh3d1dXV2tiNjVreDNtUlQ3YWxNRmt4ZXBuSEdvVDdqLXlMWXhCd2lDXzJ3TnVMOHExTEg?oc=5",
    "s": "GN · 修船除锈与涂装装备中文",
+   "n": 1
+  },
+  {
+   "d": "2026-10-26",
+   "t": "[한화] 한화 필리조선소 도장·블라스팅 작업구역 확대 추진 - www.ebn.co.kr",
+   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFB2STlxQTZUZkwzSEUtUW9wTDg0LWlxMVNTSWZQZ2xqcGR0LVdSTmpWLW8xUmprRFpEbDYzWG9ZTlA5N2c3c00ySElFd0ZGWFAyZUN6SHlZVkN3a3pidXhZNEUwT2ZjQlVB?oc=5",
+   "s": "韩日检索·韩媒喷砂除锈",
    "n": 1
   },
   {
@@ -46,6 +53,34 @@
    "n": 1
   },
   {
+   "d": "2026-09-10",
+   "t": "“조선소 로봇 용접·도장 작업 애로 없도록”...정부, 지능형 기지국 설치 추진 - 로봇신문",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1lUE4zOHE5QTVVZ1ZQa21tSEF0Nm9WdU1kTTdJbF9QcmtqZ00teUlEdVVTLWJ6YW5aWXNQb2V6SDY3d1pHaTRfTTFPQmVtMnpsSlZjcENybllyUkhXcTA4LUE4QUhWWkthQTNwVA?oc=5",
+   "s": "韩日检索·韩媒涂装机器人",
+   "n": 1
+  },
+  {
+   "d": "2026-09-10",
+   "t": "HD현대삼호 조선소에 AI 용접·도장 로봇…AI-RAN 실증 - 신아일보",
+   "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9XbE1ocXlxdGQ1VDdwNkNoSkxhZ3REVFFVRzl4WWtnb2pWTi1vcjduUlZ5bHdFNDVxNUhXQmYxb1pFSjUtYU12RDhyTVoyaDBqWVNlS2tpVEljaUdXMkxkV2dxcDFCdko5OEJCMU9OMFM?oc=5",
+   "s": "韩日检索·韩媒涂装机器人",
+   "n": 2
+  },
+  {
+   "d": "2026-09-10",
+   "t": "`AI 기지국` 만나 똑똑해진 로봇…조선소 용접·도장 실증 - 디지털데일리",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9PM2pjelotTkVobkUwYUlHX2t4WDRwVXdOcjMzVGlUZFJFZndkcGd1dEl5MUpiaVdPNTVxZHN3X3VtdFBXdEFMaldVbjZoZXUzWWVrS3VGejBKYVQ3ZlVzR1R3?oc=5",
+   "s": "韩日检索·韩媒涂装机器人",
+   "n": 2
+  },
+  {
+   "d": "2026-08-26",
+   "t": "川崎重工業 溶接・塗装自動化ロボット 造船企業などに展開 坂出で実証、AI開発も（日刊産業新聞） - Yahoo!ニュース",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9HRUdlc2x0bU1oQXNSa2FWV1dZSndpVVVPWWZfdGhVOWhNOWkwVkVmTmMwTGdBcE45dEpTZEFYRW9IUnB3MVdUcEV4M1NZWVRJeUxwME9HMnRmc1RmWjgxWXl6MG50U21TMHVpWXl4UVl1Y1o4LTVmbTRGRTB4cFU?oc=5",
+   "s": "韩日检索·日媒涂装机器人",
+   "n": 1
+  },
+  {
    "d": "2026-06-02",
    "t": "PPG white paper highlights benefits of electrostatic coating application to marine industry - PPG Industries",
    "u": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNaW5ZejdXcEpwNDN3cUkzTzZWeFotaTdtX3NtYkJkbDJaMXJfVkNocVpEeGNkb1pjS1RRSVVfaUJxeWR1cTBBQkliTmdOVHJ2VktaQUl2dDIyVU4xaXZkWVpKVXAweU51UUlfaVpyLUMteWprNzNnQ2Q1S1lZYy1FNTFXVUIyMFFndEl1U1IyM2Qxb1lKLUlkc2I1RlhpeVhmM1VqOVFhZmhqN1J1M3NCZ2lEZENNQ3Y2TVN3dFM1Ml91clpvWmZabDlKcmU4NWJvQnczMlhWWWZ0M3NwWTZHSG8xaUdTWVE?oc=5",
@@ -60,6 +95,13 @@
    "n": 1
   },
   {
+   "d": "2026-05-14",
+   "t": "용접 로봇·도장 VR…‘K-조선’ 최신 기술 관람 [현장영상] - KBS 뉴스",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9VYTVnSm5oNkhQOERuRXR0VXduUE83TnB2eHc1aG8wM3pKaTJyNHpYcEppUGppWjVYUjJjTTZLdHBCaDlQNW5hdFhZbGN5NjZ1anFNYlN4cV93Qm8?oc=5",
+   "s": "韩日检索·韩媒涂装机器人",
+   "n": 1
+  },
+  {
    "d": "2026-04-28",
    "t": "C&C Marine and Repair's Robotic Blast Facility Completes 700 Barges - Marine News Magazine",
    "u": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQLWEzeUQ4RTV0VXlSeXcweUZBTHo2bEFEdUVNX0s3WENnTGRpYUhfQnBtazR4ZGg3OGIxVC1QVkZpQ2tYNnZ4Vnl0MzhjckJRdUxCUWVqUDdJTDhrbUxqS21tcXRxMkV3WjFYU0xyWGw3VGNHZzVMdFUtZjc1WF9aT3Vvbm1fZw?oc=5",
@@ -71,6 +113,13 @@
    "t": "HII Brings In Robotics for Shipyard Grinding, Blasting and Painting - The Maritime Executive",
    "u": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOS3ZORmQwNzJmQm95TDZQTElnbF9FQlJVMVFYdkNDNzVlNzZXM3FBVUEtTms0c3ZCZ2RHSG4zWjJVemV3YVZudFU3VmhFRHlLcDRJRlcwZzZvNm03V3ZlbXgwdlEyOGlyd3pSRzQyMEFOLVRPOVJZWVlYbTZpcEt0TWh0M0tZSEpNZHQ3c1JEbTVUTFVKMndOQ0ZVNzRkaEtUUWFsT2toUzI?oc=5",
    "s": "GN · 船厂喷涂与表面处理",
+   "n": 1
+  },
+  {
+   "d": "2026-03-31",
+   "t": "'HD현대 파트너' HII, 선박 표면처리 공정에 자동화 기술 적용 - 더구루",
+   "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1pOFpHTlp3bV9VeENKQUZNbWJId204Z2NvRk4xTnV5MnBUay1uUGhiUmZ1Zkg1dXoxaUdNN21LcHloMWJUaDJrcGd6TElZXzRSVUdHdXNtbGZkbXN5?oc=5",
+   "s": "韩日检索·韩媒喷砂除锈",
    "n": 1
   },
   {
