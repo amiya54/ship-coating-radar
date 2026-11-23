@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-23",
- "ai_summary": "激光除锈与清洗线近一年未见报道。清单无激光试验或实船应用，无法归纳效率、等级；常识推断仅适合船厂薄板/焊缝和修船局部低尘清理，成熟度早期，造船宜作补充，修船坞宜定点使用，不宜作主工艺。\n\n超高压水/干冰/海绵除漆线近一年未见直接报道。清单仅有2026-04-08 Kongsberg “largest-ever waterjet contract”归uhp类，标题未说明用于除漆，不能作成熟度证据；干冰、海绵无报道。常识推断该路线在修船坞外板及敏感区域有低尘优势，但废水固废收集和效率受限，按早期试用看；造船线适用性弱于修船。\n\n喷砂抛丸与磨料线报道密度较高。2026-10-26沪东中华完成国产化抛丸机器人实船应用试验，属造船线验证；2026-04-28、04-27 C&C Marine and Repair机器人喷砂设施完成“700 barges”（报道原文），显示修船/驳船批量喷砂较成熟；2026-04-09 HII、2026-02-26 Seaspan推进打磨喷砂喷漆自动化。总体较成熟但分工明显：修船坞已有批量喷砂设施，造船线处抛丸机器人试验和产线导入。\n\n机器人与自动化作业线最密集。Neptune Robotics与Louis Dreyfus在新加坡MPA创新计划下做AI船体清洁实船试验/规模化试用（2026-11-23多篇、11-20、11-17）；HD Hyundai发布全流程机器人船体管理方案（2026-06-18），HII联合GrayMatter与Path推进机器人造船（2026-08-07），韩国推进“未来智能先进船厂”（2026-07-26）。船体清洁机器人报道多且进入实船试验，修船端较成熟；船厂建造机器人多为项目/试验，处早期到中期导入。修船坞优先清洁除锈喷漆，造船线优先打磨抛丸及分段产线，需匹配节拍。\n\n喷涂与固化设备线近一年未见专门报道。清单只在HII（2026-04-09）与Seaspan（2026-02-26）自动化喷砂喷漆标题中提及喷涂，未给固化设备、参数或应用数字，不能判成熟度。常识推断修船坞更适合柔性移动式喷涂与局部固化，造船线更易做喷砂—喷涂—固化连续工位，但当前按早期导入看，需补实船/车间验证。",
+ "ai_summary": "激光除锈与清洗方面，清单内近一年无对应报道，该线近一年未见报道；不能据此判断已批量应用。常识推断，激光清洗多用于修船局部除锈、油污和焊缝清理，受效率成本限制常作喷砂/抛丸补充；对造船线适合薄板局部清理，对修船坞适合不宜大面积喷砂的局部作业。\n\n超高压水/干冰/海绵除漆方面，清单“uhp”类仅见Kongsberg水射流合同，未指向除漆，故该线近一年未见报道。常识推断，修船坞超高压水除漆在环保减排下较常见，干冰、海绵多用于局部或敏感表面；造船线以钢材预处理为主，此类工艺较少。\n\n喷砂抛丸与磨料方面，清单显示在用机器人化喷砂/抛丸：沪东中华完成国产化抛丸机器人实船应用试验（国际船舶网），C&C机器人喷砂设施累计完成700艘驳船（C&C报道），HII、Seaspan将机器人用于磨削、喷砂和喷涂，磨料侧仅有市场展望（IndexBox）。成熟度上，抛丸/喷砂机器人已有实船试验和批量设施，处试验向批量过渡、局部较成熟；磨料报道仅反映需求。适用性上，造船线适合分段预处理和舱内作业，修船坞适合外板除漆和粗糙度恢复，700艘驳船案例说明批量修船可行。\n\n机器人与自动化作业方面，清单报道密度最高。Louis Dreyfus与Neptune Robotics在新加坡MPA创新计划下试验船体清洁，多条报道显示规模化试验；HD Hyundai发布全机器人端到端船体管理方案（Marine Insight），属刚发布；韩国未来智能船厂、日韩机器人上阵、HII与GrayMatter/Path合作造船偏项目开发；C&C的700艘驳船及HII、Seaspan项目显示局部环节已有批量或项目应用。成熟度分化：船体清洁处试验/推广，喷砂抛丸局部较成熟，造船全流程仍早期。适用性上，造船线先落在磨削、喷砂、喷涂和分段作业，修船坞更直接是船体清洁和除漆喷砂。\n\n喷涂与固化设备方面，清单无独立喷涂/固化设备发布，喷涂仅作为HII、Seaspan机器人集成工序出现，固化设备未见提及。成熟度偏早期，属自动化项目配套集成。适用性上（常识推断），造船线适合分段和舱室自动喷涂，修船坞适合大面积喷涂但需适应船型多变，固化设备需匹配涂料体系。",
  "ai_date": "2026-11-23",
  "items": [
   {
@@ -34,7 +34,7 @@
    "s": "GN · 防污底公约与生物杀灭剂"
   },
   {
-   "d": "2026-11-20",
+   "d": "2026-11-23",
    "t": "LDC, Neptune Robotics partner on Robotic Hull Cleaning Programme - Comunicaffe International",
    "u": "https://news.google.com/rss/articles/CBMilgJBVV95cUxQbmljVWJrcVVESXNFazZhdzdLdWU3WndfYTQ0bndIclhETUJhekhVakFxWlZtdGQ3cTlONGE2R1JQYUg4R1pXWVFIdXZVUkZzb0tLbWNZcDRSSGdRRXE5TnA5bE5KaDNFdm9nRFZ5Y2JoZVBaeFRuc09sU1phLXNCVXk3TV95ZVlUYzZJUDVNZFc2WkRZWkRhM1I1ZklSM1JVWTBsT1FJQURwV21nb0lpWFRGYUpjWjd0NThXejRrdUVYS3gzeXRkMmVncnlUa3BkcHBNTy14QmZtSl93WVNKWHRVRFpLU1lNQ0t2dk84Yjk3cFNwYksydGhaeF9SVjBvXzh6S3ZmYlBDckQ3S3ZaYlZrMlBlZw?oc=5",
    "s": "GN · 防污底公约与生物杀灭剂"
