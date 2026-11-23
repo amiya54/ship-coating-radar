@@ -430,8 +430,10 @@ rss:
       url: "https://news.google.com/rss/search?q=%22shop+primer%22+OR+%22steel+pretreatment%22+OR+%22surface+preparation+line%22+OR+%22shot+blasting+line%22+shipbuilding+OR+steel+OR+shipyard&hl=en-US&gl=US&ceid=US:en&num=100"
 
     - id: "gnews-cn-newprod"
-      name: "GN · 中文涂料新品与产线动态"
-      url: "https://news.google.com/rss/search?q=%E8%88%B9%E8%88%B6%E6%B6%82%E6%96%99+%E6%96%B0%E5%93%81+OR+%E8%88%B9%E6%BC%86+%E5%8F%91%E5%B8%83+OR+%E6%B6%82%E6%96%99+%E6%8A%95%E4%BA%A7+OR+%E6%B6%82%E6%96%99+%E7%94%9F%E4%BA%A7%E7%BA%BF+%E8%88%B9%E8%88%B6&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
+      name: "GN · 中文涂装线与喷涂车间"
+      # 2026-11-23 实跑「船舶涂料+新品/发布/投产」组合返回 0（组词太严），
+      # 换成行业里真实出现的说法；陆上涂装线新闻由词表+主题闸门兜底过滤。
+      url: "https://news.google.com/rss/search?q=%E6%B6%82%E8%A3%85%E7%BA%BF+OR+%E6%B6%82%E8%A3%85%E8%BD%A6%E9%97%B4+OR+%E8%88%B9%E5%8E%82+%E5%96%B7%E6%B6%82&hl=zh-CN&gl=CN&ceid=CN:zh-Hans&num=100"
 
     # ── 涂装行业垂直媒体（实测有原生 RSS，2026-11-11 验证 200）──
     #   European Coatings：欧洲涂料行业门户，单次可抓 190+ 条，量大；
