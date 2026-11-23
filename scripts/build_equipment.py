@@ -337,6 +337,59 @@ def fetch_gn(feeds, days, windows=6):
     return out
 
 
+# 垂直媒体 RSS：这些站的 RSS 只给最近 10-50 条，但装备选题密度高，
+# 主报告 14 天窗口会把稍旧的条目丢掉，这里按一年窗口直接扫一遍补召回。
+EQUIP_RSS = [
+    ("The Maritime Executive", "https://www.maritime-executive.com/articles.rss"),
+    ("MarineLink", "https://www.marinelink.com/news/rss?Take=50"),
+    ("Seatrade Maritime", "https://www.seatrade-maritime.com/rss.xml"),
+    ("Drydock Magazine", "https://www.drydockmagazine.com/feed"),
+    ("Splash 247", "https://splash247.com/feed/"),
+    ("Marine Insight", "https://www.marineinsight.com/feed/"),
+]
+
+
+def fetch_rss_equip(days):
+    """扫垂直媒体 RSS，按装备口径过滤（不受主报告 14 天窗口限制）。"""
+    direct = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    default = urllib.request.build_opener()
+    out = []
+    today = dt.date.today()
+    for name, url in EQUIP_RSS:
+        xml = None
+        for op in (direct, default):
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                xml = op.open(req, timeout=25).read()
+                break
+            except Exception:                # noqa: BLE001
+                continue
+        if xml is None:
+            print(f"  ⚠️ RSS {name} 拉取失败，跳过")
+            continue
+        got = 0
+        try:
+            root = ET.fromstring(xml)
+            for it in root.iter("item"):
+                t = (it.findtext("title") or "").strip()
+                u = (it.findtext("link") or "").strip()
+                pd = it.findtext("pubDate") or ""
+                try:
+                    d = email.utils.parsedate_to_datetime(pd)
+                except Exception:
+                    continue
+                if d.tzinfo is None:
+                    d = d.replace(tzinfo=dt.timezone.utc)
+                if d.date() < today - dt.timedelta(days=days) or not keep(t):
+                    continue
+                out.append((d.date().isoformat(), t, u, name))
+                got += 1
+        except Exception as e:               # noqa: BLE001
+            print(f"  ⚠️ RSS {name} 解析失败：{type(e).__name__}")
+        print(f"  · RSS {name}：{got} 条")
+    return out
+
+
 def scan_ledger(ledger_path, days):
     """扫台账历史事件（issue 日期为基准）"""
     out = []
@@ -514,7 +567,11 @@ def main():
     got = fetch_gn(EQUIP_QUERIES, args.days)
     print(f"  直采装备 GN：{len(got)} 条")
     fresh.extend(got)
-    # 2) 台账历史
+    # 2) 垂直媒体 RSS（补主报告 14 天窗口漏掉的稍旧条目）
+    rss_got = fetch_rss_equip(args.days)
+    print(f"  垂直媒体 RSS：{len(rss_got)} 条")
+    fresh.extend(rss_got)
+    # 3) 台账历史
     lg = scan_ledger(arch / "ledger.json", args.days)
     print(f"  台账历史命中：{len(lg)} 条")
     fresh.extend(lg)
