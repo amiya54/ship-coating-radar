@@ -244,7 +244,13 @@ def dedupe_items(items):
         for k in kept:
             kt = _clean_title(k.get("tz") or k.get("t", ""))
             thr = 0.72 if (cjk and _CJK_RE.search(kt)) else 0.52
-            if (_jac(ct, kt) >= thr
+            # ④ 韩日媒体同日同事件：韩语标题改写幅度太大（同一桩 AI-RAN 实证，
+            #    三家韩媒标题 J 仅 0.14-0.33，与不同事件的川崎条 0.16-0.22 完全重叠），
+            #    标题相似度无法区分，只能按「同日 + 同为韩日原文」合并。
+            same_day_krja = (it.get("d") or "") != "" and it.get("d") == k.get("d") \
+                and bool(_HANGUL_KANA_RE.search(it.get("t", ""))) \
+                and bool(_HANGUL_KANA_RE.search(k.get("t", "")))
+            if (same_day_krja or _jac(ct, kt) >= thr
                     or len(core & _core(kt)) >= 2
                     or (cjk and _CJK_RE.search(kt) and _lcs(ct, kt) >= 8)):
                 hit = k
@@ -691,7 +697,7 @@ def scan_ledger(ledger_path, days):
     return out
 
 
-def build_section(pool, ai_text="", ai_date="", per_cat=6):
+def build_section(pool, ai_text="", ai_date="", per_cat=8):
     """按类目精选生成 HTML（每类取最近 per_cat 条，总量上限 24）"""
     by_cat = {k: [] for k, _, _ in CATEGORIES}
     for it in pool:  # pool 已按日期倒序、已同事件合并，元素为 {d,t,u,s,n}
