@@ -146,10 +146,13 @@ SECTION_STYLE = """
 
 def norm_title(t):
     s = re.sub(r"\s+", " ", t).strip().lower()
-    return re.sub(r"[^0-9a-z\u4e00-\u9fff]+", "", s)[:64]
+    # ★韩日标题若只保留中文/字母，整条会被剥空导致 key 相撞，故一并保留假名与谚文
+    return re.sub(r"[^0-9a-z\u3040-\u30ff\u4e00-\u9fff\uac00-\ud7af]+", "", s)[:64]
 
 
-_CJK_RE = re.compile(r"[\u4e00-\u9fff]+")
+# 韩文谚文与日文假名也算 CJK：此前只认汉字，导致韩语同一事件的 3 家转述
+# 各算一条（英文 Jaccard 0.52 阈值对无空格韩文无效）。
+_CJK_RE = re.compile(r"[\u3040-\u30ff\u4e00-\u9fff\uac00-\ud7af]+")
 
 
 def _tokens(t):
@@ -233,13 +236,13 @@ def dedupe_items(items):
     入参须按日期倒序。"""
     kept = []
     for it in items:
-        t = it.get("t", "")
+        t = it.get("tz") or it.get("t", "")
         ct = _clean_title(t)
         cjk = bool(_CJK_RE.search(ct))
         core = _core(ct)
         hit = None
         for k in kept:
-            kt = _clean_title(k.get("t", ""))
+            kt = _clean_title(k.get("tz") or k.get("t", ""))
             thr = 0.72 if (cjk and _CJK_RE.search(kt)) else 0.52
             if (_jac(ct, kt) >= thr
                     or len(core & _core(kt)) >= 2
@@ -692,8 +695,9 @@ def build_section(pool, ai_text="", ai_date="", per_cat=6):
     """按类目精选生成 HTML（每类取最近 per_cat 条，总量上限 24）"""
     by_cat = {k: [] for k, _, _ in CATEGORIES}
     for it in pool:  # pool 已按日期倒序、已同事件合并，元素为 {d,t,u,s,n}
-        by_cat[classify(it["t"])].append(
-            (it["d"], it["t"], it["u"], it["s"], it.get("n", 1)))
+        disp = it.get("tz") or it["t"]        # 韩日条目展示中文译名
+        by_cat[classify(disp)].append(
+            (it["d"], disp, it["u"], it["s"], it.get("n", 1)))
     rows = []
     total = 0
     for key, name, blurb in CATEGORIES:
@@ -766,6 +770,85 @@ AI_PROMPT = """你是一名修船/造船涂装工艺工程师，为「修造船�
 {list}"""
 
 
+_HANGUL_KANA_RE = re.compile(r"[\u3040-\u30ff\uac00-\ud7af]")
+
+TRANS_PROMPT = """把下面这些韩文/日文的「船舶修造涂装装备」新闻标题逐条译成简体中文。
+
+输出要求（严格遵守）：
+- 只输出一个 JSON 数组，元素是字符串，元素个数必须等于输入条数，顺序对应；
+- 数组外不要任何文字、说明或代码块标记；
+- 厂商名、船厂名、型号保留原文，可在其后括注中文，如 "HD현대삼호（HD现代三湖）"；
+- 每条译文 ≤40 个汉字，保留"谁、在哪、什么装备、做什么"。
+
+输入（共 {n} 条）：
+{lines}"""
+
+
+def need_translate(t):
+    """含谚文或假名才需要翻译（中英标题直通）。"""
+    return bool(_HANGUL_KANA_RE.search(t or ""))
+
+
+def translate_titles(titles, config_path):
+    """批量把韩日标题翻成中文，返回与输入等长的列表（失败项给空串）。
+    目的有两个：① 中文页面上韩日原文没法读；② 韩语标题改写幅度大，
+    同一事件的 3 家转述 Jaccard 只有 0.18，只有翻成中文后同事件判据才生效。"""
+    key = os.environ.get("AI_API_KEY", "").strip()
+    if not key or not titles:
+        return [""] * len(titles)
+    try:
+        model, url = load_ai_conf(config_path)
+    except Exception:                       # noqa: BLE001
+        return [""] * len(titles)
+    lines = "\n".join(f"{i + 1}. {t}" for i, t in enumerate(titles))
+    body = json.dumps({
+        "model": model,
+        "messages": [{"role": "user", "content": TRANS_PROMPT.replace(
+            "{n}", str(len(titles))).replace("{lines}", lines)}],
+        "temperature": 0.2,
+        # 推理型模型会把 token 先花在思考上，给少了正文直接返回空串（实测 2000 就是空）
+        "max_tokens": 6000,
+    }).encode("utf-8")
+    req = urllib.request.Request(url, data=body, method="POST", headers={
+        "Authorization": f"Bearer {key}", "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=180) as r:
+            data = json.loads(r.read().decode("utf-8"))
+        raw = (data["choices"][0]["message"]["content"] or "").strip()
+    except Exception as e:                  # noqa: BLE001
+        print(f"  ⚠️ 标题翻译失败：{type(e).__name__} {str(e)[:100]}")
+        return [""] * len(titles)
+    out = [""] * len(titles)
+    # 首选 JSON 数组；模型偶尔会加一句开头语或改用逐行输出，故留两级兜底
+    arr = None
+    if "[" in raw and "]" in raw:
+        try:
+            arr = json.loads(raw[raw.index("["):raw.rindex("]") + 1])
+        except Exception:                   # noqa: BLE001
+            arr = None
+    if isinstance(arr, list) and len(arr) == len(titles):
+        out = [str(x).strip().strip('"“”') for x in arr]
+    else:
+        nums = {}
+        for ln in raw.splitlines():
+            ln = ln.strip()
+            m = re.match(r"^(\d{1,2})[.、)）]\s*(.+)$", ln)
+            if m:
+                nums[int(m.group(1)) - 1] = m.group(2).strip().strip('"“”')
+        if nums:
+            for i, v in nums.items():
+                if 0 <= i < len(out):
+                    out[i] = v
+        else:
+            cand = [ln.strip().strip('"“”') for ln in raw.splitlines() if ln.strip()]
+            cand = [c for c in cand if not c.endswith(("：", ":"))    # 去掉「以下是译文：」这类开场
+                    and not c.startswith(("好的", "以下", "译文"))]
+            if len(cand) == len(titles):
+                out = cand
+    print(f"  韩日标题翻译：{sum(1 for x in out if x)}/{len(titles)} 条")
+    return out
+
+
 def ai_analyze(items, config_path):
     """调 AI 对装备池做研判；返回文本或 None。"""
     key = os.environ.get("AI_API_KEY", "").strip()
@@ -777,7 +860,8 @@ def ai_analyze(items, config_path):
     except Exception as e:
         print(f"  ⚠️ 读 AI 配置失败：{type(e).__name__}")
         return None
-    lines = [f"{it['d']} | {classify(it['t'])} | {it['t'][:120]}" for it in items[:45]]
+    lines = [f"{it['d']} | {classify(it.get('tz') or it['t'])} | "
+             f"{(it.get('tz') or it['t'])[:120]}" for it in items[:45]]
     if not lines:
         return None
     body = json.dumps({
@@ -889,6 +973,13 @@ def main():
     # 过期清理
     pool = {k: v for k, v in pool.items() if v.get("d", "0000") >= cutoff}
     items = sorted(pool.values(), key=lambda x: x.get("d", ""), reverse=True)
+    # ★韩日标题补译（只翻没译过的，结果存在 tz 字段随池子持久化）
+    todo = [it for it in items if not it.get("tz") and need_translate(it.get("t", ""))]
+    if todo:
+        zh = translate_titles([it["t"] for it in todo[:24]], args.config)
+        for it, z in zip(todo, zh):
+            if z:
+                it["tz"] = z
     # ★跨源同事件合并（6 家媒体转述同一桩事 → 收敛成 1 条）
     raw_n = len(items)
     items = dedupe_items(items)
